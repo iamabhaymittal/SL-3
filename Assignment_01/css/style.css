@@ -1,0 +1,17 @@
+header {
+	background-color: black;
+    display: block;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    text-decoration: none;
+      overflow: hidden;
+}
+body {
+	background-color: lightblue;
+}
+p {
+}
+header a:hover{
+    background-color: blue;
+}
