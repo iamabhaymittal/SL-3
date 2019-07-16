@@ -1,17 +1,79 @@
-header {
+	header {
 	background-color: black;
     display: block;
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 0;
     text-decoration: none;
-      overflow: hidden;
+    overflow: hidden;
+    text-decoration: none;
 }
 body {
 	background-color: lightblue;
 }
-p {
+li {
+	padding-left: 40px;
+	font-size: 20px;
+	font-family: Comic Sans MS;
 }
 header a:hover{
     background-color: blue;
+    text-decoration: none;
+}
+h1{
+	padding: 10px;
+}
+tbody{
+	font-size: 20px;
+}
+table{
+	padding-left: 180px;
+
+}
+td {
+	padding: 10px 20px 0px 20px;
+}
+
+
+.dropbtn {
+  background-color: black;
+  color: lightblue;
+  padding: 16px;
+  font-size: 25px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+	float: right;
+  position: relative;
+  display: inline-block;
+  margin: 20px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: grey;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  background-color: white;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: blue;
 }
