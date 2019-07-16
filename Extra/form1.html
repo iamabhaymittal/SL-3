@@ -1,22 +1,88 @@
-<!DOCTYPE html>
-<html>
-<body>
+<head>
 
-<h2>Registeration Form</h2>
-
-<form action="/action_page.php">
-  First name:<br>
-  <input type="text" value="Mickey">
-  <br>
-  Last name:<br>
-  <input type="text" name="lastname" value="Mouse">
-  <br><br>
-  <input type="submit" value="Submit">
-</form> 
-
-<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
-
-<p>Notice that the value of the "First name" field will not be submitted, because the input element does not have a name attribute.</p>
-
-</body>
-</html>
+    <title>Registration Page</title>
+    
+    </head>
+    
+    <body>
+    
+    <form method="" action="">
+    
+    <table border="1" align="center" width="400" bgcolor="#CCCCCC" >
+    
+    <caption>Registration form</caption>
+    
+    <tr>
+    
+    <th>Enter your first name</th>
+    
+    <td><input type="text" name="fn" id="fn1" maxlength="10" title="enter your first name" placeholder="enter your first name" required/></td>
+    
+    </tr>
+    
+    <tr>
+    
+    <th>Enter your last name</th>
+    
+    <td><input type="text"/></td>
+    
+    </tr>
+    
+    <tr>
+    
+    <th>Enter your password</th>
+    
+    <td><input type="password"/></td>
+    
+    </tr>
+    
+    <tr>
+    
+    <th>ReEnter your password</th>
+    
+    <td><input type="password"/></td>
+    
+    </tr>
+    
+    <tr>
+    
+    <th>Enter your email</th>
+    
+    <td><input type="email"/></td>
+    
+    </tr>
+    
+    <tr>
+    
+    <th>Enter your mobile</th>
+    
+    <td><input type="number"/></td>
+    
+    </tr>
+    
+    <tr>
+    
+    <th>Enter your address</th>
+    
+    <td><textarea rows="8" cols="20"></textarea></td>
+    
+    </tr>
+    
+    
+    
+    <tr>
+    
+    <th>Select your DOB</th>
+    
+    <td><input type="date" max="2019-01-01" value="2000-01-01"/></td>
+    
+    </tr>
+    
+    
+    </table>
+    <center><input type="submit"></input></center>
+    </form>
+    
+    </body>
+    
+    </html>
