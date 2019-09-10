@@ -1,0 +1,737 @@
+pict@DBMSLAB-A3-305-15:~$ mysql -u kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| BookOrdering       |
+| Chef               |
+| NHL                |
+| ass1               |
+| chef               |
+| college            |
+| college_management |
+| d1                 |
+| db                 |
+| db1                |
+| dbname             |
+| examdb             |
+| generalStore_33234 |
+| hotel              |
+| league             |
+| mydb               |
+| mysql              |
+| oms33130           |
+| order33170         |
+| performance_schema |
+| pictown            |
+| pictown33130       |
+| res                |
+| sys                |
+| test               |
+| test13             |
++--------------------+
+27 rows in set (0.13 sec)
+
+mysql> use oms33130;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_oms33130 |
++--------------------+
+| category           |
+| customer           |
+| orders             |
+| product            |
+| selects            |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from category;
++--------+------------------+
+| cat_id | cat_name         |
++--------+------------------+
+|      1 | Colors           |
+|      2 | Erasers          |
+|      3 | Sharpeners       |
+|      4 | Pencil           |
+|      5 | Pen              |
+|      6 | Exam Pads        |
+|      7 | Pencil Box       |
+|      8 | Calculators      |
+|      9 | Notebooks        |
+|     10 | Files            |
+|     11 | Folders          |
+|     12 | Scissors         |
+|     13 | Glue             |
+|     14 | Tape             |
+|     15 | Staplers         |
+|     16 | Punching machine |
+|     17 | Tools            |
+|     18 | Printing suplies |
+|     19 | School suplies   |
+|     20 | Boards           |
++--------+------------------+
+20 rows in set (0.01 sec)
+
+mysql> source product.sql;
+Query OK, 1 row affected (0.05 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.14 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.05 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.05 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.07 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.05 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.06 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.06 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.07 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.05 sec)
+
+Query OK, 1 row affected (0.08 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.07 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.07 sec)
+
+Query OK, 1 row affected (0.05 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from product;
++--------+------+--------------------+------------+-------+
+| cat_id | p_id | p_name             | unit_price | stock |
++--------+------+--------------------+------------+-------+
+|      1 |    1 | Crayons            |         30 |   100 |
+|      1 |    2 | Water colors       |         50 |    50 |
+|      1 |    3 | Pencil colors      |         20 |   200 |
+|      2 |    4 | big eraser         |         10 |   100 |
+|      2 |    5 | small eraser       |          5 |   100 |
+|      3 |    6 | Dust sharpener     |         30 |   200 |
+|      3 |    7 | Non Dust Sharpener |          5 |   200 |
+|      4 |    8 | With eraser        |          5 |   300 |
+|      4 |    9 | without eraser     |          2 |   100 |
+|      5 |   10 | Gel pen            |          5 |   200 |
+|      5 |   11 | Ball pen           |          5 |   300 |
+|      5 |   12 | Ink Pen            |         20 |   500 |
+|      6 |   13 | Exam Pad           |        150 |   100 |
+|      6 |   14 | Normal Pad         |        100 |   500 |
+|      7 |   15 | Pouch              |         30 |   100 |
+|      7 |   16 | Geometry Box       |        100 |   300 |
+|      8 |   17 | Scientific         |       1000 |   200 |
+|      8 |   18 | Normal             |        100 |   100 |
+|      9 |   19 | Four line          |         20 |   300 |
+|      9 |   20 | Single line        |         30 |   100 |
+|      9 |   21 | Square box         |         20 |   500 |
+|     10 |   22 | Office file        |         50 |   300 |
+|     10 |   23 | Project file       |         20 |   500 |
+|     11 |   24 | Single             |         20 |   500 |
+|     11 |   25 | Multiple           |         50 |   100 |
+|     12 |   26 | Paper              |         30 |   500 |
+|     12 |   27 | Cloth              |         40 |   100 |
+|     13 |   28 | Fevicol            |         10 |   100 |
+|     13 |   29 | Hot glue           |        100 |   100 |
+|     13 |   30 | Wood glue          |         30 |   500 |
+|     14 |   31 | Single sided       |         10 |   300 |
+|     14 |   32 | Double sided       |         20 |   500 |
+|     15 |   33 | Small              |         20 |   500 |
+|     15 |   34 | Big                |        100 |   500 |
+|     16 |   35 | Small              |         50 |   500 |
+|     16 |   36 | Big                |        100 |   500 |
+|     17 |   37 | rounder            |         50 |   300 |
+|     17 |   38 | Divider            |         20 |   500 |
+|     18 |   39 | Ink                |        100 |   200 |
+|     18 |   40 | Paper              |         50 |   100 |
+|     19 |   41 | School bag         |        400 |   100 |
+|     19 |   42 | School books       |       1000 |   100 |
+|     20 |   43 | Black              |        300 |   100 |
+|     20 |   44 | White              |        100 |   500 |
++--------+------+--------------------+------------+-------+
+44 rows in set (0.00 sec)
+
+mysql> mysql customer;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| cust_id | int(11)     | NO   | PRI | NULL    |       |
+| fname   | varchar(15) | NO   |     | NULL    |       |
+| lname   | varchar(15) | NO   |     | NULL    |       |
+| email   | varchar(25) | NO   |     | NULL    |       |
+| street  | varchar(15) | NO   |     | NULL    |       |
+| city    | varchar(15) | NO   |     | Pune    |       |
+| state   | varchar(15) | NO   |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> source customer.sql;
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> source customer.sql;
+Query OK, 1 row affected (0.09 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.09 sec)
+
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from customer;
++---------+---------+----------+---------------------------+------------+------+-------------+
+| cust_id | fname   | lname    | email                     | street     | city | state       |
++---------+---------+----------+---------------------------+------------+------+-------------+
+|       1 | Kunal   | Sachdev  | kunalsachdev456@gmail.com | Dhankawadi | Pune | Maharashtra |
+|       2 | Animesh | Landge   | anni.landge@gmail.com     | Dhankawadi | Pune | Maharashtra |
+|       3 | Yash    | Jeswani  | Yashjeswani2420@gmail.com | Dhankawadi | Pune | Maharashtra |
+|       4 | Soham   | Kotalwar | sohamkotalwar@gmail.com   | Dhankawadi | Pune | Maharashtra |
++---------+---------+----------+---------------------------+------------+------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> desc orders;
++-----------+---------+------+-----+---------+-------+
+| Field     | Type    | Null | Key | Default | Extra |
++-----------+---------+------+-----+---------+-------+
+| or_id     | int(11) | NO   | PRI | NULL    |       |
+| cust_no   | int(11) | YES  | MUL | NULL    |       |
+| or_date   | date    | YES  |     | NULL    |       |
+| total_amt | int(11) | NO   |     | NULL    |       |
++-----------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into orders(1,1,2019-03-10,0);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,1,2019-03-10,0)' at line 1
+mysql> insert into orders(1,1,'2019-03-10',0);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,1,'2019-03-10',0)' at line 1
+mysql> insert into orders(1,1,'10-03-2019',0);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,1,'10-03-2019',0)' at line 1
+mysql> insert into orders(1,1,'10-03-2019',0);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,1,'10-03-2019',0)' at line 1
+mysql> insert into orders(1,1,'10-MAR-2019',0);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,1,'10-MAR-2019',0)' at line 1
+mysql> insert into orders(1,1,'10-MAR-19',0);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,1,'10-MAR-19',0)' at line 1
+mysql> insert into orders values(1,1,'10-MAR-19',0);
+ERROR 1292 (22007): Incorrect date value: '10-MAR-19' for column 'or_date' at row 1
+mysql> insert into orders values(1,1,'10-03-2019',0);
+ERROR 1292 (22007): Incorrect date value: '10-03-2019' for column 'or_date' at row 1
+mysql> insert into orders values(1,1,'10-MAR-2019',0);
+ERROR 1292 (22007): Incorrect date value: '10-MAR-2019' for column 'or_date' at row 1
+mysql> insert into orders values(1,1,'2019-03-10',0);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> source orders.sql
+Query OK, 1 row affected (0.05 sec)
+
+Query OK, 1 row affected (0.14 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from orders;
++-------+---------+------------+-----------+
+| or_id | cust_no | or_date    | total_amt |
++-------+---------+------------+-----------+
+|     1 |       1 | 2019-03-10 |         0 |
+|     2 |       1 | 2019-07-10 |         0 |
+|     3 |       2 | 2019-04-10 |         0 |
+|     4 |       3 | 2019-05-10 |         0 |
+|     5 |       4 | 2019-06-11 |         0 |
++-------+---------+------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> desc selects;
++--------------+---------+------+-----+---------+-------+
+| Field        | Type    | Null | Key | Default | Extra |
++--------------+---------+------+-----+---------+-------+
+| p_id         | int(11) | NO   | PRI | NULL    |       |
+| or_id        | int(11) | NO   | PRI | NULL    |       |
+| quantity     | int(11) | YES  |     | NULL    |       |
+| total_amount | int(11) | YES  |     | NULL    |       |
++--------------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table selects modify or_id int first;
+Query OK, 0 rows affected (0.58 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc selects;
++--------------+---------+------+-----+---------+-------+
+| Field        | Type    | Null | Key | Default | Extra |
++--------------+---------+------+-----+---------+-------+
+| or_id        | int(11) | NO   | PRI | NULL    |       |
+| p_id         | int(11) | NO   | PRI | NULL    |       |
+| quantity     | int(11) | YES  |     | NULL    |       |
+| total_amount | int(11) | YES  |     | NULL    |       |
++--------------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> source selects.sql;
+Query OK, 1 row affected (0.05 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.12 sec)
+
+Query OK, 1 row affected (0.05 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.06 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from selects;
++-------+------+----------+--------------+
+| or_id | p_id | quantity | total_amount |
++-------+------+----------+--------------+
+|     1 |    1 |        2 |            0 |
+|     5 |    1 |        6 |            0 |
+|     1 |    4 |        1 |            0 |
+|     2 |    7 |        1 |            0 |
+|     5 |    9 |        2 |            0 |
+|     4 |   10 |        1 |            0 |
+|     2 |   20 |        3 |            0 |
+|     3 |   21 |        4 |            0 |
+|     4 |   43 |        5 |            0 |
+|     3 |   44 |        5 |            0 |
++-------+------+----------+--------------+
+10 rows in set (0.00 sec)
+
+mysql> 
+mysql> oms33130
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'oms33130' at line 1
+mysql> use oms33130;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> desc customer;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| cust_id | int(11)     | NO   | PRI | NULL    |       |
+| fname   | varchar(15) | NO   |     | NULL    |       |
+| lname   | varchar(15) | NO   |     | NULL    |       |
+| email   | varchar(25) | NO   |     | NULL    |       |
+| street  | varchar(15) | NO   |     | NULL    |       |
+| city    | varchar(15) | NO   |     | Pune    |       |
+| state   | varchar(15) | NO   |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql> desc orders;
++-----------+---------+------+-----+---------+-------+
+| Field     | Type    | Null | Key | Default | Extra |
++-----------+---------+------+-----+---------+-------+
+| or_id     | int(11) | NO   | PRI | NULL    |       |
+| cust_no   | int(11) | YES  | MUL | NULL    |       |
+| or_date   | date    | YES  |     | NULL    |       |
+| total_amt | int(11) | NO   |     | NULL    |       |
++-----------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select f_name from customer in(select cust_no from orders where total_amount > (select total_amount from orders)); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'in(select cust_no from orders where total_amount > (select total_amount from ord' at line 1
+mysql> select f_name from customer where cust_id=(select cust_no from orders where total_amount > (select total_amount from orders));
+ERROR 1054 (42S22): Unknown column 'f_name' in 'field list'
+mysql> select fname from customer where cust_id=(select cust_no from orders where total_amount > (select total_amount from orders));
+ERROR 1054 (42S22): Unknown column 'total_amount' in 'where clause'
+mysql> select fname from customer where cust_id=(select cust_no from orders where total_amt > (select total_amt from orders));
+ERROR 1242 (21000): Subquery returns more than 1 row
+mysql> select fname from customer where cust_id=(select cust_no from orders where total_amt = (select max(total_amt) from orders));
++-------+
+| fname |
++-------+
+| Yash  |
++-------+
+1 row in set (0.02 sec)
+
+mysql> select fname from customer where cust_id=(select cust_no from orders where total_amt < (select max(total_amt) from orders));
+ERROR 1242 (21000): Subquery returns more than 1 row
+mysql> select fname from customer where cust_id=(select cust_no from orders where total_amt < (select max(total_amt) from orders)order by total_amt desc limit 1);
++---------+
+| fname   |
++---------+
+| Animesh |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select * from orders;
++-------+---------+------------+-----------+
+| or_id | cust_no | or_date    | total_amt |
++-------+---------+------------+-----------+
+|     1 |       1 | 2019-03-10 |        70 |
+|     2 |       1 | 2019-07-10 |        95 |
+|     3 |       2 | 2019-04-10 |       580 |
+|     4 |       3 | 2019-05-10 |      1430 |
+|     5 |       4 | 2019-06-11 |       184 |
++-------+---------+------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customer;
++---------+---------+----------+---------------------------+------------+--------+-------------+
+| cust_id | fname   | lname    | email                     | street     | city   | state       |
++---------+---------+----------+---------------------------+------------+--------+-------------+
+|       1 | Kunal   | Sachdev  | kunalsachdev456@gmail.com | devlali    | nashik | Maharashtra |
+|       2 | Animesh | Landge   | anni.landge@gmail.com     | borivali   | mumbai | Maharashtra |
+|       3 | Yash    | Jeswani  | Yashjeswani2420@gmail.com | Dhankawadi | Pune   | Maharashtra |
+|       4 | Soham   | Kotalwar | sohamkotalwar@gmail.com   | kalamandir | nanded | Maharashtra |
++---------+---------+----------+---------------------------+------------+--------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from customer;
++---------+---------+----------+---------------------------+------------+--------+-------------+
+| cust_id | fname   | lname    | email                     | street     | city   | state       |
++---------+---------+----------+---------------------------+------------+--------+-------------+
+|       1 | Kunal   | Sachdev  | kunalsachdev456@gmail.com | devlali    | nashik | Maharashtra |
+|       2 | Animesh | Landge   | anni.landge@gmail.com     | borivali   | mumbai | Maharashtra |
+|       3 | Yash    | Jeswani  | Yashjeswani2420@gmail.com | Dhankawadi | Pune   | Maharashtra |
+|       4 | Soham   | Kotalwar | sohamkotalwar@gmail.com   | kalamandir | nanded | Maharashtra |
++---------+---------+----------+---------------------------+------------+--------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select count(p_id) from selects where or_id=1;
++-------------+
+| count(p_id) |
++-------------+
+|           2 |
++-------------+
+1 row in set (0.04 sec)
+
+mysql> select * from orders where cust_no =1;
++-------+---------+------------+-----------+
+| or_id | cust_no | or_date    | total_amt |
++-------+---------+------------+-----------+
+|     1 |       1 | 2019-03-10 |        70 |
+|     2 |       1 | 2019-07-10 |        95 |
++-------+---------+------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select fname,or_id,or_date,total_amt,p_id,p_name,unit_price,stock,qty from customer,selects,product,orders where cust_no=cust_id and selects.pid=product.pid and orders.or_id=selects.or_id;
+ERROR 1052 (23000): Column 'or_id' in field list is ambiguous
+mysql> select fname,orders.or_id,or_date,total_amt,p_id,p_name,unit_price,stock,qty from customer,selects,product,orders where cust_no=cust_id and selects.pid=product.pid and orders.or_id=selects.or_id;
+ERROR 1052 (23000): Column 'p_id' in field list is ambiguous
+mysql> select fname,orders.or_id,or_date,total_amt,product.p_id,p_name,unit_price,stock,qty from customer,selects,product,orders where cust_no=cust_id and selects.pid=product.pid and orders.or_id=selects.or_id;
+ERROR 1054 (42S22): Unknown column 'qty' in 'field list'
+mysql> select fname,orders.or_id,or_date,total_amt,product.p_id,p_name,unit_price,stock,quantity from customer,selects,product,orders where cust_no=cust_id and selects.pid=product.pid and orders.or_id=selects.or_id;
+ERROR 1054 (42S22): Unknown column 'selects.pid' in 'where clause'
+mysql> select fname,orders.or_id,or_date,total_amt,product.p_id,p_name,unit_price,stock,quantity from customer,selects,product,orders where cust_no=cust_id and selects.p_id=product.p_id and orders.or_id=selects.or_id;
++---------+-------+------------+-----------+------+--------------------+------------+-------+----------+
+| fname   | or_id | or_date    | total_amt | p_id | p_name             | unit_price | stock | quantity |
++---------+-------+------------+-----------+------+--------------------+------------+-------+----------+
+| Kunal   |     1 | 2019-03-10 |        70 |    1 | Crayons            |         30 |   100 |        2 |
+| Soham   |     5 | 2019-06-11 |       184 |    1 | Crayons            |         30 |   100 |        6 |
+| Kunal   |     1 | 2019-03-10 |        70 |    4 | big eraser         |         10 |   100 |        1 |
+| Kunal   |     2 | 2019-07-10 |        95 |    7 | Non Dust Sharpener |          5 |   200 |        1 |
+| Soham   |     5 | 2019-06-11 |       184 |    9 | without eraser     |          2 |   100 |        2 |
+| Yash    |     4 | 2019-05-10 |      1430 |   10 | Gel pen            |          5 |   200 |        1 |
+| Kunal   |     2 | 2019-07-10 |        95 |   20 | Single line        |         30 |   100 |        3 |
+| Animesh |     3 | 2019-04-10 |       580 |   21 | Square box         |         20 |   500 |        4 |
+| Yash    |     4 | 2019-05-10 |      1430 |   43 | Black              |        300 |   100 |        5 |
+| Animesh |     3 | 2019-04-10 |       580 |   44 | White              |        100 |   500 |        5 |
++---------+-------+------------+-----------+------+--------------------+------------+-------+----------+
+10 rows in set (0.03 sec)
+
+mysql> select * from selects;
++-------+------+----------+--------------+
+| or_id | p_id | quantity | total_amount |
++-------+------+----------+--------------+
+|     1 |    1 |        2 |           60 |
+|     5 |    1 |        6 |          180 |
+|     1 |    4 |        1 |           10 |
+|     2 |    7 |        1 |            5 |
+|     5 |    9 |        2 |            4 |
+|     4 |   10 |        1 |            5 |
+|     2 |   20 |        3 |           90 |
+|     3 |   21 |        4 |           80 |
+|     4 |   43 |        5 |         1500 |
+|     3 |   44 |        5 |          500 |
++-------+------+----------+--------------+
+10 rows in set (0.00 sec)
+
+mysql> select fname,orders.or_id,or_date,total_amt,product.p_id,p_name,unit_price,stock,quantity from customer,selects,product,orders where cust_no=cust_id and selects.p_id=product.p_id and orders.or_id=selects.or_id and cust_no=1;
++-------+-------+------------+-----------+------+--------------------+------------+-------+----------+
+| fname | or_id | or_date    | total_amt | p_id | p_name             | unit_price | stock | quantity |
++-------+-------+------------+-----------+------+--------------------+------------+-------+----------+
+| Kunal |     1 | 2019-03-10 |        70 |    1 | Crayons            |         30 |   100 |        2 |
+| Kunal |     1 | 2019-03-10 |        70 |    4 | big eraser         |         10 |   100 |        1 |
+| Kunal |     2 | 2019-07-10 |        95 |    7 | Non Dust Sharpener |          5 |   200 |        1 |
+| Kunal |     2 | 2019-07-10 |        95 |   20 | Single line        |         30 |   100 |        3 |
++-------+-------+------------+-----------+------+--------------------+------------+-------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select count(*) from orders;
++----------+
+| count(*) |
++----------+
+|        5 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(or_id) from orders;
++--------------+
+| count(or_id) |
++--------------+
+|            5 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from product ,selects,product,customer orders.or_id=selects.or_id and selects.p_id=product.p_id and orders.cust_no=customer.cust_id and customer.fname='Kunal' and or_date=2019-03-10;
+ERROR 1066 (42000): Not unique table/alias: 'product'
+mysql> select * from product ,selects,orders,customer orders.or_id=selects.or_id and selects.p_id=product.p_id and orders.cust_no=customer.cust_id and customer.fname='Kunal' and or_date=2019-03-10;
+ERROR 1066 (42000): Not unique table/alias: 'orders'
+mysql> select * from product orders.or_id=selects.or_id and selects.p_id=product.p_id and orders.cust_no=customer.cust_id and customer.fname='Kunal' and or_date=2019-03-10;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.or_id=selects.or_id and selects.p_id=product.p_id and orders.cust_no=customer.c' at line 1
+mysql> select p_name,p_id from product orders.or_id=selects.or_id and selects.p_id=product.p_id and orders.cust_no=customer.cust_id and customer.fname='Kunal' and or_date='2019-03-10';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.or_id=selects.or_id and selects.p_id=product.p_id and orders.cust_no=customer.c' at line 1
+mysql> select p_name,p_id from product,orders,selects,customer orders.or_id=selects.or_id and selects.p_id=product.p_id and orders.cust_no=customer.cust_id and customer.fname='Kunal' and or_date='2019-03-10';
+ERROR 1066 (42000): Not unique table/alias: 'orders'
+mysql> select p_name,p_id from product,orders,selects,customer where orders.or_id=selects.or_id and selects.p_id=product.p_id and orders.cust_no=customer.cust_id and customer.fname='Kunal' and or_date='2019-03-10';
+ERROR 1052 (23000): Column 'p_id' in field list is ambiguous
+mysql> select p_name,product.p_id from product,orders,selects,customer where orders.or_id=selects.or_id and selects.p_id=product.p_id and orders.cust_no=customer.cust_id and customer.fname='Kunal' and or_date='2019-03-10';
++------------+------+
+| p_name     | p_id |
++------------+------+
+| Crayons    |    1 |
+| big eraser |    4 |
++------------+------+
+2 rows in set (0.01 sec)
+
+mysql> select * from product where p_id =(select p_id from selects where or_id=(select or_id from selects where or_date='2019-03-10' and cust_no =(selects cust_id from customer where fname='kunal')));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'cust_id from customer where fname='kunal')))' at line 1
+mysql> select * from product where p_id =(select p_id from selects where or_id=(select or_id from orders where or_date='2019-03-10' and cust_no =(selects cust_id from customer where fname='kunal'))); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'cust_id from customer where fname='kunal')))' at line 1
+mysql> select * from product where p_id =(select p_id from selects where or_id=(select or_id from orders where or_date='2019-03-10' and cust_no =(selects cust_id from customer where fname='Kunal')));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'cust_id from customer where fname='Kunal')))' at line 1
+mysql> select * from product where p_id in(select p_id from selects where or_id=(select or_id from orders where or_date='2019-03-10' and cust_no =(selects cust_id from customer where fname='Kunal')));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'cust_id from customer where fname='Kunal')))' at line 1
+mysql> select * from product where p_id in(select p_id from selects where or_id=(select or_id from orders where or_date='2019-03-10' and cust_no =(select cust_id from customer where fname='Kunal')));
++--------+------+------------+------------+-------+
+| cat_id | p_id | p_name     | unit_price | stock |
++--------+------+------------+------------+-------+
+|      1 |    1 | Crayons    |         30 |   100 |
+|      2 |    4 | big eraser |         10 |   100 |
++--------+------+------------+------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from category;
++--------+------------------+
+| cat_id | cat_name         |
++--------+------------------+
+|      1 | Colors           |
+|      2 | Erasers          |
+|      3 | Sharpeners       |
+|      4 | Pencil           |
+|      5 | Pen              |
+|      6 | Exam Pads        |
+|      7 | Pencil Box       |
+|      8 | Calculators      |
+|      9 | Notebooks        |
+|     10 | Files            |
+|     11 | Folders          |
+|     12 | Scissors         |
+|     13 | Glue             |
+|     14 | Tape             |
+|     15 | Staplers         |
+|     16 | Punching machine |
+|     17 | Tools            |
+|     18 | Printing suplies |
+|     19 | School suplies   |
+|     20 | Boards           |
++--------+------------------+
+20 rows in set (0.01 sec)
+
+mysql> select max(unit_price) from products group by cat_id;
+ERROR 1146 (42S02): Table 'oms33130.products' doesn't exist
+mysql> select max(unit_price) from product group by cat_id;
++-----------------+
+| max(unit_price) |
++-----------------+
+|              50 |
+|              10 |
+|              30 |
+|               5 |
+|              20 |
+|             150 |
+|             100 |
+|            1000 |
+|              30 |
+|              50 |
+|              50 |
+|              40 |
+|             100 |
+|              20 |
+|             100 |
+|             100 |
+|              50 |
+|             100 |
+|            1000 |
+|             300 |
++-----------------+
+20 rows in set (0.01 sec)
+
+mysql> select cat_name,avg(price) from category;
+ERROR 1054 (42S22): Unknown column 'price' in 'field list'
+mysql> select cat_name,avg(unit_price) from product,category where category.cat_id=product.cat_id;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'oms33130.category.cat_name'; this is incompatible with sql_mode=only_full_group_by
+mysql> select cat_name,avg(unit_price) from product,category where category.cat_id=product.cat_id group by product.cat_id;
++------------------+-----------------+
+| cat_name         | avg(unit_price) |
++------------------+-----------------+
+| Colors           |         33.3333 |
+| Erasers          |          7.5000 |
+| Sharpeners       |         17.5000 |
+| Pencil           |          3.5000 |
+| Pen              |         10.0000 |
+| Exam Pads        |        125.0000 |
+| Pencil Box       |         65.0000 |
+| Calculators      |        550.0000 |
+| Notebooks        |         23.3333 |
+| Files            |         35.0000 |
+| Folders          |         35.0000 |
+| Scissors         |         35.0000 |
+| Glue             |         46.6667 |
+| Tape             |         15.0000 |
+| Staplers         |         60.0000 |
+| Punching machine |         75.0000 |
+| Tools            |         35.0000 |
+| Printing suplies |         75.0000 |
+| School suplies   |        700.0000 |
+| Boards           |        200.0000 |
++------------------+-----------------+
+20 rows in set (0.00 sec)
+
+mysql> select cat_name,avg(unit_price) from product,category where category.cat_id=product.cat_id and category.cat_id=1;
++----------+-----------------+
+| cat_name | avg(unit_price) |
++----------+-----------------+
+| Colors   |         33.3333 |
++----------+-----------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(tot_amt) from orders wher cust_no=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'cust_no=1' at line 1
+mysql> select avg(tot_amt) from orders where cust_no=1;
+ERROR 1054 (42S22): Unknown column 'tot_amt' in 'field list'
+mysql> select avg(total_amt) from orders where cust_no=1;
++----------------+
+| avg(total_amt) |
++----------------+
+|        82.5000 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select * from orders where or_id in(select or_id from orders where or_id not in(select or_id,max(tot_amt) from orders)group by total_amt desc limit 1);
+ERROR 1235 (42000): This version of MySQL doesn't yet support 'LIMIT & IN/ALL/ANY/SOME subquery'
+mysql> select * from orders where or_id in(select or_id from orders where or_id not in(select or_id,max(tot_amt) from orders)group by total_amt desc limit 1);   
+ERROR 1235 (42000): This version of MySQL doesn't yet support 'LIMIT & IN/ALL/ANY/SOME subquery'
+mysql> select * from orders where or_id =(select or_id from orders where or_id not in(select or_id,max(tot_amt) from orders)group by total_amt desc limit 1);  
+ERROR 1054 (42S22): Unknown column 'tot_amt' in 'field list'
+mysql> select * from orders where or_id =(select or_id from orders where or_id not in(select or_id,max(total_amt) from orders)group by total_amt desc limit 1); 
+ERROR 1241 (21000): Operand should contain 1 column(s)
+mysql> select * from orders where or_id in(select or_id from orders where or_id not in(select or_id,max(total_amt) from orders)group by total_amt desc limit 1);
+ERROR 1235 (42000): This version of MySQL doesn't yet support 'LIMIT & IN/ALL/ANY/SOME subquery'
+mysql> select * from orders where or_id =(select or_id from orders where or_id not in(select or_id,max(total_amt) from orders)order by total_amt desc limit 1);
+ERROR 1241 (21000): Operand should contain 1 column(s)
+mysql> select * from orders where or_id not in(select or_id,max(total_amt) from orders)order by total_amt desc limit 1;
+ERROR 1241 (21000): Operand should contain 1 column(s)
+mysql> select * from orders where total_amt not in(select max(total_amt) from orders)order by total_amt desc limit 1;
++-------+---------+------------+-----------+
+| or_id | cust_no | or_date    | total_amt |
++-------+---------+------------+-----------+
+|     3 |       2 | 2019-04-10 |       580 |
++-------+---------+------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> 
+

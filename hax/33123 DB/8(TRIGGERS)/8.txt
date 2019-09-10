@@ -1,0 +1,2436 @@
+select* from customer;
++---------+----------------+------------------------------+---------+--------+-------------+
+| cust_id | cust_name      | email                        | street  | city   | state       |
++---------+----------------+------------------------------+---------+--------+-------------+
+|       1 | Yash Jeswani   | yashjeswani2420@gmail.com    | Katraj  | Pune   | Maharashtra |
+|       2 | Kunal Sachdev  | kunalsachdev456@gmail.com    | Katraj  | Pune   | Maharashtra |
+|       3 | Animesh Landge | anni.landge@gmail.com        | Katraj  | Pune   | Maharashtra |
+|       4 | Soham Kotalwar | soham.kotalwar@gmail.com     | Katraj  | Pune   | Maharashtra |
+|       5 | Rajas Kulkarni | rajaskulkarni99.rk@gmail.com | Katraj  | nanded | Maharashtra |
+|       6 | SUMIT JADHWANI | sumitjadwani24@gmail.com     | vadgaon | akola  | maharashtra |
++---------+----------------+------------------------------+---------+--------+-------------+
+6 rows in set (0.03 sec)
+
+mysql> select* from selects;
++-------+------+------+---------+
+| or_id | p_id | qty  | tot_amt |
++-------+------+------+---------+
+|     1 |    1 |    3 |      75 |
+|     1 |    4 |    2 |      20 |
+|     2 |    7 |    2 |       6 |
+|     2 |   11 |    3 |      75 |
+|     3 |   13 |    4 |      60 |
+|     3 |   17 |    1 |      15 |
+|     4 |   21 |    5 |     125 |
+|     4 |   26 |    4 |     300 |
+|     5 |   28 |    2 |      30 |
+|     5 |   38 |    3 |     135 |
++-------+------+------+---------+
+10 rows in set (0.01 sec)
+
+mysql> insert into selects values(6,34,-3,56);
+ERROR 1644 (80000): Quantity cannot be less than 0
+mysql> source product_stock.sql;
+Query OK, 0 rows affected (0.08 sec)
+
+insert into selects values(4,15,10,20);
+    -> $
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select* from product;
+    -> $
++--------+------+----------------------+---------------+-------+
+| cat_no | p_id | p_name               | product_price | stock |
++--------+------+----------------------+---------------+-------+
+|      1 |    1 | Crayons              |            25 |   100 |
+|      1 |    2 | Water Colors         |            45 |    50 |
+|      1 |    3 | Pencil Colors        |            35 |   100 |
+|      2 |    4 | big Eraser           |            10 |    75 |
+|      2 |    5 | small Eraser         |             5 |   100 |
+|      3 |    6 | H-Pencil             |             5 |   100 |
+|      3 |    7 | 2H-Pencil            |             3 |   100 |
+|      4 |    8 | Gel Pen              |            15 |   100 |
+|      4 |    9 | Ball pen             |            10 |   100 |
+|      4 |   10 | Ink pen              |            20 |   100 |
+|      5 |   11 | Normal Paper         |            25 |   100 |
+|      5 |   12 | Graph Paper          |            15 |   100 |
+|      6 |   13 | Dust Sharpner        |            15 |   100 |
+|      6 |   14 | Non-Dust Sharpner    |            10 |   100 |
+|      7 |   15 | Transparent          |            55 |    90 |
+|      7 |   16 | Non-Transparent      |            65 |   100 |
+|      8 |   17 | Pouch                |            15 |   100 |
+|      8 |   18 | Geometry Box         |            25 |   100 |
+|      9 |   19 | Normal Calculator    |            75 |   100 |
+|      9 |   20 | Scintific Calculator |           125 |   100 |
+|     10 |   21 | Spiral Notebook      |            25 |   100 |
+|     10 |   22 | Composite Notebook   |            35 |   100 |
+|     11 |   23 | officefiles          |            25 |   100 |
+|     11 |   24 | Boxfiles             |            45 |   100 |
+|     12 |   25 | Expandable folder    |            55 |   100 |
+|     12 |   26 | Leather Folder       |            75 |   100 |
+|     13 |   27 | Compass              |            25 |   100 |
+|     13 |   28 | Divider              |            15 |   100 |
+|     14 |   29 | paper Scissor        |            25 |   100 |
+|     14 |   30 | Clothe Scissor       |            35 |   100 |
+|     15 |   31 | Fevicol              |            15 |   100 |
+|     15 |   32 | Hot Glue             |            25 |   100 |
+|     16 |   33 | stapler-Big          |            55 |   100 |
+|     16 |   34 | Stapler-small        |            25 |   100 |
+|     17 |   35 | Small Punching       |            25 |   100 |
+|     17 |   36 | Big Punching         |            75 |   100 |
+|     18 |   37 | Papers               |            25 |   100 |
+|     18 |   38 | Ink                  |            45 |   100 |
+|     19 |   39 | School Bag           |           125 |   100 |
+|     19 |   40 | School Bottle        |            35 |   100 |
+|     20 |   41 | Whi source stock_valid1.sql 
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into selects values(2,9,300,210);
+    -> $
+ERROR 1644 (80000): Quantity Greater Than stock cant Be Entered
+te Board+duster   |           125 |   100 |
+|     20 |   42 | Black Board+duster   |           100 |   100 |
++--------+------+----------------------+---------------+-------+
+42 rows in set (0.00 sec)
+
+mysql> delimiter ;
+mysql> 
+ source stock_valid1.sql 
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into selects values(2,9,300,210);
+    -> $
+ERROR 1644 (80000): Quantity Greater Than stock cant Be Entered
+mysql> delimiter ;
+mysql> source stock_valid.sql;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select stock from product where  p_id=new.p_id) THEN
+SIGNAL SQLSTATE '80000'
+SET' at line 6
+mysql> source stock_validation.sql;
+ERROR: 
+Failed to open file 'stock_validation.sql;', error: 2
+mysql> insert into selects values(5,14,300,90);
+    -> $
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select* from product;
+    -> $
++--------+------+----------------------+---------------+-------+
+| cat_no | p_id | p_name               | product_price | stock |
++--------+------+----------------------+---------------+-------+
+|      1 |    1 | Crayons              |            25 |   100 |
+|      1 |    2 | Water Colors         |            45 |    50 |
+|      1 |    3 | Pencil Colors        |            35 |   100 |
+|      2 |    4 | big Eraser           |            10 |    75 |
+|      2 |    5 | small Eraser         |             5 |   100 |
+|      3 |    6 | H-Pencil             |             5 |   100 |
+|      3 |    7 | 2H-Pencil            |             3 |   100 |
+|      4 |    8 | Gel Pen              |            15 |   100 |
+|      4 |    9 | Ball pen             |            10 |   100 |
+|      4 |   10 | Ink pen              |            20 |   100 |
+|      5 |   11 | Normal Paper         |            25 |   100 |
+|      5 |   12 | Graph Paper          |            15 |   100 |
+|      6 |   13 | Dust Sharpner        |            15 |   100 |
+|      6 |   14 | Non-Dust Sharpner    |            10 |  -200 |
+|      7 |   15 | Transparent          |            55 |    90 |
+|      7 |   16 | Non-Transparent      |            65 |   100 |
+|      8 |   17 | Pouch                |            15 |   100 |
+|      8 |   18 | Geometry Box         |            25 |   100 |
+|      9 |   19 | Normal Calculator    |            75 |   100 |
+|      9 |   20 | Scintific Calculator |           125 |   100 |
+|     10 |   21 | Spiral Notebook      |            25 |   100 |
+|     10 |   22 | Composite Notebook   |            35 |   100 |
+|     11 |   23 | officefiles          |            25 |   100 |
+|     11 |   24 | Boxfiles             |            45 |   100 |
+|     12 |   25 | Expandable folder    |            55 |   100 |
+|     12 |   26 | Leather Folder       |            75 |   100 |
+|     13 |   27 | Compass              |            25 |   100 |
+|     13 |   28 | Divider              |            15 |   100 |
+|     14 |   29 | paper Scissor        |            25 |   100 |
+|     14 |   30 | Clothe Scissor       |            35 |   100 |
+|     15 |   31 | Fevicol              |            15 |   100 |
+|     15 |   32 | Hot Glue             |            25 |   100 |
+|     16 |   33 | stapler-Big          |            55 |   100 |
+|     16 |   34 | Stapler-small        |            25 |   100 |
+|     17 |   35 | Small Punching       |            25 |   100 |
+|     17 |   36 | Big Punching         |            75 |   100 |
+|     18 |   37 | Papers               |            25 |   100 |
+|     18 |   38 | Ink                  |            45 |   100 |
+|     19 |   39 | School Bag           |           125 |   100 |
+|     19 |   40 | School Bottle        |            35 |   100 |
+|     20 |   41 | White Board+duster   |           125 |   100 |
+|     20 |   42 | Black Board+duster   |           100 |   100 |
++--------+------+----------------------+---------------+-------+
+42 rows in set (0.00 sec)
+
+mysql> drop trigger stock_p;
+    -> $
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> delimiter;
+    -> $
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter' at line 1
+mysql> delimiter ;
+mysql> source stock_valid.sql;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'a int;
+   a=select stock from product where  p_id=new.p_id;
+IF (NEW.qty> a) THEN' at line 6
+mysql> insert into selects values(4,16,300,10);
+    -> $
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select* from products;
+    -> $
+ERROR 1146 (42S02): Table 'oms.products' doesn't exist
+mysql> select* from product;
+    -> $
++--------+------+----------------------+---------------+-------+
+| cat_no | p_id | p_name               | product_price | stock |
++--------+------+----------------------+---------------+-------+
+|      1 |    1 | Crayons              |            25 |   100 |
+|      1 |    2 | Water Colors         |            45 |    50 |
+|      1 |    3 | Pencil Colors        |            35 |   100 |
+|      2 |    4 | big Eraser           |            10 |    75 |
+|      2 |    5 | small Eraser         |             5 |   100 |
+|      3 |    6 | H-Pencil             |             5 |   100 |
+|      3 |    7 | 2H-Pencil            |             3 |   100 |
+|      4 |    8 | Gel Pen              |            15 |   100 |
+|      4 |    9 | Ball pen             |            10 |   100 |
+|      4 |   10 | Ink pen              |            20 |   100 |
+|      5 |   11 | Normal Paper         |            25 |   100 |
+|      5 |   12 | Graph Paper          |            15 |   100 |
+|      6 |   13 | Dust Sharpner        |            15 |   100 |
+|      6 |   14 | Non-Dust Sharpner    |            10 |  -200 |
+|      7 |   15 | Transparent          |            55 |    90 |
+|      7 |   16 | Non-Transparent      |            65 |   100 |
+|      8 |   17 | Pouch                |            15 |   100 |
+|      8 |   18 | Geometry Box         |            25 |   100 |
+|      9 |   19 | Normal Calculator    |            75 |   100 |
+|      9 |   20 | Scintific Calculator |           125 |   100 |
+|     10 |   21 | Spiral Notebook      |            25 |   100 |
+|     10 |   22 | Composite Notebook   |            35 |   100 |
+|     11 |   23 | officefiles          |            25 |   100 |
+|     11 |   24 | Boxfiles             |            45 |   100 |
+|     12 |   25 | Expandable folder    |            55 |   100 |
+|     12 |   26 | Leather Folder       |            75 |   100 |
+|     13 |   27 | Compass              |            25 |   100 |
+|     13 |   28 | Divider              |            15 |   100 |
+|     14 |   29 | paper Scissor        |            25 |   100 |
+|     14 |   30 | Clothe Scissor       |            35 |   100 |
+|     15 |   31 | Fevicol              |            15 |   100 |
+|     15 |   32 | Hot Glue             |            25 |   100 |
+|     16 |   33 | stapler-Big          |            55 |   100 |
+|     16 |   34 | Stapler-small        |            25 |   100 |
+|     17 |   35 | Small Punching       |            25 |   100 |
+|     17 |   36 | Big Punching         |            75 |   100 |
+|     18 |   37 | Papers               |            25 |   100 |
+|     18 |   38 | Ink                  |            45 |   100 |
+|     19 |   39 | School Bag           |           125 |   100 |
+|     19 |   40 | School Bottle        |            35 |   100 |
+|     20 |   41 | White Board+duster   |           125 |   100 |
+|     20 |   42 | Black Board+duster   |           100 |   100 |
++--------+------+----------------------+---------------+-------+
+42 rows in set (0.00 sec)
+
+mysql> drop trigger stock_p;
+    -> $
+ERROR 1360 (HY000): Trigger does not exist
+mysql> source stock_valid.sql;
+ERROR: 
+Failed to open file 'stock_valid.sql;', error: 2
+mysql> source product_stock.sql;
+ERROR: 
+Failed to open file 'product_stock.sql;', error: 2
+mysql> drop trigger selects.stock_p;
+    -> $
+ERROR 1360 (HY000): Trigger does not exist
+mysql> DROP TRIGGER selects.stock_p;
+    -> $
+ERROR 1360 (HY000): Trigger does not exist
+mysql> delimiter ;
+mysql> DROP TRIGGER selects.stock_p;
+ERROR 1360 (HY000): Trigger does not exist
+mysql> source product_stock.sql
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> source stock_pvalid.sql
+ERROR: 
+Failed to open file 'stock_pvalid.sql', error: 2
+mysql> drop trigger stock_pvalid
+    -> $
+ERROR 1360 (HY000): Trigger does not exist
+mysql> drop trigger stock_p
+    -> $
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> source stock_valid1.sql
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'a int;
+   a=select stock from product where  p_id=new.p_id;
+IF (NEW.qty> a) THEN' at line 6
+mysql> desc product;
+    -> $
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| cat_no        | int(11)     | YES  | MUL | NULL    |       |
+| p_id          | int(11)     | NO   | PRI | NULL    |       |
+| p_name        | varchar(20) | YES  |     | NULL    |       |
+| product_price | int(11)     | YES  |     | NULL    |       |
+| stock         | int(11)     | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> delimiter ;
+mysql> source stock_valid1.sql 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'a int(11);
+   a=select stock from product where  p_id=new.p_id;
+IF (NEW.qty> a) ' at line 6
+mysql> source stock_valid1.sql
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=select stock from product where  p_id=new.p_id;
+IF (NEW.qty> a) THEN
+SIGNAL SQL' at line 7
+mysql> source stock_valid1.sql
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':=(select stock from product where  p_id=new.p_id);
+IF (NEW.qty> a) THEN
+SIGNAL ' at line 7
+mysql> source stock_valid1.sql
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into selects values(3,16,400,40);
+    -> $
+Query OK, 1 row affected (0.06 sec)
+
+mysql> 
+[2]+  Stopped                 mysql -u yash23 -p
+pict@DBMSLAB-A3-305-16:~$ 
+pict@DBMSLAB-A3-305-16:~$ mysql -u yash23 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7
+Server version: 5.7.27-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use oms;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> drop trigger stock_pvalid;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> source stock_vaid1.sql 
+ERROR: 
+Failed to open file 'stock_vaid1.sql', error: 2
+mysql> source stock_valid1.sql 
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into selects values(2,9,300,210);
+    -> $
+ERROR 1644 (80000): Quantity Greater Than stock cant Be Entered
+mysql> exit
+Bye
+pict@DBMSLAB-A3-305-16:~$ sudo mysqldump -u yash23 -p oms>abc.sql;
+[sudo] password for pict: 
+Enter password: 
+pict@DBMSLAB-A3-305-16:~$ mysql -u yash23 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 5.7.27-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use oms;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> select* from select;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select* from selects;
++-------+------+------+---------+
+| or_id | p_id | qty  | tot_amt |
++-------+------+------+---------+
+|     1 |    1 |    3 |      75 |
+|     1 |    4 |    2 |      20 |
+|     2 |    7 |    2 |       6 |
+|     2 |   11 |    3 |      75 |
+|     3 |   13 |    4 |      60 |
+|     5 |   14 |  300 |      90 |
+|     4 |   15 |   10 |      20 |
+|     3 |   16 |  400 |      40 |
+|     4 |   16 |  300 |      10 |
+|     3 |   17 |    1 |      15 |
+|     4 |   17 |    4 |      20 |
+|     4 |   21 |    5 |     125 |
+|     4 |   26 |    4 |     300 |
+|     5 |   28 |    2 |      30 |
+|     5 |   38 |    3 |     135 |
++-------+------+------+---------+
+15 rows in set (0.00 sec)
+
+mysql> select* from product;
++--------+------+----------------------+---------------+-------+
+| cat_no | p_id | p_name               | product_price | stock |
++--------+------+----------------------+---------------+-------+
+|      1 |    1 | Crayons              |            25 |   100 |
+|      1 |    2 | Water Colors         |            45 |    50 |
+|      1 |    3 | Pencil Colors        |            35 |   100 |
+|      2 |    4 | big Eraser           |            10 |    75 |
+|      2 |    5 | small Eraser         |             5 |   100 |
+|      3 |    6 | H-Pencil             |             5 |   100 |
+|      3 |    7 | 2H-Pencil            |             3 |   100 |
+|      4 |    8 | Gel Pen              |            15 |   100 |
+|      4 |    9 | Ball pen             |            10 |   100 |
+|      4 |   10 | Ink pen              |            20 |   100 |
+|      5 |   11 | Normal Paper         |            25 |   100 |
+|      5 |   12 | Graph Paper          |            15 |   100 |
+|      6 |   13 | Dust Sharpner        |            15 |   100 |
+|      6 |   14 | Non-Dust Sharpner    |            10 |  -200 |
+|      7 |   15 | Transparent          |            55 |    90 |
+|      7 |   16 | Non-Transparent      |            65 |   100 |
+|      8 |   17 | Pouch                |            15 |   100 |
+|      8 |   18 | Geometry Box         |            25 |   100 |
+|      9 |   19 | Normal Calculator    |            75 |   100 |
+|      9 |   20 | Scintific Calculator |           125 |   100 |
+|     10 |   21 | Spiral Notebook      |            25 |   100 |
+|     10 |   22 | Composite Notebook   |            35 |   100 |
+|     11 |   23 | officefiles          |            25 |   100 |
+|     11 |   24 | Boxfiles             |            45 |   100 |
+|     12 |   25 | Expandable folder    |            55 |   100 |
+|     12 |   26 | Leather Folder       |            75 |   100 |
+|     13 |   27 | Compass              |            25 |   100 |
+|     13 |   28 | Divider              |            15 |   100 |
+|     14 |   29 | paper Scissor        |            25 |   100 |
+|     14 |   30 | Clothe Scissor       |            35 |   100 |
+|     15 |   31 | Fevicol              |            15 |   100 |
+|     15 |   32 | Hot Glue             |            25 |   100 |
+|     16 |   33 | stapler-Big          |            55 |   100 |
+|     16 |   34 | Stapler-small        |            25 |   100 |
+|     17 |   35 | Small Punching       |            25 |   100 |
+|     17 |   36 | Big Punching         |            75 |   100 |
+|     18 |   37 | Papers               |            25 |   100 |
+|     18 |   38 | Ink                  |            45 |   100 |
+|     19 |   39 | School Bag           |           125 |   100 |
+|     19 |   40 | School Bottle        |            35 |   100 |
+|     20 |   41 | White Board+duster   |           125 |   100 |
+|     20 |   42 | Black Board+duster   |           100 |   100 |
++--------+------+----------------------+---------------+-------+
+42 rows in set (0.00 sec)
+
+mysql> source upd_select_amt.sql
+ERROR 1359 (HY000): Trigger already exists
+mysql> source upd_select_amt.sql
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> insert into selects values(2,24,4,0);
+    -> $
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select* from selects;
+    -> $
++-------+------+------+---------+
+| or_id | p_id | qty  | tot_amt |
++-------+------+------+---------+
+|     1 |    1 |    3 |      75 |
+|     1 |    4 |    2 |      20 |
+|     2 |    7 |    2 |       6 |
+|     2 |   11 |    3 |      75 |
+|     3 |   13 |    4 |      60 |
+|     5 |   14 |  300 |      90 |
+|     4 |   15 |   10 |      20 |
+|     3 |   16 |  400 |      40 |
+|     4 |   16 |  300 |      10 |
+|     3 |   17 |    1 |      15 |
+|     4 |   17 |    4 |      20 |
+|     4 |   21 |    5 |     125 |
+|     2 |   24 |    4 |     180 |
+|     4 |   26 |    4 |     300 |
+|     5 |   28 |    2 |      30 |
+|     5 |   38 |    3 |     135 |
++-------+------+------+---------+
+16 rows in set (0.00 sec)
+
+mysql> select* from orders;
+    -> $
++-------+---------+------------+-----------+
+| or_id | cust_no | or_date    | total_amt |
++-------+---------+------------+-----------+
+|     1 |       1 | 2019-04-19 |        95 |
+|     2 |       1 | 2019-05-19 |        81 |
+|     3 |       2 | 2019-06-19 |        75 |
+|     4 |       2 | 2019-07-10 |       404 |
+|     5 |       3 | 2019-07-15 |       165 |
++-------+---------+------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> update orders set total_amt=(select sum (tot_amt) from selects where or_id=orders.or_id);
+    -> $
+ERROR 1630 (42000): FUNCTION oms.sum does not exist. Check the 'Function Name Parsing and Resolution' section in the Reference Manual
+mysql> update orders set total_amt=(select sum(tot_amt) from selects where or_id=orders.or_id);
+    -> $
+Query OK, 4 rows affected (0.05 sec)
+Rows matched: 5  Changed: 4  Warnings: 0
+
+mysql> select* from orders;
+    -> $
++-------+---------+------------+-----------+
+| or_id | cust_no | or_date    | total_amt |
++-------+---------+------------+-----------+
+|     1 |       1 | 2019-04-19 |        95 |
+|     2 |       1 | 2019-05-19 |       261 |
+|     3 |       2 | 2019-06-19 |       115 |
+|     4 |       2 | 2019-07-10 |       475 |
+|     5 |       3 | 2019-07-15 |       255 |
++-------+---------+------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> source upd_order_amt.sql
+ERROR 1054 (42S22): Unknown column 'total_amt' in 'NEW'
+mysql> source upd_order_amt.sql
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into selects values(2,23,23,23);
+    -> $
+Query OK, 1 row affected (0.06 sec)
+
+mysql> delimiter ;
+mysql> select * from selects;
++-------+------+------+---------+
+| or_id | p_id | qty  | tot_amt |
++-------+------+------+---------+
+|     1 |    1 |    3 |      75 |
+|     1 |    4 |    2 |      20 |
+|     2 |    7 |    2 |       6 |
+|     2 |   11 |    3 |      75 |
+|     3 |   13 |    4 |      60 |
+|     5 |   14 |  300 |      90 |
+|     4 |   15 |   10 |      20 |
+|     3 |   16 |  400 |      40 |
+|     4 |   16 |  300 |      10 |
+|     3 |   17 |    1 |      15 |
+|     4 |   17 |    4 |      20 |
+|     4 |   21 |    5 |     125 |
+|     2 |   23 pict@DBMSLAB-A3-305-16:~$ mysql -u yash23 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.7.27-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use oms;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show databases;
++-----------------------+
+| Database              |
++-----------------------+
+| information_schema    |
+| CHEF                  |
+| CHEF2                 |
+| EMPLOYEE              |
+| FLITE                 |
+| airline_flight_info   |
+| art_gallery           |
+| as1                   |
+| as2          pict@DBMSLAB-A3-305-16:~$ mysql -u yash23 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.7.27-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use oms;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show databases;
++-----------------------+
+| Database              |
++-----------------------+
+| information_schema    |
+| CHEF                  |
+| CHEF2                 |
+| EMPLOYEE              |
+| FLITE                 |
+| airline_flight_info   |
+| art_gallery           |
+| as1                   |
+| as2                   |
+| as3                   |
+| as4                   |
+| as5                   |
+| as6                   |
+| assi4                 |
+| chef                  |
+| employee_management   |
+| hockey                |
+| music                 |
+| musician              |
+| mysql                 |
+| oms                   |
+| orderManagement       |
+| performance_schema    |
+| resturaunt_management |
+| sys                   |
+| test                  |
++-----------------------+
+26 rows in set (0.01 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> create table txnlog(p_id int,oldp_price int,newp_price int,user varchar(50),dop date);
+Query OK, 0 rows affected (0.29 sec)
+
+mysql> select* from product;
++--------+------+----------------------+---------------+-------+
+| cat_no | p_id | p_name               | product_price | stock |
++--------+------+----------------------+---------------+-------+
+|      1 |    1 | Crayons              |            25 |   100 |
+|      1 |    2 | Water Colors         |            45 |    50 |
+|      1 |    3 | Pencil Colors        |            35 |   100 |
+|      2 |    4 | big Eraser           |            10 |    75 |
+|      2 |    5 | small Eraser         |             5 |   100 |
+|      3 |    6 | H-Pencil             |             5 |   100 |
+|      3 |    7 | 2H-Pencil            |             3 |   100 |
+|      4 |    8 | Gel Pen              |            15 |   100 |
+|      4 |    9 |pict@DBMSLAB-A3-305-16:~$ mysql -u yash23 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.7.27-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use oms;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show databases;
++-----------------------+
+| Database              |
++-----------------------+
+| information_schema    |
+| CHEF                  |
+| CHEF2                 |
+| EMPLOYEE              |
+| FLITE                 |
+| airline_flight_info   |
+| art_gallery           |
+| as1                   |
+| as2                   |
+| as3                   |
+| as4                   |
+| as5                   |
+| as6                   |
+| assi4                 |
+| chef                  |
+| employee_management   |
+| hockey                |
+| music                 |
+| musician              |
+| mysql                 |
+| oms                   |
+| orderManagement       |
+| performance_schema    |
+| resturaunt_management |
+| sys                   |
+| test                  |
++-----------------------+
+26 rows in set (0.01 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> create table txnlog(p_id int,oldp_price int,newp_price int,user varchar(50),dop date);
+Query OK, 0 rows affected (0.29 sec)
+
+mysql> select* from product;
++--------+------+----------------------+---------------+-------+
+| cat_no | p_id | p_name               | product_price | stock |
++--------+------+----------------------+---------------+-------+
+|      1 |    1 | Crayons              |            25 |   100 |
+|      1 |    2 | Water Colors         |            45 |    50 |
+|      1 |    3 | Pencil Colors        |            35 |   100 |
+|      2 |    4 | big Eraser           |            10 |    75 |
+|      2 |    5 | small Eraser         |             5 |   100 |
+|      3 |    6 | H-Pencil             |             5 |   100 |
+|      3 |    7 | 2H-Pencil            |             3 |   100 |
+|      4 |    8 | Gel Pen              |            15 |   100 |
+|      4 |    9 | Ball pen             |            10 |   100 |
+|      4 |   10 | Ink pen              |            20 |   100 |
+|      5 |   11 | Normal Paper         |            25 |   100 |
+|      5 |   12 | Graph Paper          |            15 |   100 |
+|      6 |   13 | Dust Sharpner        |            15 |   100 |
+|      6 |   14 | Non-Dust Sharpner    |            10 |  -200 |
+|      7 |   15 | Transparent          |            55 |    90 |
+|      7 |   16 | Non-Transparent      |            65 |   100 |
+|      8 |   17 | Pouch                |            15 |   100 |
+|      8 |   18 | Geometry Box         |            25 |   100 |
+|      9 |   19 | Normal Calculator    |            75 |   100 |
+|      9 |   20 | Scintific Calculator |           125 |   100 |
+|     10 |   21 | Spiral Notebook      |            25 |   100 |
+|     10 |   22 | Composite Notebook   |            35 |   100 |
+|     11 |   23 | officefiles          |            25 |   100 |
+|     11 |   24 | Boxfiles             |            45 |   100 |
+|     12 |   25 | Expandable folder    |            55 |   100 |
+|     12 |   26 | Leather Folder       |            75 |   100 |
+|     13 |   27 | Compass              |            25 |   100 |
+|     13 |   28 | Divider              |            15 |   100 |
+|     14 |   29 | paper Scissor        |            25 |   100 |
+|     14 |   30 | Clothe Scissor       |            35 |   100 |
+|     15 |   31 | Fevicol              |            15 |   100 |
+|     15 |   32 | Hot Glue             |            25 |   100 |
+|     16 |   33 | stapler-Big          |            55 |   100 |
+|     16 |   34 | Stapler-small        |            25 |   100 |
+|     17 |   35 | Small Punching       |            25 |   100 |
+|     17 |   36 | Big Punching         |            75 |   100 |
+|     18 |   37 | Papers               |            25 |   100 |
+|     18 |   38 | Ink                  |            45 |   100 |
+|     19 |   39 | School Bag           |           125 |   100 |
+|     19 |   40 | School Bottle        |            35 |   100 |
+|     20 |   41 | White Board+duster   |           125 |   100 |
+|     20 |   42 | Black Board+duster   |           100 |   100 |
++--------+------+----------------------+---------------+-------+
+42 rows in set (0.02 sec)
+
+mysql> source translog.sql
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> alter table product update set product_price=50 where p_id=9;
+    -> $
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'update set product_price=50 where p_id=9' at line 1
+mysql> show tables;
+    -> $
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
+| txnlog        |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> update product  set product_price=50 where p_id=9;
+    -> $
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from txnlog;
+    -> $
++------+------------+------------+------------------+------------+
+| p_id | oldp_price | newp_price | user             | dop        |
++------+------------+------------+------------------+------------+
+|    9 |         10 |         50 | yash23@localhost | 2019-08-09 |
++------+------------+------------+------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> 
+ Ball pen             |            10 |   100 |
+|      4 |   10 | Ink pen              |            20 |   100 |
+|      5 |   11 | Normal Paper         |            25 |   100 |
+|      5 |   12 | Graph Paper          |            15 |   100 |
+|      6 |   13 | Dust Sharpner        |            15 |   100 |
+|      6 |   14 | Non-Dust Sharpner    |            10 |  -200 |
+|      7 |   15 | Transparent          |            55 |    90 |
+|      7 |   16 | Non-Transparent      |            65 |   100 |
+|      8 |   17 | Pouch                |            15 |   100 |
+|      8 |   18 | Geometry Box         |            25 |   100 |
+|      9 |   19 | Normal Calculator    |            75 |   100 |
+|      9 |   20 | Scintific Calculator |           125 |   100 |
+|     10 |   21 | Spiral Notebook      |            25 |   100 |
+|     10 |   22 | Composite Notebook   |            35 |   100 |
+|     11 |   23 | officefiles          |            25 |   100 |
+|     11 |   24 | Boxfiles             |            45 |   100 |
+|     12 |   25 | Expandable folder    |            55 |   100 |
+|     12 |   26 | Leather Folder       |            75 |   100 |
+|     13 |   27 | Compass              |            25 |   100 |
+|     13 |   28 | Divider              |            15 |   100 |
+|     14 |   29 | paper Scissor        |            25 |   100 |
+|     14 |   30 | Clothe Scissor       |            35 |   100 |
+|     15 |   31 | Fevicol              |            15 |   100 |
+|     15 |   32 | Hot Glue             |            25 |   100 |
+|     16 |   33 | stapler-Big          |            55 |   100 |
+|     16 |   34 | Stapler-small        |            25 |   100 |
+|     17 |   35 | Small Punching       |            25 |   100 |
+|     17 |   36 | Big Punching         |            75 |   100 |
+|     18 |   37 | Papers               |            25 |   100 |
+|     18 |   38 | Ink                  |            45 |   100 |
+|     19 |   39 | School Bag           |           125 |   100 |
+|     19 |   40 | School Bottle        |            35 |   100 |
+|     20 |   41 | White Board+duster   |           125 |   100 |
+|     20 |   42 | Black Board+duster   |           100 |   100 |
++--------+------+----------------------+---------------+-------+
+42 rows in set (0.02 sec)
+
+mysql> source translog.sql
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> alter table product update set product_price=50 where p_id=9;
+    -> $
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'update set product_price=50 where p_id=9' at line 1
+mysql> show tables;
+    -> $
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
+| txnlog        |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> update product  set product_price=50 where p_id=9;
+    -> $
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from txnlog;
+    -> $
++------+------------+------------+------------------+------------+
+| p_id | oldp_price | newp_price | user             | dop        |
++------+---------pict@DBMSLAB-A3-305-16:~$ mysql -u yash23 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.7.27-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use oms;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show databases;
++-----------------------+
+| Database              |
++-----------------------+
+| information_schema    |
+| CHEF                  |
+| CHEF2                 |
+| EMPLOYEE              |
+| FLITE                 |
+| airline_flight_info   |
+| art_gallery           |
+| as1                   |
+| as2                   |
+| as3                   |
+| as4                   |
+| as5                   |
+| as6                   |
+| assi4                 |
+| chef                  |
+| employee_management   |
+| hockey                |
+| music                 |
+| musician              |
+| mysql                 |
+| oms                   |
+| orderManagement       |
+| performance_schema    |
+| resturaunt_management |
+| sys                   |
+| test                  |
++-----------------------+
+26 rows in set (0.01 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> create table txnlog(p_id int,oldp_price int,newp_price int,user varchar(50),dop date);
+Query OK, 0 rows affected (0.29 sec)
+
+mysql> select* from product;
++--------+------+----------------------+---------------+-------+
+| cat_no | p_id | p_name               | product_price | stock |
++--------+------+----------------------+---------------+-------+
+|      1 |    1 | Crayons              |            25 |   100 |
+|      1 |    2 | Water Colors         |            45 |    50 |
+|      1 |    3 | Pencil Colors        |            35 |   100 |
+|      2 |    4 | big Eraser           |            10 |    75 |
+|      2 |    5 | small Eraser         |             5 |   100 |
+|      3 |    6 | H-Pencil             |             5 |   100 |
+|      3 |    7 | 2H-Pencil            |             3 |   100 |
+|      4 |    8 | Gel Pen              |            15 |   100 |
+|      4 |    9 | Ball pen             |            10 |   100 |
+|      4 |   10 | Ink pen              |            20 |   100 |
+|      5 |   11 | Normal Paper         |            25 |   100 |
+|      5 |   12 | Graph Paper          |            15 |   100 |
+|      6 |   13 | Dust Sharpner        |            15 |   100 |
+|      6 |   14 | Non-Dust Sharpner    |            10 |  -200 |
+|      7 |   15 | Transparent          |            55 |    90 |
+|      7 |   16 | Non-Transparent      |            65 |   100 |
+|      8 |   17 | Pouch                |            15 |   100 |
+|      8 |   18 | Geometry Box         |            25 |   100 |
+|      9 |   19 | Normal Calculator    |            75 |   100 |
+|      9 |   20 | Scintific Calculator |           125 |   100 |
+|     10 |   21 | Spiral Notebook      |            25 |   100 |
+|     10 |   22 | Composite Notebook   |            35 |   100 |
+|     11 |   23 | officefiles          |            25 |   100 |
+|     11 |   24 | Boxfiles             |            45 |   100 |
+|     12 |   25 | Expandable folder    |            55 |   100 |
+|     12 |   26 | Leather Folder       |            75 |   100 |
+|     13 |   27 | Compass              |            25 |   100 |
+|     13 |   28 | Divider              |            15 |   100 |
+|     14 |   29 | paper Scissor        |            25 |   100 |
+|     14 |   30 | Clothe Scissor       |            35 |   100 |
+|     15 |   31 | Fevicol              |            15 |   100 |
+|     15 |   32 | Hot Glue             |            25 |   100 |
+|     16 |   33 | stapler-Big          |            55 |   100 |
+|     16 |   34 | Stapler-smpict@DBMSLAB-A3-305-16:~$ mysql -u yash23 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.7.27-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use oms;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show databases;
++-----------------------+
+| Database              |
++-----------------------+
+| information_schema    |
+| CHEF                  |
+| CHEF2                 |
+| EMPLOYEE              |
+| FLITE                 |
+| airline_flight_info   |
+| art_gallery           |
+| as1                   |
+| as2                   |
+| as3                   |
+| as4                   |
+| as5                   |
+| as6                   |
+| assi4                 |
+| chef                  |
+| employee_management   |
+| hockey                |
+| music                 |
+| musician              |
+| mysql                 |
+| oms                   |
+| orderManagement       |
+| performance_schema    |
+| resturaunt_management |
+| sys                   |
+| test                  |
++-----------------------+
+26 rows in set (0.01 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> create table txnlog(p_id int,oldp_price int,newp_price int,user varchar(50),dop date);
+Query OK, 0 rows affected (0.29 sec)
+
+mysql> select* from product;
++--------+------+----------------------+---------------+-------+
+| cat_no | p_id | p_name               | product_price | stock |
++--------+------+----------------------+---------------+-------+
+|      1 |    1 | Crayons              |            25 |   100 |
+|      1 |    2 | Water pict@DBMSLAB-A3-305-16:~$ mysql -u yash23 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.7.27-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use oms;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show databases;
++-----------------------+
+| Database              |
++-----------------------+
+| information_schema    |
+| CHEF                  |
+| CHEF2                 |
+| EMPLOYEE              |
+| FLITE                 |
+| airline_flight_info   |
+| art_gallery           |
+| as1                   |
+| as2                   |
+| as3                   |
+| as4                   |
+| as5                   |
+| as6                   |
+| assi4                 |
+| chef                  |
+| employee_management   |
+| hockey                |
+| music                 |
+| musician              |
+| mysql                 |
+| oms                   |
+| orderManagement       |
+| performance_schema    |
+| resturaunt_management |
+| sys                   |
+| test                  |
++-----------------------+
+26 rows in set (0.01 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> create table txnlog(p_id int,oldp_price int,newp_price int,user varchar(50),dop date);
+Query OK, 0 rows affected (0.29 sec)
+
+mysql> select* from product;
++--------+------+----------------------+---------------+-------+
+| cat_no | p_id | p_name               | product_price | stock |
++--------+------+----------------------+---------------+-------+
+|      1 |    1 | Crayons              |            25 |   100 |
+|      1 |    2 | Water Colors         |            45 |    50 |
+|      1 |    3 | Pencil Colors        |            35 |   100 |
+|      2 |    4 | big Eraser           |            10 |    75 |
+|      2 |    5 | small Eraser         |             5 |   100 |
+|      3 |    6 | H-Pencil             |             5 |   100 |
+|      3 |    7 | 2H-Pencil            |             3 |   100 |
+|      4 |    8 | Gel Pen              |            15 |   100 |
+|      4 |    9 | Ball pen             |            10 |   100 |
+|      4 |   10 | Ink pen              |            20 |   100 |
+|      5 |   11 | Normal Paper         |            25 |   100 |
+|      5 |   12 | Graph Paper          |            15 |   100 |
+|      6 |   13 | Dust Sharpner        |            15 |   100 |
+|      6 |   14 | Non-Dust Sharpner    |            10 |  -200 |
+|      7 |   15 | Transparent          |            55 |    90 |
+|      7 |   16 | Non-Transparent      |            65 |   100 |
+|      8 |   17 | Pouch                |            15 |   100 |
+|      8 |   18 | Geometry Box         |            25 |   100 |
+|      9 |   19 | Normal Calculator    |            75 |   100 |
+|      9 |   20 | Scintific Calculator |           125 |   100 |
+|     10 |   21 | Spiral Notebook      |            25 |   100 |
+|     10 |   22 | Composite Notebook   |            35 |   100 |
+|     11 |   23 | officefiles          |            25 |   100 |
+|     11 |   24 | Boxfiles             |            45 |   100 |
+|     12 |   25 | Expandable folder    |            55 |   100 |
+|     12 |   26 | Leather Folder       |            75 |   100 |
+|     13 |   27 | Compass              |            25 |   100 |
+|     13 |   28 | Divider              |            15 |   100 |
+|     14 |   29 | paper Scissor        |            25 |   100 |
+|     14 |   30 | Clothe Scissor       |            35 |   100 |
+|     15 |   31 | Fevicol              |            15 |   100 |
+|     15 |   32 | Hot Glue             |            25 |   100 |
+|     16 |   33 | stapler-Big          |            55 |   100 |
+|     16 |   34 | Stapler-small        |            25 |   100 |
+|     17 |   35 | Small Punching       |            25 |   100 |
+|     17 |   36 | Big Punching         |            75 |   100 |
+|     18 |   37 | Papers               |            25 |   100 |
+|     18 |   38 | Ink                  |            45 |   100 |
+|     19 |   39 | School Bag           |           125 |   100 |
+|     19 |   40 | School Bottle        |            35 |   100 |
+|     20 |   41 | White Board+duster   |           125 |   100 |
+|     20 |   42 | Black Board+duster   |           100 |   100 |
++--------+------+----------------------+---------------+-------+
+42 rows in set (0.02 sec)
+
+mysql> source translog.sql
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> alter table product update set product_price=50 where p_id=9;
+    -> $
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'update set product_price=50 where p_id=9' at line 1
+mysql> show tables;
+    -> $
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
+| txnlog        |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> update product  set product_price=50 where p_id=9;
+    -> $
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from txnlog;
+    -> $
++------+------------+------------+------------------+------------+
+| p_id | oldp_price | newp_price | user             | dop        |
++------+------------+------------+------------------+------------+
+|    9 |         10 |         50 | yash23@localhost | 2019-08-09 |
++------+------------+------------+------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> 
+Colors         |            45 |    50 |
+|      1 |    3 | Pencil Colors        |            35 |   100 |
+|      2 |    4 | big Eraser           |            10 |    75 |
+|      2 |    5 | small Eraser         |             5 |   100 |
+|      3 |    6 | H-Pencil             |             5 |   100 |
+|      3 |    7 | 2H-Pencil            |             3 |   100 |
+|      4 |    8 | Gel Pen              |            15 |   100 |
+|      4 |    9 | Ball pen             |            10 |   100 |
+|      4 |   10 | Ink pen              |            20 |   100 |
+|      5 |   11 | Normal Paper         |            25 |   100 |
+|      5 |   12 | Graph Paper          |            15 |   100 |
+|      6 |   13 | Dust Sharpner        |            15 |   100 |
+|      6 |   14 | Non-Dust Sharpner    |            10 |  -200 |
+|      7 |   15 | Transparent          |            55 |    90 |
+|      7 |   16 | Non-Transparent      |            65 |   100 |
+|      8 |   17 | Pouch                |            15 |   100 |
+|      8 |   18 | Geometry Box         |            25 |   100 |
+|      9 |   19 | Normal Calculator    |            75 |   100 |
+|      9 |   20 | Scintific Calculator |           125 |   100 |
+|     10 |   21 | Spiral Notebook      |            25 |   100 |
+|     10 |   22 | Composite Notebook   |            35 |   100 |
+|     11 |   23 | officefiles          |            25 |   100 |
+|     11 |   24 | Boxfiles             |            45 |   100 |
+|     12 |   25 | Expandable folder    |            55 |   100 |
+|     12 |   26 | Leather Folder       |            75 |   100 |
+|     13 |   27 | Compass              |            25 |   100 |
+|     13 |   28 | Divider              |            15 |   100 |
+|     14 |   29 | paper Scissor        |            25 |   100 |
+|     14 |   30 | Clothe Scissor       |            35 |   100 |
+|     15 |   31 | Fevicol              |            15 |   100 |
+|     15 |   32 | Hot Glue             |            25 |   100 |
+|     16 |   33 | stapler-Big          |            55 |   100 |
+|     16 |   34 | Stapler-small        |            25 |   100 |
+|     17 |   35 | Small Punching       |            25 |   100 |
+|     17 |   36 | Big Punching         |            75 |   100 |
+|     18 |   37 | Papers               |            25 |   100 |
+|     18 |   38 | Ink                  |            45 |   100 |
+|     19 |   39 | School Bag           |           125 |   100 |
+|     19 |   40 | School Bottle        |            35 |   100 |
+|     20 |   41 | White Board+duster   |           125 |   100 |
+|     20 |   42 | Black Board+duster   |           100 |   100 |
++--------+------+----------------------+---------------+-------+
+42 rows in set (0.02 sec)
+
+mysql> source translog.sql
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> alter table product update set product_price=50 where p_id=9;
+    -> $
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'update set product_price=50 where p_id=9' at line 1
+mysql> show tables;
+    -> $
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
+| txnlog        |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> update product  set product_price=50 where p_id=9;
+    -> $
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from txnlog;
+    -> $
++------+------------+------------+------------------+------------+
+| p_id | oldp_price | newp_price | user             | dop        |
++------+------------+------------+------------------+------------+
+|    9 |         10 |         50 | yash23@localhost | 2019-08-09 |
++------+------------+------------+------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> 
+all        |            25 |   100 |
+|     17 |   35 | Small Punching       |            25 |   100 |
+|     17 |   36 | Big Punching         |            75 |   100 |
+|     18 |   37 | Papepict@DBMSLAB-A3-305-16:~$ mysql -u yash23 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.7.27-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use oms;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show databases;
++-----------------------+
+| Database              |
++-----------------------+
+| information_schema    |
+| CHEF                  |
+| CHEF2                 |
+| EMPLOYEE              |
+| FLITE                 |
+| airline_flight_info   |
+| art_gallery           |
+| as1                   |
+| as2                   |
+| as3                   |
+| as4                   |
+| as5                   |
+| as6                   |
+| assi4                 |
+| chef                  |
+| employee_management   |
+| hockey                |
+| music                 |
+| musician              |
+| mysql                 |
+| oms                   |
+| orderManagement       |
+| performance_schema    |
+| resturaunt_management |
+| sys                   |
+| test                  |
++-----------------------+
+26 rows in set (0.01 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> create table txnlog(p_id int,oldp_price int,newp_price int,user varchar(50),dop date);
+Query OK, 0 rows affected (0.29 sec)
+
+mysql> select* from product;
++--------+------+----------------------+---------------+-------+
+| cat_no | p_id | p_name               | product_price | stock |
++--------+------+----------------------+---------------+-------+
+|      1 |    1 | Crayons              |            25 |   100 |
+|      1 |    2 | Water Colors         |            45 |    50 |
+|      1 |    3 | Pencil Colors        |            35 |   100 |
+|      2 |    4 | big Eraser           |            10 |    75 |
+|      2 |    5 | small Eraser         |             5 |   100 |
+|      3 |    6 | H-Pencil             |             5 |   100 |
+|      3 |    7 | 2H-Pencil            |             3 |   100 |
+|      4 |    8 | Gel Pen              |            15 |   100 |
+|      4 |    9 | Ball pen             |            10 |   100 |
+|      4 |   10 | Ink pen              |            20 |   100 |
+|      5 |   11 | Normal Paper         |            25 |   100 |
+|      5 |   12 | Graph Paper          |            15 |   100 |
+|      6 |   13 | Dust Sharpner        |            15 |   100 |
+|      6 |   14 | Non-Dust Sharpner    |            10 |  -200 |
+|      7 |   15 | Transparent          |            55 |    90 |
+|      7 |   16 | Non-Transparent      |            65 |   100 |
+|      8 |   17 | Pouch                |            15 |   100 |
+|      8 |   18 | Geometry Box         |            25 |   100 |
+|      9 |   19 | Normal Calculator    |            75 |   100 |
+|      9 |   20 | Scintific Calculator |           125 |   100 |
+|     10 |   21 | Spiral Notebook      |            25 |   100 |
+|     10 |   22 | Composite Notebook   |            35 |   100 |
+|     11 |   23 | officefiles          |            25 |   100 |
+|     11 |   24 | Boxfiles             |            45 |   100 |
+|     12 |   25 | Expandable folder    |            55 |   100 |
+|     12 |   26 | Leather Folder       |            75 |   100 |
+|     13 |   27 | Compass              |            25 |   100 |
+|     13 |   28 | Divider              |            15 |   100 |
+|     14 |   29 | paper Scissor        |            25 |   100 |
+|     14 |   30 | Clothe Scissor       |            35 |   100 |
+|     15 |   31 | Fevicol              |            15 |   100 |
+|     15 |   32 | Hot Glue             |            25 |   100 |
+|     16 |   33 | stapler-Big          |            55 |   100 |
+|     16 |   34 | Stapler-small        |            25 |   100 |
+|     17 |   35 | Small Punching       |            25 |   100 |
+|     17 |   36 | Big Punching         |            75 |   100 |
+|     18 |   37 | Papers               |            25 |   100 |
+|     18 |   38 | Ink                  |            45 |   100 |
+|     19 |   39 | School Bag           |           125 |   100 |
+|     19 |   40 | School Bottle        |            35 |   100 |
+|     20 |   41 | White Board+duster   |           125 |   100 |
+|     20 |   42 | Black Board+duster   |           100 |   100 |
++--------+------+----------------------+---------------+-------+
+42 rows in set (0.02 sec)
+
+mysql> source translog.sql
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> alter table product update set product_price=50 where p_id=9;
+    -> $
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'update set product_price=50 where p_id=9' at line 1
+mysql> show tables;
+    -> $
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
+| txnlog        |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> update product  set product_price=50 where p_id=9;
+    -> $
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from txnlog;
+    -> $
++------+------------+------------+------------------+------------+
+| p_id | oldp_price | newp_price | user             | dop        |
++------+------------+------------+------------------+------------+
+|    9 |         10 |         50 | yash23@localhost | 2019-08-09 |
++------+------------+------------+------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> 
+rs               |            25 |   100 |
+|     18 |   38 | Ink                  |            45 |   100 |
+|     19 |   39 | School Bag           |           125 |   100 |
+|     19 |   40 | School Bottle        |            35 |   100 |
+|     20 |   41 | White Board+duster   |           125 |   100 |
+|     20 |   42 | Black Board+duster   |           100 |   100 |
++--------+------+----------------------+---------------+-------+
+42 rows in set (0.02 sec)
+
+mysql> source translog.sql
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> alter table product update set product_price=50 where p_id=9;
+    -> $
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'update set product_price=50 where p_id=9' at line 1
+mysql> show tables;
+    -> $
++---------------+pict@DBMSLAB-A3-305-16:~$ mysql -u yash23 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.7.27-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use oms;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show databases;
++-----------------------+
+| Database              |
++-----------------------+
+| information_schema    |
+| CHEF                  |
+| CHEF2                 |
+| EMPLOYEE              |
+| FLITE                 |
+| airline_flight_info   |
+| art_gallery           |
+| as1                   |
+| as2                   |
+| as3                   |
+| as4                   |
+| as5                   |
+| as6                   |
+| assi4                 |
+| chef                  |
+| employee_management   |
+| hockey                |
+| music                 |
+| musician              |
+| mysql                 |
+| oms                   |
+| orderManagement       |
+| performance_schema    |
+| resturaunt_management |
+| sys                   |
+| test                  |
++-----------------------+
+26 rows in set (0.01 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> create table txnlog(p_id int,oldp_price int,newp_price int,user varchar(50),dop date);
+Query OK, 0 rows affected (0.29 sec)
+
+mysql> select* from product;
++--------+------+----------------------+---------------+-------+
+| cat_no | p_id | p_name               | product_price | stock |
++--------+------+----------------------+---------------+-------+
+|      1 |    1 | Crayons              |            25 |   100 |
+|      1 |    2 | Water Colors         |            45 |    50 |
+|      1 |    3 | Pencil Colors        |            35 |   100 |
+|      2 |    4 | big Eraser           |            10 |    75 |
+|      2 |    5 | small Eraser         |             5 |   100 |
+|      3 |    6 | H-Pencil             |             5 |   100 |
+|      3 |    7 | 2H-Pencil            |             3 |   100 |
+|      4 |    8 | Gel Pen              |            15 |   100 |
+|      4 |    9 | Ball pen             |            10 |   100 |
+|      4 |   10 | Ink pen              |            20 |   100 |
+|      5 |   11 | Normal Paper         |            25 |   100 |
+|      5 |   12 | Graph Paper          |            15 |   100 |
+|      6 |   13 | Dust Sharpner        |            15 |   100 |
+|      6 |   14 | Non-Dust Sharpner    |            10 |  -200 |
+|      7 |   15 | Transparent          |            55 |    90 |
+|      7 |   16 | Npict@DBMSLAB-A3-305-16:~$ mysql -u yash23 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.7.27-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use oms;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show databases;
++-----------------------+
+| Database              |
++-----------------------+
+| information_schema    |
+| CHEF                  |
+| CHEF2                 |
+| EMPLOYEE              |
+| FLITE                 |
+| airline_flight_info   |
+| art_gallery           |
+| as1                   |
+| as2                   |
+| as3                   |
+| as4                   |
+| as5                   |
+| as6                   |
+| assi4                 |
+| chef                  |
+| employee_management   |
+| hockey                |
+| music                 |
+| musician              |
+| mysql                 |
+| oms                   |
+| orderManagement       |
+| performance_schema    |
+| resturaunt_management |
+| sys                   |
+| test                  |
++-----------------------+
+26 rows in set (0.01 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> create table txnlog(p_id int,oldp_price int,newp_price int,user varchar(50),dop date);
+Query OK, 0 rows affected (0.29 sec)
+
+mysql> select* from product;
++--------+------+----------------------+---------------+-------+
+| cat_no | p_id | p_name               | product_price | stock |
++--------+------+----------------------+---------------+-------+
+|      1 |    1 | Crayons              |            25 |   100 |
+|      1 |    2 | Water Colors         |            45 |    50 |
+|      1 |    3 | Pencil Colors        |            35 |   100 |
+|      2 |    4 | big Eraser           |            10 |    75 |
+|      2 |    5 | small Eraser         |             5 |   100 |
+|      3 |    6 | H-Pencil             |             5 |   100 |
+|      3 |    7 | 2H-Pencil            |             3 |   100 |
+|      4 |    8 | Gel Pen              |            15 |   100 |
+|      4 |    9 | Ball pen             |            10 |   100 |
+|      4 |   10 | Ink pen              |            20 |   100 |
+|      5 |   11 | Normal Paper         |            25 |   100 |
+|      5 |   12 | Graph Paper          |            15 |   100 |
+|      6 |   13 | Dust Sharpner        |            15 |   100 |
+|      6 |   14 | Non-Dust Sharpner    |            10 |  -200 |
+|      7 |   15 | Transparent          |            55 |    90 |
+|      7 |   16 | Non-Transparent      |            65 |   100 |
+|      8 |   17 | Pouch                |            15 |   100 |
+|      8 |   18 | pict@DBMSLAB-A3-305-16:~$ mysql -u yash23 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.7.27-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use oms;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show databases;
++-----------------------+
+| Database              |
++-----------------------+
+| information_schema    |
+| CHEF                  |
+| CHEF2                 |
+| EMPLOYEE              |
+| FLITE                 |
+| airline_flight_info   |
+| art_gallery           |
+| as1                   |
+| as2                   |
+| as3                   |
+| as4                   |
+| as5                   |
+| as6                   |
+| assi4                 |
+| chef                  |
+| employee_management   |
+| hockey                |
+| music                 |
+| musician              |
+| mysql                 |
+| oms                   |
+| orderManagement       |
+| performance_schema    |
+| resturaunt_management |
+| sys                   |
+| test                  |
++-----------------------+
+26 rows in set (0.01 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> create table txnlog(p_id int,oldp_price int,newp_price int,user varchar(50),dop date);
+Query OK, 0 rows affected (0.29 sec)
+
+mysql> select* from product;
++--------+------+----------------------+---------------+-------+
+| cat_no | p_id | p_name               | product_price | stock |
++--------+------+----------------------+---------------+-------+
+|      1 |    1 | Crayons              |            25 |   100 |
+|      1 |    2 | Water Colors         |            45 |    50 |
+|      1 |    3 | Pencil Colors        |            35 |   100 |
+|      2 |    4 | big Eraser           |            10 |    75 |
+|      2 |    5 | small Eraser         |             5 |   100 |
+|      3 |    6 | H-Pencil             |             5 |   100 |
+|      3 |    7 | 2pict@DBMSLAB-A3-305-16:~$ mysql -u yash23 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.7.27-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use oms;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show databases;
++-----------------------+
+| Database              |
++-----------------------+
+| information_schema    |
+| CHEF                  |
+| CHEF2                 |
+| EMPLOYEE              |
+| FLITE                 |
+| airline_flight_info   |
+| art_gallery           |
+| as1                   |
+| as2                   |
+| as3                   |
+| as4                   |
+| as5                   |
+| as6                   |
+| assi4                 |
+| chef                  |
+| employee_management   |
+| hockey                |
+| music                 |
+| musician              |
+| mysql                 |
+| oms                   |
+| orderManagement       |
+| performance_schema    |
+| resturaunt_management |
+| sys                   |
+| test                  |
++-----------------------+
+26 rows in set (0.01 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> create table txnlog(p_id int,oldp_price int,newp_price int,user varchar(50),dop date);
+Query OK, 0 rows affected (0.29 sec)
+
+mysql> select* from product;
++--------+------+----------------------+---------------+-------+
+| cat_no | p_id | p_name               | product_price | stock |
++--------+------+----------------------+---------------+-------+
+|      1 |    1 | Crayons              |            25 |   100 |
+|      1 |    2 | Water Colors         |            45 |    50 |
+|      1 |    3 | Pencil Colors        |            35 |   100 |
+|      2 |    4 | big Eraser           |            10 |    75 |
+|      2 |    5 | small Eraser         |             5 |   100 |
+|      3 |    6 | H-Pencil             |             5 |   100 |
+|      3 |    7 | 2H-Pencil            |             3 |   100 |
+|      4 |    8 | Gel Pen              |            15 |   100 |
+|      4 |    9 | Ball pen             |            10 |   100 |
+|      4 |   10 | Ink pen              |            20 |   100 |
+|      5 |   11 | Normal Paper         |            25 |   100 |
+|      5 |   12 | Graph Paper          |            15 |   100 |
+|      6 |   13 | Dust Sharpner        |            15 |   100 |
+|      6 |   14 | Non-Dust Sharpner    |            10 |  -200 |
+|      7 |   15 | Transparent          |            55 |    90 |
+|      7 |   16 | Non-Transparent      |            65 |   100 |
+|      8 |   17 | Pouch                |            15 |   100 |
+|      8 |   18 | Geometry Box         |            25 |   100 |
+|      9 |   19 | Normal Calculator    |            75 |   100 |
+|      9 |   20 | Scintific Calculator |           125 |   100 |
+|     10 |   21 | Spiral Notebook      |            25 |   100 |
+|     10 |   22 | Composite Notebook   |            35 |   100 |
+|     11 |   23 | officefiles          |            25 |   100 |
+|     11 |   24 | Boxfiles             |            45 |   100 |
+|     12 |   25 | Expandable folder    |            55 |   100 |
+|     12 |   26 | Leather Folder       |            75 |   100 |
+|     13 |   27 | Compass              |            25 |   100 |
+|     13 |   28 | Divider              |            15 |   100 |
+|     14 |   29 | paper Scissor        |            25 |   100 |
+|     14 |   30 | Clothe Scissor       |            35 |   100 |
+|     15 |   31 | Fevicol              |            15 |   100 |
+|     15 |   32 | Hot Glue             |            25 |   100 |
+|     16 |   33 | stapler-Big          |            55 |   100 |
+|     16 |   34 | Stapler-small        |            25 |   100 |
+|     17 |   35 | Small Punching       |            25 |   100 |
+|     17 |   36 | Big Punching         |            75 |   100 |
+|     18 |   37 | Papers               |            25 |   100 |
+|     18 |   38 | Ink                  |            45 |   100 |
+|     19 |   39 | School Bag           |           125 |   100 |
+|     19 |   40 | School Bottle        |            35 |   100 |
+|     20 |   41 | White Board+duster   |           125 |   100 |
+|     20 |   42 | Black Board+duster   |           100 |   100 |
++--------+------+----------------------+---------------+-------+
+42 rows in set (0.02 sec)
+
+mysql> source translog.sql
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> alter table product update set product_price=50 where p_id=9;
+    -> $
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'update set product_price=50 where p_id=9' at line 1
+mysql> show tables;
+    -> $
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
+| txnlog        |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> update product  set product_price=50 where p_id=9;
+    -> $
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from txnlog;
+    -> $
++------+------------+------------+------------------+------------+
+| p_id | oldp_price | newp_price | user             | dop        |
++------+------------+------------+------------------+------------+
+|    9 |         10 |         50 | yash23@localhost | 2019-08-09 |
++------+------------+------------+------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> 
+H-Pencil            |             3 |   100 |
+|      4 |    8 | Gel Pen              |            15 |   100 |
+|      4 |    9 | Ball pen             |            10 |   100 |
+|      4 |   10 | Ink pen              |            20 |   100 |
+|      5 |   11 | Normal Paper         |            25 |   100 |
+|      5 |   12 | Graph Paper          |            15 |   100 |
+|      6 |   13 | Dust Sharpner        |            15 |   100 |
+|      6 |   14 | Non-Dust Sharpner    |            10 |  -200 |
+|      7 |   15 | Transparent          |            55 |    90 |
+|      7 |   16 | Non-Transparent      |            65 |   100 |
+|      8 |   17 | Pouch                |            15 |   100 |
+|      8 |   18 | Geometry Box         |            25 |   100 |
+|      9 |   19 | Normal Calculator    |            75 |   100 |
+|      9 |   20 | Scintific Calculator |           125 |   100 |
+|     10 |   21 | Spiral Notebook      |            25 |   100 |
+|     10 |   22 | Composite Notebook   |            35 |   100 |
+|     11 |   23 | officefiles          |            25 |   100 |
+|     11 |   24 | Boxfiles             |            45 |   100 |
+|     12 |   25 | Expandable folder    |            55 |   100 |
+|     12 |   26 | Leather Folder       |            75 |   100 |
+|     13 |   27 | Compass              |            25 |   100 |
+|     13 |   28 | Divider              |            15 |   100 |
+|     14 |   29 | paper Scissor        |            25 |   100 |
+|     14 |   30 | Clothe Scissor       |            35 |   100 |
+|     15 |   31 | Fevicol              |            15 |   100 |
+|     15 |   32 | Hot Glue             |            25 |   100 |
+|     16 |   33 | stapler-Big          |            55 |   100 |
+|     16 |   34 | Stapler-small        |            25 |   100 |
+|     17 |   35 | Small Punching       |            25 |   100 |
+|     17 |   36 | Big Punching         |            75 |   100 |
+|     18 |   37 | Papers               |            25 |   100 |
+|     18 |   38 | Ink                  |            45 |   100 |
+|     19 |   39 | School Bag           |           125 |   100 |
+|     19 |   40 | School Bottle        |            35 |   100 |
+|     20 |   41 | White Board+duster   |           125 |   100 |
+|     20 |   42 | Black Board+duster   |           100 |   100 |
++--------+------+----------------------+---------------+-------+
+42 rows in set (0.02 sec)
+
+mysql> source translog.sql
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> alter table product update set product_price=50 where p_id=9;
+    -> $
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'update set product_price=50 where p_id=9' at line 1
+mysql> show tables;
+    -> $
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
+| txnlog        |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> update product  set product_price=50 where p_id=9;
+    -> $
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from txnlog;
+    -> $
++------+------------+------------+------------------+------------+
+| p_id | oldp_price | newp_price | user             | dop        |
++------+------------+------------+------------------+------------+
+|    9 |         10 |         50 | yash23@localhost | 2019-08-09 |
++------+------------+------------+------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> 
+Geometry Box         |            25 |   100 |
+|      9 |   19 | Normal Calculator    |            75 |   100 |
+|      9 |   20 | Scintific Calculator |           125 |   100 |
+|     10 |   21 | Spiral Notebook      |            25 |   100 |
+|     10 |   22 | Composite Notebook   |            35 |   100 |
+|     11 |   23 | officefiles          |            25 |   100 |
+|     11 |   24 | Boxfiles             |            45 |   100 |
+|     12 |   25 | Expandable folder    |            55 |   100 |
+|     12 |   26 | Leather Folder       |            75 |   100 |
+|     13 |   27 | Compass              |            25 |   100 |
+|     13 |   28 | Divider              |            15 |   100 |
+|     14 |   29 | paper Scissor        |            25 |   100 |
+|     14 |   30 | Clothe Scissor       |            35 |   100 |
+|     15 |   31 | Fevicol              |            15 |   100 |
+|     15 |   32 | Hot Glue             |            25 |   100 |
+|     16 |   33 | stapler-Big          |            55 |   100 |
+|     16 |   34 | Stapler-small        |            25 |   100 |
+|     17 |   35 | Small Punching       |            25 |   100 |
+|     17 |   36 | Big Punching         |            75 |   100 |
+|     18 |   37 | Papers               |            25 |   100 |
+|     18 |   38 | Ink                  |            45 |   100 |
+|     19 |   39 | School Bag           |           125 |   100 |
+|     19 |   40 | School Bottle        |            35 |   100 |
+|     20 |   41 | White Board+duster   |           125 |   100 |
+|     20 |   42 | Black Board+duster   |           100 |   100 |
++--------+------+----------------------+---------------+-------+
+42 rows in set (0.02 sec)
+
+mysql> source translog.sql
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> alter table product update set product_price=50 where p_id=9;
+    -> $
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'update set product_price=50 where p_id=9' at line 1
+mysql> show tables;
+    -> $
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
+| txnlog        |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> update product  set product_price=50 where p_id=9;
+    -> $
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from txnlog;
+    -> $
++------+------------+------------+------------------+------------+
+| p_id | oldp_price | newp_price | user             | dop        |
++------+------------+------------+------------------+------------+
+|    9 |         10 |         50 | yash23@localhost | 2019-08-09 |
++------+------------+------------+------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> 
+on-Transparent      |            65 |   100 |
+|      8 |   17 | Pouch                |            15 |   100 |
+|      8 |   18 | Geometry Box         |            25 |   100 |
+|      9 |   19 | Normal Calculator    |            75 |   100 |
+|      9 |   20 | Scintific Calculator |           125 |   100 |
+|     10 |   21 | Spiral Notebook      |            25 |   100 |
+|     10 |   22 | Composite Notebook   |            35 |   100 |
+|     11 |   23 | officefiles          |            25 |   100 |
+|     11 |   24 | Boxfiles             |            45 |   100 |
+|     12 |   25 | Expandable folder    |            55 |   100 |
+|     12 |   26 | Leather Folder       |            75 |   100 |
+|     13 |   27 | Compass              |            25 |   100 |
+|     13 |   28 | Divider              |            15 |   100 |
+|     14 |   29 | paper Scissor        |            25 |   100 |
+|     14 |   30 | Clothe Scissor       |            35 |   100 |
+|     15 |   31 | Fevicol              |            15 |   100 |
+|     15 |   32 | Hot Glue             |            25 |   100 |
+|     16 |   33 | stapler-Big          |            55 |   100 |
+|     16 |   34 | Stapler-small        |            25 |   100 |
+|     17 |   35 | Small Punching       |            25 |   100 |
+|     17 |   36 | Big Punching         |            75 |   100 |
+|     18 |   37 | Papers               |            25 |   100 |
+|     18 |   38 | Ink                  |            45 |   100 |
+|     19 |   39 | School Bag           |           125 |   100 |
+|     19 |   40 | School Bottle        |            35 |   100 |
+|     20 |   41 | White Board+duster   |           125 |   100 |
+|     20 |   42 | Black Board+duster   |           100 |   100 |
++--------+------+----------------------+---------------+-------+
+42 rows in set (0.02 sec)
+
+mysql> source translog.sql
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> alter table product update set product_price=50 where p_id=9;
+    -> $
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'update set product_price=50 where p_id=9' at line 1
+mysql> show tables;
+    -> $
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
+| txnlog        |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> update product  set product_price=50 where p_id=9;
+    -> $
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from txnlog;
+    -> $
++------+------------+------------+------------------+------------+
+| p_id | oldp_price | newp_price | user             | dop        |
++------+------------+------------+------------------+------------+
+|    9 |         10 |         50 | yash23@localhost | 2019-08-09 |
++------+------------+------------+------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> 
+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
+| txnlog        |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> update product  set product_price=50 where p_id=9;
+    -> $
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from txnlog;
+    -> $
++------+------------+------------+------------------+------------+
+| p_id | oldp_price | newp_price | user             | dop        |
++------+------------+------------+------------------+------------+
+|    9 |         10 |         50 | yash23@localhost | 2019-08-09 |
++------+------------+------------+------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> 
+---+------------+------------------+------------+
+|    9 |         10 |         50 | yash23@localhost | 2019-08-09 |
++------+------------+------------+------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> 
+         |
+| as3                   |
+| as4                   |
+| as5                   |
+| as6                   |
+| assi4                 |
+| chef                  |
+| employee_management   |
+| hockey                |
+| music                 |
+| musician              |
+| mysql                 |
+| oms                   |
+| orderManagement       |
+| performance_schema    |
+| resturaunt_management |
+| sys                   |
+| test                  |
++-----------------------+
+26 rows in set (0.01 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> create table txnlog(p_id int,oldp_price int,newp_price int,user varchar(50),dop date);
+Query OK, 0 rows affected (0.29 sec)
+
+mysql> select* from product;
++--------+------+----------------------+---------------+-------+
+| cat_no | p_id | p_name               | product_price | stock |
++--------+------+----------------------+---------------+-------+
+|      1 |    1 | Crayons              |            25 |   100 |
+|      1 |    2 | Water Colors         |            45 |    50 |
+|      1 |    3 | Pencil Colors        |            35 |   100 |
+|      2 |    4 | big Eraser           |            10 |    75 |
+|      2 |    5 | small Eraser         |             5 |   100 |
+|      3 |    6 | H-Pencil             |             5 |   100 |
+|      3 |    7 | 2H-Pencil            |             3 |   100 |
+|      4 |    8 | Gel Pen              |            15 |   100 |
+|      4 |    9 | Ball pen             |            10 |   100 |
+|      4 |   10 | Ink pen              |            20 |   100 |
+|      5 |   11 | Normal Paper         |            25 |   100 |
+|      5 |   12 | Graph Paper          |            15 |   100 |
+|      6 |   13 | Dust Sharpner        |            15 |   100 |
+|      6 |   14 | Non-Dust Sharpner    |            10 |  -200 |
+|      7 |   15 | Transparent          |            55 |    90 |
+|      7 |   16 | Non-Transparent      |            65 |   100 |
+|      8 |   17 | Pouch                |            15 |   100 |
+|      8 |   18 | Geometry Box         |            25 |   100 |
+|      9 |   19 | Normal Calculator    |            75 |   100 |
+|      9 |   20 | Scintific Calculator |           125 |   100 |
+|     10 |   21 | Spiral Notebook      |            25 |   100 |
+|     10 |   22 | Composite Notebook   |            35 |   100 |
+|     11 |   23 | officefiles          |            25 |   100 |
+|     11 |   24 | Boxfiles             |            45 |   100 |
+|     12 |   25 | Expandable folder    |            55 |   100 |
+|     12 |   26 | Leather Folder       |            75 |   100 |
+|     13 |   27 | Compass              |            25 |   100 |
+|     13 |   28 | Divider              |            15 |   100 |
+|     14 |   29 | paper Scissor        |            25 |   100 |
+|     14 |   30 | Clothe Scissor       |            35 |   100 |
+|     15 |   31 | Fevicol              |            15 |   100 |
+|     15 |   32 | Hot Glue             |            25 |   100 |
+|     16 |   33 | stapler-Big          |            55 |   100 |
+|     16 |   34 | Stapler-small        |            25 |   100 |
+|     17 |   35 | Small Punching       |            25 |   100 |
+|     17 |   36 | Big Punching         |            75 |   100 |
+|     18 |   37 | Papers               |            25 |   100 |
+|     18 |   38 | Ink                  |            45 |   100 |
+|     19 |   39 | School Bag           |           125 |   100 |
+|     19 |   40 | School Bottle        |            35 |   100 |
+|     20 |   41 | White Board+duster   |           125 |   100 |
+|     20 |   42 | Black Board+duster   |           100 |   100 |
++--------+------+----------------------+---------------+-------+
+42 rows in set (0.02 sec)
+
+mysql> source translog.sql
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> alter table product update set product_price=50 where p_id=9;
+    -> $
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'update set product_price=50 where p_id=9' at line 1
+mysql> show tables;
+    -> $
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
+| txnlog        |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> update product  set product_price=50 where p_id=9;
+    -> $
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from txnlog;
+    -> $
++------+------------+------------+------------------+------------+
+| p_id | oldp_price | newp_price | user             | dop        |
++------+------------+------------+------------------+------------+
+|    9 |         10 |         50 | yash23@localhost | 2019-08-09 |
++------+------------+------------+------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> 
+|   23 |     575 |
+|     2 |   24 |    4 |     180 |
+|     4 |   26 |    4 |     300 |
+|     5 |   28 |    2 |      30 |
+|     5 |   38 |    3 |     135 |
++-------+------+------+---------+
+17 rows in set (0.00 sec)
+
+mysql> select* from orders;
++-------+---------+------------+-----------+
+| or_id | cust_no | or_date    | total_amt |
++-------+---------+------------+-----------+
+|     1 |       1 | 2019-04-19 |        95 |
+|     2 |       1 | 2019-05-19 |       836 |
+|     3 |       2 | 2019-06-19 |       115 |
+|     4 |       2 | 2019-07-10 |       475 |
+|     5 |       3 | 2019-07-15 |       255 |
++-------+---------+------------+-----------+
+5 rows in set (0.00 sec)
+
+pict@DBMSLAB-A3-305-16:~$ mysql -u yash23 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.7.27-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use oms;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show databases;
++-----------------------+
+| Database              |
++-----------------------+
+| information_schema    |
+| CHEF                  |
+| CHEF2                 |
+| EMPLOYEE              |
+| FLITE                 |
+| airline_flight_info   |
+| art_gallery           |
+| as1                   |
+| as2                   |
+| as3                   |
+| as4                   |
+| as5                   |
+| as6                   |
+| assi4                 |
+| chef                  |
+| employee_management   |
+| hockey                |
+| music                 |
+| musician              |
+| mysql                 |
+| oms                   |
+| orderManagement       |
+| performance_schema    |
+| resturaunt_management |
+| sys                   |
+| test                  |
++-----------------------+
+26 rows in set (0.01 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> create table txnlog(p_id int,oldp_price int,newp_price int,user varchar(50),dop date);
+Query OK, 0 rows affected (0.29 sec)
+
+mysql> select* from product;
++--------+------+----------------------+---------------+-------+
+| cat_no | p_id | p_name               | product_price | stock |
++--------+------+----------------------+---------------+-------+
+|      1 |    1 | Crayons              |            25 |   100 |
+|      1 |    2 | Water Colors         |            45 |    50 |
+|      1 |    3 | Pencil Colors        |            35 |   100 |
+|      2 |    4 | big Eraser           |            10 |    75 |
+|      2 |    5 | small Eraser         |             5 |   100 |
+|      3 |    6 | H-Pencil             |             5 |   100 |
+|      3 |    7 | 2H-Pencil            |             3 |   100 |
+|      4 |    8 | Gel Pen              |            15 |   100 |
+|      4 |    9 | Ball pen             |            10 |   100 |
+|      4 |   10 | Ink pen              |            20 |   100 |
+|      5 |   11 | Normal Paper         |            25 |   100 |
+|      5 |   12 | Graph Paper          |            15 |   100 |
+|      6 |   13 | Dust Sharpner        |            15 |   100 |
+|      6 |   14 | Non-Dust Sharpner    |            10 |  -200 |
+|      7 |   15 | Transparent          |            55 |    90 |
+|      7 |   16 | Non-Transparent      |            65 |   100 |
+|      8 |   17 | Pouch                |            15 |   100 |
+|      8 |   18 | Geometry Box         |            25 |   100 |
+|      9 |   19 | Normal Calculator    |            75 |   100 |
+|      9 |   20 | Scintific Calculator |           125 |   100 |
+|     10 |   21 | Spiral Notebook      |            25 |   100 |
+|     10 |   22 | Composite Notebook   |            35 |   100 |
+|     11 |   23 | officefiles          |            25 |   100 |
+|     11 |   24 | Boxfiles             |            45 |   100 |
+|     12 |   25 | Expandable folder    |            55 |   100 |
+|     12 |   26 | Leather Folder       |            75 |   100 |
+|     13 |   27 | Compass              |            25 |   100 |
+|     13 |   28 | Divider              |            15 |   100 |
+|     14 |   29 | paper Scissor        |            25 |   100 |
+|     14 |   30 | Clothe Scissor       |            35 |   100 |
+|     15 |   31 | Fevicol              |            15 |   100 |
+|     15 |   32 | Hot Glue             |            25 |   100 |
+|     16 |   33 | stapler-Big          |            55 |   100 |
+|     16 |   34 | Stapler-small        |            25 |   100 |
+|     17 |   35 | Small Punching       |            25 |   100 |
+|     17 |   36 | Big Punching         |            75 |   100 |
+|     18 |   37 | Papers               |            25 |   100 |
+|     18 |   38 | Ink                  |            45 |   100 |
+|     19 |   39 | School Bag           |           125 |   100 |
+|     19 |   40 | School Bottle        |            35 |   100 |
+|     20 |   41 | White Board+duster   |           125 |   100 |
+|     20 |   42 | Black Board+duster   |           100 |   100 |
++--------+------+----------------------+---------------+-------+
+42 rows in set (0.02 sec)
+
+mysql> source translog.sql
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> alter table product update set product_price=50 where p_id=9;
+    -> $
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'update set product_price=50 where p_id=9' at line 1
+mysql> show tables;
+    -> $
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
+| txnlog        |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> update product  set product_price=50 where p_id=9;
+    -> $
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from txnlog;
+    -> $
++------+------------+------------+------------------+------------+
+| p_id | oldp_price | newp_price | user             | dop        |
++------+------------+------------+------------------+------------+
+|    9 |         10 |         50 | yash23@localhost | 2019-08-09 |
++------+------------+------------+------------------+------------+
+1 row in set (0.00 sec)
+
+mysql>mysql> select* from orders;
+    -> $
++-------+---------+------------+-----------+
+| or_id | cust_no | or_date    | total_amt |
++-------+---------+------------+-----------+
+|     1 |       1 | 2019-04-19 |        95 |
+|     2 |       1 | 2019-05-19 |       836 |
+|     3 |       2 | 2019-06-19 |       115 |
+|     4 |       2 | 2019-07-10 |       475 |
+|     5 |       3 | 2019-07-15 |       255 |
++-------+---------+------------+-----------+
+5 rows in set (0.04 sec)
+
+mysql> source del_trig.sql
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> select* from customer;
+    -> $
++---------+----------------+------------------------------+---------+--------+-------------+
+| cust_id | cust_name      | email                        | street  | city   | state       |
++---------+----------------+------------------------------+---------+--------+-------------+
+|       1 | Yash Jeswani   | yashjeswani2420@gmail.com    | Katraj  | Pune   | Maharashtra |
+|       2 | Kunal Sachdev  | kunalsachdev456@gmail.com    | Katraj  | Pune   | Maharashtra |
+|       3 | Animesh Landge | anni.landge@gmail.com        | Katraj  | Pune   | Maharashtra |
+|       4 | Soham Kotalwar | soham.kotalwar@gmail.com     | Katraj  | Pune   | Maharashtra |
+|       5 | Rajas Kulkarni | rajaskulkarni99.rk@gmail.com | Katraj  | nanded | Maharashtra |
+|       6 | SUMIT JADHWANI | sumitjadwani24@gmail.com     | vadgaon | akola  | maharashtra |
++---------+----------------+------------------------------+---------+--------+-------------+
+6 rows in set (0.02 sec)
+
+mysql> delete from customer where cust_id=3;
+    -> $
+ERROR 1054 (42S22): Unknown column 'orders.cust_id' in 'where clause'
+mysql> drop trigger del_trig
+    -> $
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> source del_trig.sql
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> delete from customer where cust_id=3;
+    -> $
+Query OK, 1 row affected (0.16 sec)
+
+mysql> select* from orders$
++-------+---------+------------+-----------+
+| or_id | cust_no | or_date    | total_amt |
++-------+---------+------------+-----------+
+|     1 |       1 | 2019-04-19 |        95 |
+|     2 |       1 | 2019-05-19 |       836 |
+|     3 |       2 | 2019-06-19 |       115 |
+|     4 |       2 | 2019-07-10 |       475 |
++-------+---------+------------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select* from selects$
++-------+------+------+---------+
+| or_id | p_id | qty  | tot_amt |
++-------+------+------+---------+
+|     1 |    1 |    3 |      75 |
+|     1 |    4 |    2 |      20 |
+|     2 |    7 |    2 |       6 |
+|     2 |   11 |    3 |      75 |
+|     3 |   13 |    4 |      60 |
+|     4 |   15 |   10 |      20 |
+|     3 |   16 |  400 |      40 |
+|     4 |   16 |  300 |      10 |
+|     3 |   17 |    1 |      15 |
+|     4 |   17 |    4 |      20 |
+|     4 |   21 |    5 |     125 |
+|     2 |   23 |   23 |     575 |
+|     2 |   24 |    4 |     180 |
+|     4 |   26 |    4 |     300 |
++-------+------+------+---------+
+14 rows in set (0.00 sec)
+
+mysql> 
+ 
+

@@ -1,0 +1,403 @@
+pict@DBMSLAB-A3-305-16:~$ mysql -u yash23 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++-----------------------+
+| Database              |
++-----------------------+
+| information_schema    |
+| CHEF                  |
+| CHEF2                 |
+| FLITE                 |
+| art_gallery           |
+| assi4                 |
+| chef                  |
+| employee_management   |
+| music                 |
+| musician              |
+| mysql                 |
+| oms                   |
+| orderManagement       |
+| performance_schema    |
+| resturaunt_management |
+| test                  |
++-----------------------+
+16 rows in set (0.08 sec)
+
+mysql> use oms;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| prod          |
+| product       |
+| selects       |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> desc customer;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| cust_id   | int(11)     | NO   | PRI | NULL    |       |
+| cust_name | varchar(35) | NO   |     | NULL    |       |
+| email     | varchar(35) | NO   |     | NULL    |       |
+| street    | varchar(35) | YES  |     | NULL    |       |
+| city      | varchar(20) | YES  |     | NULL    |       |
+| state     | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> desc orders;
++-----------+---------+------+-----+---------+-------+
+| Field     | Type    | Null | Key | Default | Extra |
++-----------+---------+------+-----+---------+-------+
+| or_id     | int(11) | NO   | PRI | NULL    |       |
+| cust_no   | int(11) | YES  | MUL | NULL    |       |
+| or_date   | date    | YES  |     | NULL    |       |
+| total_amt | int(11) | YES  |     | 0       |       |
++-----------+---------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> drop prod;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'prod' at line 1
+mysql> select cust_name from customer in(select cust_no from orders where total_amt > in(select total_amt from orders));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'in(select cust_no from orders where total_amt > in(select total_amt from orders)' at line 1
+mysql> select cust_name from customer in (select cust_no from orders where total_amt > in (select total_amt from orders));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'in (select cust_no from orders where total_amt > in (select total_amt from order' at line 1
+mysql> select cust_name from customer where cust_id=(select cust_no from orders where total_amt >(select total_amt from orders));
+ERROR 1242 (21000): Subquery returns more than 1 row
+mysql> select cust_name from customer where cust_id=(select cust_no from orders where total_amt=(select max(total_amt) from orders));
++---------------+
+| cust_name     |
++---------------+
+| Kunal Sachdev |
++---------------+
+1 row in set (0.02 sec)
+
+mysql> select * from orders;
++-------+---------+------------+-----------+
+| or_id | cust_no | or_date    | total_amt |
++-------+---------+------------+-----------+
+|     1 |       1 | 2019-04-19 |        95 |
+|     2 |       1 | 2019-05-19 |        81 |
+|     3 |       2 | 2019-06-19 |        75 |
+|     4 |       2 | 2019-07-10 |       404 |
+|     5 |       3 | 2019-07-15 |       165 |
++-------+---------+------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select* from selects;
++-------+------+------+---------+
+| or_id | p_id | qty  | tot_amt |
++-------+------+------+---------+
+|     1 |    1 |    3 |      75 |
+|     1 |    4 |    2 |      20 |
+|     2 |    7 |    2 |       6 |
+|     2 |   11 |    3 |      75 |
+|     3 |   13 |    4 |      60 |
+|     3 |   17 |    1 |      15 |
+|     4 |   21 |    5 |     125 |
+|     4 |   26 |    4 |     300 |
+|     5 |   28 |    2 |      30 |
+|     5 |   38 |    3 |     135 |
++-------+------+------+---------+
+10 rows in set (0.02 sec)
+
+mysql> select * from customer;
++---------+----------------+------------------------------+--------+--------+-------------+
+| cust_id | cust_name      | email                        | street | city   | state       |
++---------+----------------+------------------------------+--------+--------+-------------+
+|       1 | Yash Jeswani   | yashjeswani2420@gmail.com    | Katraj | Pune   | Maharashtra |
+|       2 | Kunal Sachdev  | kunalsachdev456@gmail.com    | Katraj | Pune   | Maharashtra |
+|       3 | Animesh Landge | anni.landge@gmail.com        | Katraj | Pune   | Maharashtra |
+|       4 | Soham Kotalwar | soham.kotalwar@gmail.com     | Katraj | Pune   | Maharashtra |
+|       5 | Rajas Kulkarni | rajaskulkarni99.rk@gmail.com | Katraj | nanded | Maharashtra |
++---------+----------------+------------------------------+--------+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select count(pid) from orders where or_id=1;
+ERROR 1054 (42S22): Unknown column 'pid' in 'field list'
+mysql> select count(p_id) from orders where or_id=1;
+ERROR 1054 (42S22): Unknown column 'p_id' in 'field list'
+mysql> select count(p_id) from products where or_id=1;
+ERROR 1146 (42S02): Table 'oms.products' doesn't exist
+mysql> select count(p_id) from product where or_id=1;
+ERROR 1054 (42S22): Unknown column 'or_id' in 'where clause'
+mysql> select count(p_id) from selects  where or_id=1;
++-------------+
+| count(p_id) |
++-------------+
+|           2 |
++-------------+
+1 row in set (0.02 sec)
+
+mysql> \select* from selects;
+--------------
+mysql  Ver 14.14 Distrib 5.7.26, for Linux (x86_64) using  EditLine wrapper
+
+Connection id:		3
+Current database:	oms
+Current user:		yash23@localhost
+SSL:			Not in use
+Current pager:		stdout
+Using outfile:		''
+Using delimiter:	;
+Server version:		5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+Protocol version:	10
+Connection:		Localhost via UNIX socket
+Server characterset:	latin1
+Db     characterset:	latin1
+Client characterset:	utf8
+Conn.  characterset:	utf8
+UNIX socket:		/var/run/mysqld/mysqld.sock
+Uptime:			18 min 30 sec
+
+Threads: 1  Questions: 32  Slow queries: 0  Opens: 114  Flush tables: 1  Open tables: 33  Queries per second avg: 0.028
+--------------
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'elect* from selects' at line 1
+mysql> select* from selects;
++-------+------+------+---------+
+| or_id | p_id | qty  | tot_amt |
++-------+------+------+---------+
+|     1 |    1 |    3 |      75 |
+|     1 |    4 |    2 |      20 |
+|     2 |    7 |    2 |       6 |
+|     2 |   11 |    3 |      75 |
+|     3 |   13 |    4 |      60 |
+|     3 |   17 |    1 |      15 |
+|     4 |   21 |    5 |     125 |
+|     4 |   26 |    4 |     300 |
+|     5 |   28 |    2 |      30 |
+|     5 |   38 |    3 |     135 |
++-------+------+------+---------+
+10 rows in set (0.00 sec)
+
+mysql> select cust_name,or_id,or_date,p_id,p_name,product_price,total_amt,stock,qty from customer,orders,product,selects where cust_no=cust_id and selects.p_id=product.p_id and orders.or_id=selects.or_id and cust_no=1;
+ERROR 1052 (23000): Column 'or_id' in field list is ambiguous
+mysql> select cust_name,orders.or_id,or_date,p_id,p_name,product_price,total_amt,stock,qty from customer,orders,product,selects where cust_no=cust_id and selects.p_id=product.p_id and orders.or_id=selects.or_id and cust_no=1;
+ERROR 1052 (23000): Column 'p_id' in field list is ambiguous
+mysql> select cust_name,orders.or_id,or_date,product.p_id,p_name,product_price,total_amt,stock,qty from customer,orders,product,selects where cust_no=cust_id and selects.p_id=product.p_id and orders.or_id=selects.or_id and cust_no=1;
++--------------+-------+------------+------+--------------+---------------+-----------+-------+------+
+| cust_name    | or_id | or_date    | p_id | p_name       | product_price | total_amt | stock | qty  |
++--------------+-------+------------+------+--------------+---------------+-----------+-------+------+
+| Yash Jeswani |     1 | 2019-04-19 |    1 | Crayons      |            25 |        95 |   100 |    3 |
+| Yash Jeswani |     1 | 2019-04-19 |    4 | big Eraser   |            10 |        95 |   100 |    2 |
+| Yash Jeswani |     2 | 2019-05-19 |    7 | 2H-Pencil    |             3 |        81 |   100 |    2 |
+| Yash Jeswani |     2 | 2019-05-19 |   11 | Normal Paper |            25 |        81 |   100 |    3 |
++--------------+-------+------------+------+--------------+---------------+-----------+-------+------+
+4 rows in set (0.06 sec)
+
+mysql> select count(or_id) from orders;
++--------------+
+| count(or_id) |
++--------------+
+|            5 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select p_name,product.p_id from orders,customer,product,selects where orders.or_id=selects.or_id and selects.p_id=product.p_id and orders.cust_no=customer.cust_id and customer.cust_name='Yash Jeswani' and or_date='2019-04-19';
++------------+------+
+| p_name     | p_id |
++------------+------+
+| Crayons    |    1 |
+| big Eraser |    4 |
++------------+------+
+2 rows in set (0.01 sec)
+
+mysql> select * from product where p_id in(select p_id from selects where or_id =(select or_id from orders where or_id='2019-04-19' and cust_no=(select cust_id from customer where cust_name='Yash Jeswani')));
+Empty set (0.00 sec)
+
+mysql> select * from product where p_id in(select p_id from selects where or_id =(select or_id from orders where or_date='2019-04-19' and cust_no=(select cust_id from customer where cust_name='Yash Jeswani')));
++--------+------+------------+---------------+-------+
+| cat_no | p_id | p_name     | product_price | stock |
++--------+------+------------+---------------+-------+
+|      1 |    1 | Crayons    |            25 |   100 |
+|      2 |    4 | big Eraser |            10 |   100 |
++--------+------+------------+---------------+-------+
+2 rows in set (0.01 sec)
+
+mysql> select max(product_price) from product group by cat_id;
+ERROR 1054 (42S22): Unknown column 'cat_id' in 'group statement'
+mysql> select max(product_price) from product group by cat_i+------------+------+;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> | p_name     | p_id |
+    -> +------------+------+
+    -> | Crayons    |    1 |
+    -> | big Eraser |    4 |
+    -> 
+    -> c
+    -> 
+
+^C
+mysql> select max(product_price) from product group by cat_id;
+ERROR 1054 (42S22): Unknown column 'cat_id' in 'group statement'
+mysql> desc product;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| cat_no        | int(11)     | YES  | MUL | NULL    |       |
+| p_id          | int(11)     | NO   | PRI | NULL    |       |
+| p_name        | varchar(20) | YES  |     | NULL    |       |
+| product_price | int(11)     | YES  |     | NULL    |       |
+| stock         | int(11)     | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> desc category;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| cat_id   | int(11)     | NO   | PRI | NULL    |       |
+| cat_name | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select max(product_price) from product group by cat_no;
++--------------------+
+| max(product_price) |
++--------------------+
+|                 45 |
+|                 10 |
+|                  5 |
+|                 20 |
+|                 25 |
+|                 15 |
+|                 65 |
+|                 25 |
+|                125 |
+|                 35 |
+|                 45 |
+|                 75 |
+|                 25 |
+|                 35 |
+|                 25 |
+|                 55 |
+|                 75 |
+|                 45 |
+|                125 |
+|                125 |
++--------------------+
+20 rows in set (0.00 sec)
+
+mysql> 42S22): Unknown column 'cat_id' in 'group statement'
+    -> mysql> desc product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '42S22): Unknown column 'cat_id' in 'group statement'
+mysql> desc product' at line 1
+mysql> 42S22): Unknown column 'cat_id' in 'group statement'
+    -> mysql> desc product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '42S22): Unknown column 'cat_id' in 'group statement'
+mysql> desc product' at line 1
+mysql> select cat_name,avg(product_price) from product,category where category.cat_id=product.cat_no;42S22): Unknown column 'cat_id' in 'group statement'
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'oms.category.cat_name'; this is incompatible with sql_mode=only_full_group_by
+    -> mysql> desc product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '42S22): Unknown column 'cat_id' in 'group statement'
+mysql> desc product' at line 1
+mysql> select cat_name,avg(product_price) from product,category where category.cat_id=product.cat_no;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'oms.category.cat_name'; this is incompatible with sql_mode=only_full_group_by
+mysql> select cat_name,avg(product_price) from product,category where category.cat_id group by product.cat_no;
+ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'oms.category.cat_name' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select cat_name,avg(product_price) from product,category where category.cat_id=product.cat_no  group by product.cat_no;
++------------------+--------------------+
+| cat_name         | avg(product_price) |
++------------------+--------------------+
+| colors           |            35.0000 |
+| Erasers          |             7.5000 |
+| pencils          |             4.0000 |
+| pens             |            15.0000 |
+| papers           |            20.0000 |
+| sharpners        |            12.5000 |
+| Exam pads        |            60.0000 |
+| Pencil Box       |            20.0000 |
+| Calculators      |           100.0000 |
+| Notebooks        |            30.0000 |
+| Files            |            35.0000 |
+| Folders          |            65.0000 |
+| Tools            |            20.0000 |
+| scissors         |            30.0000 |
+| glue             |            20.0000 |
+| Staplers         |            40.0000 |
+| Punching machine |            50.0000 |
+| Printing Suplies |            35.0000 |
+| School Supplies  |            80.0000 |
+| Boards & Dusters |           112.5000 |
++------------------+--------------------+
+20 rows in set (0.05 sec)
+
+mysql> desc selects;
++---------+---------+------+-----+---------+-------+
+| Field   | Type    | Null | Key | Default | Extra |
++---------+---------+------+-----+---------+-------+
+| or_id   | int(11) | NO   | PRI | NULL    |       |
+| p_id    | int(11) | NO   | PRI | NULL    |       |
+| qty     | int(11) | YES  |     | NULL    |       |
+| tot_amt | int(11) | YES  |     | NULL    |       |
++---------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select avg(total_amt) from orders where cust_id=1;
+ERROR 1054 (42S22): Unknown column 'cust_id' in 'where clause'
+mysql> select avg(total_amt) from orders where cust_no=1;
++----------------+
+| avg(total_amt) |
++----------------+
+|        88.0000 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select * from (select * from orders order by total_amt desc limit 2)as a order by total_amt desc limit 1;
++-------+---------+------------+-----------+
+| or_id | cust_no | or_date    | total_amt |
++-------+---------+------------+-----------+
+|     4 |       2 | 2019-07-10 |       404 |
++-------+---------+------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from orders where total_amt not in(select max(total_amt) from orders) order by total_amt desc limit 1;
++-------+---------+------------+-----------+
+| or_id | cust_no | or_date    | total_amt |
++-------+---------+------------+-----------+
+|     5 |       3 | 2019-07-15 |       165 |
++-------+---------+------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from (select * from orders order by total_amt desc limit 2)as a order by total_amt  limit 1;
++-------+---------+------------+-----------+
+| or_id | cust_no | or_date    | total_amt |
++-------+---------+------------+-----------+
+|     5 |       3 | 2019-07-15 |       165 |
++-------+---------+------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from orders;
++-------+---------+------------+-----------+
+| or_id | cust_no | or_date    | total_amt |
++-------+---------+------------+-----------+
+|     1 |       1 | 2019-04-19 |        95 |
+|     2 |       1 | 2019-05-19 |        81 |
+|     3 |       2 | 2019-06-19 |        75 |
+|     4 |       2 | 2019-07-10 |       404 |
+|     5 |       3 | 2019-07-15 |       165 |
++-------+---------+------------+-----------+
+5 rows in set (0.00 sec)
+
+

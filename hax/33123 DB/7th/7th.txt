@@ -1,0 +1,75 @@
+select * from selects where p_id in (select p_id from product where cat_no not in (select cat_id from category where cat_name='colors' or cat_name='erasers'));
++-------+------+------+---------+
+| or_id | p_id | qty  | tot_amt |
++-------+------+------+---------+
+|     2 |    7 |    2 |       6 |
+|     2 |   11 |    3 |      75 |
+|     3 |   13 |    4 |      60 |
+|     3 |   17 |    1 |      15 |
+|     4 |   21 |    5 |     125 |
+|     4 |   26 |    4 |     300 |
+|     5 |   28 |    2 |      30 |
+|     5 |   38 |    3 |     135 |
++-------+------+------+---------+
+8 rows in set (0.00 sec)
+
+mysql> 
+mysql> select p_name,stock from product where stock in(100,300);
++----------------+-------+
+| p_name         | stock |
++----------------+-------+
+| Crayons        |   100 |
+| big eraser     |   100 |
+| small eraser   |   100 |
+| With eraser    |   300 |
+| without eraser |   100 |
+| Ball pen       |   300 |
+| Exam Pad       |   100 |
+| Pouch          |   100 |
+| Geometry Box   |   300 |
+| Normal         |   100 |
+| Four line      |   300 |
+| Single line    |   100 |
+| Office file    |   300 |
+| Multiple       |   100 |
+| Cloth          |   100 |
+| Fevicol        |   100 |
+| Hot glue       |   100 |
+| Single sided   |   300 |
+| rounder        |   300 |
+| Paper          |   100 |
+| School bag     |   100 |
+| School books   |   100 |
+| Black          |   100 |
++----------------+-------+
+23 rows in set (0.00 sec)
+
+mysql> select * from product where unit_price >(select unit_price from product where p_name="crayons");
++--------+------+--------------+------------+-------+
+| cat_id | p_id | p_name       | unit_price | stock |
++--------+------+--------------+------------+-------+
+|      1 |    2 | Water colors |         50 |    50 |
+|      6 |   13 | Exam Pad     |        150 |   100 |
+|      6 |   14 | Normal Pad   |        100 |   500 |
+|      7 |   16 | Geometry Box |        100 |   300 |
+|      8 |   17 | Scientific   |       1000 |   200 |
+|      8 |   18 | Normal       |        100 |   100 |
+|     10 |   22 | Office file  |         50 |   300 |
+|     11 |   25 | Multiple     |         50 |   100 |
+|     12 |   27 | Cloth        |         40 |   100 |
+|     13 |   29 | Hot glue     |        100 |   100 |
+|     15 |   34 | Big          |        100 |   500 |
+|     16 |   35 | Small        |         50 |   500 |
+|     16 |   36 | Big          |        100 |   500 |
+|     17 |   37 | rounder      |         50 |   300 |
+|     18 |   39 | Ink          |        100 |   200 |
+|     18 |   40 | Paper        |         50 |   100 |
+|     19 |   41 | School bag   |        400 |   100 |
+|     19 |   42 | School books |       1000 |   100 |
+|     20 |   43 | Black        |        300 |   100 |
+|     20 |   44 | White        |        100 |   500 |
++--------+------+--------------+------------+-------+
+20 rows in set (0.00 sec)
+
+mysql> 
+

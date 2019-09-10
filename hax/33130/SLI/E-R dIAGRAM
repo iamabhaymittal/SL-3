@@ -1,0 +1,30 @@
+ER Exercise
+
+Q.1 ) Draw an ER diagram that encodes the following business rules.
+Clearly mark all key and participation constraints.
+Chefs work at restaurants. A chef is uniquely identified by an SSN,
+and is also described by a name and a cuisine in which she
+specialized. A restaurant is uniquely identified by a combination of
+name and city. Each chef works in at least one restaurant, and each
+restaurant must have at least one chef working at it. Some chefs own
+restaurants, and if a chef owns a restaurant - she is its sole owner.
+
+ 
+
+Q.2 
+
+Suppose you are given the following requirements for a simple database for the National Hockey League (NHL):
+
+ the NHL has many teams,
+
+ each team has a name, a city, a coach, a captain, and a set of players,
+
+ each player belongs to only one team,
+
+ each player has a name, a position (such as left wing or goalie), a skill level, and a set of injury records,
+
+ a team captain is also a player,
+
+ a game is played between two teams (referred to as host_team and guest_team) and has a date (such as May 11th, 1999) and a score (such as 4 to 2).
+
+Construct a clean and concise ER diagram

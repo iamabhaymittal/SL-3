@@ -1,0 +1,1744 @@
+***************************************CREATE USER********************
+pict@DBMSLAB-A3-305-15:~$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create user 'kunal33130' @ 'localhost' identified by 'kunal33130';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''localhost' identified by 'kunal33130'' at line 1
+mysql> create user 'kunal33130'@'localhost' identified by 'kunal33130';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> grant all on *.* to 'kunal33130'@'localhost' identified by 'kunal33130';
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+(15)
+mysql> exit
+Bye
+pict@DBMSLAB-A3-305-15:~$ mysql -u kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> 
+*****************************************************************************************************
+mysql> create database oms33130;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| BookOrdering       |
+| ass1               |
+| college            |
+| db                 |
+| db1                |
+| dbname             |
+| examdb             |
+| generalStore_33234 |
+| hotel              |
+| mydb               |
+| mysql              |
+| oms33130           |
+| performance_schema |
+| pictown            |
+| res                |
+| sys                |
+| test               |
++--------------------+
+18 rows in set (0.00 sec)
+
+mysql> use oms33130;
+Database changed
+mysql> create table customer(cust_id int primary key,fname varchar(15) not null,lname varchar(15) not null,email varchar(25) not null,street varchar(15) not null,city varchar(15) not null default 'Pune',state varchar(15) not null);
+Query OK, 0 rows affected (0.42 sec)
+
+mysql> desc customer
+    -> ;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| cust_id | int(11)     | NO   | PRI | NULL    |       |
+| fname   | varchar(15) | NO   |     | NULL    |       |
+| lname   | varchar(15) | NO   |     | NULL    |       |
+| email   | varchar(25) | NO   |     | NULL    |       |
+| street  | varchar(15) | NO   |     | NULL    |       |
+| city    | varchar(15) | NO   |     | Pune    |       |
+| state   | varchar(15) | NO   |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql> create table orders(or_id int primary key,cust_no int,or_date date,total_amt int not null,foreign key fk_cust(cust_no) references customer(cust_id));
+Query OK, 0 rows affected (0.79 sec)
+
+mysql> desc orders;
++-----------+---------+------+-----+---------+-------+
+| Field     | Type    | Null | Key | Default | Extra |
++-----------+---------+------+-----+---------+-------+
+| or_id     | int(11) | NO   | PRI | NULL    |       |
+| cust_no   | int(11) | YES  | MUL | NULL    |       |
+| or_date   | date    | YES  |     | NULL    |       |
+| total_amt | int(11) | NO   |     | NULL    |       |
++-----------+---------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> show create table orders;
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table  | Create Table                                                                                                                                                                                                                                                                                                                             |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| orders | CREATE TABLE `orders` (
+  `or_id` int(11) NOT NULL,
+  `cust_no` int(11) DEFAULT NULL,
+  `or_date` date DEFAULT NULL,
+  `total_amt` int(11) NOT NULL,
+  PRIMARY KEY (`or_id`),
+  KEY `fk_cust` (`cust_no`),
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`cust_no`) REFERENCES `customer` (`cust_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> desc orders;
++-----------+---------+------+-----+---------+-------+
+| Field     | Type    | Null | Key | Default | Extra |
++-----------+---------+------+-----+---------+-------+
+| or_id     | int(11) | NO   | PRI | NULL    |       |
+| cust_no   | int(11) | YES  | MUL | NULL    |       |
+| or_date   | date    | YES  |     | NULL    |       |
+| total_amt | int(11) | NO   |     | NULL    |       |
++-----------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+mysql> create table category(cat_id int,cat_name varchar(20));
+Query OK, 0 rows affected (0.30 sec)
+
+mysql> desc category;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| cat_id   | int(11)     | YES  |     | NULL    |       |
+| cat_name | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> drop table category;
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> desc category;
+ERROR 1146 (42S02): Table 'oms33130.category' doesn't exist
+
+mysql> create table category(cat_id int,cat_fname varchar(10));
+Query OK, 0 rows affected (0.33 sec)
+
+mysql> alter table category add column cat_lname varchar(10);
+Query OK, 0 rows affected (0.51 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc category;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| cat_id    | int(11)     | YES  |     | NULL    |       |
+| cat_fname | varchar(10) | YES  |     | NULL    |       |
+| cat_lname | varchar(10) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+mysql> alter table catmysql> alter table selects alter column quantity char(4);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'char(4)' at line 1
+mysql> alter table selects change column quantity char(4);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'char(4)' at line 1
+mysql> alter table selects alter column quantity date;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'date' at line 1
+mysql> alter table selects modify quantity date;
+Query OK, 0 rows affected (0.78 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table selects alter quantity date;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'date' at line 1
+mysql> alter table selects modify quantity date;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table selects modify quantity int;
+Query OK, 0 rows affected (0.74 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc selects;
++--------------+---------+------+-----+---------+-------+
+| Field        | Type    | Null | Key | Default | Extra |
++--------------+---------+------+-----+---------+-------+
+| p_id         | int(11) | NO   | PRI | NULL    |       |
+| or_id        | int(11) | NO   | PRI | NULL    |       |
+| quantity     | int(11) | YES  |     | NULL    |       |
+| total_amount | int(11) | YES  |     | NULL    |       |
++--------------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> 
+egory drop column fname;
+ERROR 1091 (42000): Can't DROP 'fname'; check that column/key exists
+mysql> alter table category drop column cat_fname;
+Query OK, 0 rows affected (0.51 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table category drop column cat_lname;
+Query OK, 0 rows affected (0.51 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table add column cat_name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add column cat_name' at line 1
+mysql> alter table category add column cat_name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> alter table category add column cat_name varchar(20);
+Query OK, 0 rows affected (0.51 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc category;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| cat_id   | int(11)     | YES  |     | NULL    |       |
+| cat_name | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+mysql> alter table category add constraint primary key (cat_id);
+Query OK, 0 rows affected (0.51 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc category;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| cat_id   | int(11)     | NO   | PRI | NULL    |       |
+| cat_name | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+mysql> create table product (cat_id int,p_id int primary key,p_name varchar(20),unit_price int not null,stock int);
+Query OK, 0 rows affected (0.26 sec)
+
+mysql> desc product;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| cat_id     | int(11)     | YES  |     | NULL    |       |
+| p_id       | int(11)     | NO   | PRI | NULL    |       |
+| p_name     | varchar(20) | YES  |     | NULL    |       |
+| unit_price | int(11)     | NO   |     | NULL    |       |
+| stock      | int(11)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> alter table product add foriegn key(cat_id) references category(cat_id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key(cat_id) references category(cat_id)' at line 1
+mysql> alter table product add foriegn key(cat_id) references category(cat_id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key(cat_id) references category(cat_id)' at line 1
+mysql> alter table product add foreign key(cat_id) references category(cat_id);
+Query OK, 0 rows affected (0.71 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc product;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| cat_id     | int(11)     | YES  | MUL | NULL    |       |
+| p_id       | int(11)     | NO   | PRI | NULL    |       |
+| p_name     | varchar(20) | YES  |     | NULL    |       |
+| unit_price | int(11)     | NO   |     | NULL    |       |
+| stock      | int(11)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+mysql> create table selects(p_id int ,or_id int ,qty int,total_amount int);
+Query OK, 0 rows affected (0.29 sec)
+
+mysql> alter table product add foreign key(p_id) references product(p_id);
+ERROR 1025 (HY000): Error on rename of './oms33130/#sql-410_3' to './oms33130/product' (errno: 150 - Foreign key constraint is incorrectly formed)
+mysql> alter table selects add foreign key(p_id) references product(p_id);
+Query OK, 0 rows affected (0.73 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table selects add foreign key(or_id) references orders(or_id);
+Query OK, 0 rows affected (1.27 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc selects;
++--------------+---------+------+-----+---------+-------+
+| Field        | Type    | Null | Key | Default | Extra |
++--------------+---------+------+-----+---------+-------+
+| p_id         | int(11) | YES  | MUL | NULL    |       |
+| or_id        | int(11) | YES  | MUL | NULL    |       |
+| qty          | int(11) | YES  |     | NULL    |       |
+| total_amount | int(11) | YES  |     | NULL    |       |
++--------------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table add primary key(p_id,or_id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add primary key(p_id,or_id)' at line 1
+mysql> alter table selects add primary key(p_id,or_id);
+Query OK, 0 rows affected (0.59 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc selects;
++--------------+---------+------+-----+---------+-------+
+| Field        | Type    | Null | Key | Default | Extra |
++--------------+---------+------+-----+---------+-------+
+| p_id         | int(11) | NO   | PRI | NULL    |       |
+| or_id        | int(11) | NO   | PRI | NULL    |       |
+| qty          | int(11) | YES  |     | NULL    |       |
+| total_amount | int(11) | YES  |     | NULL    |       |
++--------------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table selects change qty quantity int;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc selects;
++--------------+---------+------+-----+---------+-------+
+| Field        | Type    | Null | Key | Default | Extra |
++--------------+---------+------+-----+---------+-------+
+| p_id         | int(11) | NO   | pict@DBMSLAB-A3-305-15:~$ mysql -u  kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 5
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| BookOrdering       |
+| Chef               |pict@DBMSLAB-A3-305-15:~$ mysql -u  kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 5
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| BookOrdering       |
+| Chef               |
+| NHL                |
+| ass1               |
+| chef               |
+| college            |
+| college_management |
+| d1                 |
+| db                 |
+| db1                |
+| dbname             |
+| examdb             |
+| generalStore_33234 |
+| hotel              |
+| league             |
+| mydb               |
+| mysql              |
+| oms33130           |
+| performance_schema |
+| pictown            |
+| res                |
+| sys                |
+| test               |
++--------------------+
+24 rows in set (0.11 sec)
+
+mysql> create database pictown33130
+    -> ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use database pictown33130;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use  pictown33130;
+Database changed
+mysql> create table musician(adhar_ no int primarykey,name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int primarykey,name varchar(20))' at line 1
+mysql> create table musician(adhar_ no int primary key,name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int primary key,name varchar(20))' at line 1
+mysql> create table musician(adhar_no int primary key,name varchar(20));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> create table place(place_id int primary key,addr varchar(50),phone_no int );
+Query OK, 0 rows affected (0.31 sec)
+
+mysql> alter table musician add foreign key place_id references place(place_id); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references place(place_id)' at line 1
+mysql> alter table musician add column place_id int;
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table musician add foreign key place_id references place(place_id); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references place(place_id)' at line 1
+mysql> alter table musician add foreign key(place_id) references place(place_id);
+Query OK, 0 rows affected (0.81 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table album (adhar_no int ,album_id int primary key,title varchar(20),album_date date, format varchar(4),foreign key(adhar_no) references musician(adhar_no));
+Query OK, 0 rows affected (0.33 sec)
+
+mysql> create table songs(title varchar(20) primary key,album_id int,author varchar(20),foreign key(album_id) references album(album_id));
+Query OK, 0 rows affected (0.35 sec)
+
+mysql> create table instrument(inst_id int primary key ,name varchar(20),musical_key varchar(10));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> create table plays(adhar_no int,inst_id int,foreign key(adhar_no) references musician(adhar_nomysql> create table plays(adhar_no int,inst_id int,foreign key(adhar_no) references musician(adhar_no,)
+[1]+  Stopped                 mysql -u kunal33130 -p
+pict@DBMSLAB-A3-305-15:~$ mysql -u  kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use pictown33130;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++------------------------+
+| Tables_in_pictown33130 |
++------------------------+
+| album                  |
+| instrument             |
+| musician               |
+| place                  |
+| songs                  |
++------------------------+
+5 rows in set (0.00 sec)
+
+mysql> create table plays(adhar_no int ,inst_id int,foreign key(adhar_no) references musician(adhar_no),foreign key(inst_id) references instrument(inst_id));
+Query OK, 0 rows affected (0.44 sec)
+
+mysql> alter table plays add primary key(adhar_no,inst_id);
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table performs(adhar_no int ,title varchar(20),foreign key(adhar_no) references musician(adhar_no),foreign key(title) references songs(title));
+Query OK, 0 rows affected (0.40 sec)
+
+mysql> alter table performs add primary key(adhar_no,title);
+Query OK, 0 rows affected (0.53 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table uses(inst_id int ,title varchar(20),foreign key(inst_id) references instrument(inst_id),foreign key(title) references songs(title));
+Query OK, 0 rows affected (0.38 sec)
+
+mysql> alter table uses add primary key(inst_id,title);
+Query OK, 0 rows affected (0.54 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++------------------------+
+| Tables_in_pictown33130 |
++------------------------+
+| album                  |
+| instrument             |
+| musician               |
+| performs               |
+| place                  |
+| plays                  |
+| songs                  |
+| uses                   |
++------------------------+
+8 rows in set (0.00 sec)
+
+mysql> 
+
+| NHL                |
+| ass1               |
+| chef               |
+| college            |
+| college_management |
+| d1                 |
+| db                 |
+| db1                |
+| dbname             |
+| examdb             |
+| generalStore_33234 |
+| hotel              |
+| league             |
+| mydb               |
+| mysql              |
+| oms33130           |
+| performance_schema |
+| pictown            |
+| res                |
+| sys                |
+| test               |
++--------------------+
+24 rows in set (0.11 sec)
+
+mysql> create database pictown33130
+    -> ;pict@DBMSLAB-A3-305-15:~$ mysql -u  kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 5
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| BookOrdering       |
+| Chef               |
+| NHL                |
+| ass1               |
+| chef               |
+| college            |
+| college_management |
+| d1                 |
+| db                 |
+| db1                |
+| dbname             |
+| examdb             |
+| generalStore_33234 |
+| hotel              |
+| league             |
+| mydb               |
+| mysql              |
+| oms33130           |
+| performance_schema |
+| pictown            |
+| res                |
+| sys                |
+| test               |
++--------------------+
+24 rows in set (0.11 sec)
+
+mysql> create database pictown33130
+    -> ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use database pictown33130;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use  pictown33130;
+Database changed
+mysql> create table musician(adhar_ no int primarykey,name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int primarykey,name varchar(20))' at line 1
+mysql> create table musician(adhar_ no int primary key,name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int primary key,name varchar(20))' at line 1
+mysql> create table musician(adhar_no int primary key,name varchar(20));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> create table place(place_id int primary key,addr varchar(50),phone_no int );
+Query OK, 0 rows affected (0.31 sec)
+
+mysql> alter table musician add foreign key place_id references place(place_id); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references place(place_id)' at line 1
+mysql> alter table musician add column place_id int;
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table musician add foreign key place_id references place(place_id); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references place(place_id)' at line 1
+mysql> alter table musician add foreign key(place_id) references place(place_id);
+Query OK, 0 rows affected (0.81 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table album (adhar_no int ,album_id int primary key,title varchar(20),album_date date, format varchar(4),foreign key(adhar_no) references musician(adhar_no));
+Query OK, 0 rows affected (0.33 sec)
+
+mysql> create table songs(title varchar(20) primary key,album_id int,author varchar(20),foreign key(album_id) references album(album_id));
+Query OK, 0 rows affected (0.35 sec)
+
+mysql> create table instrument(inst_id int primary key ,name varchar(20),musical_key varchar(10));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> create table plays(adhar_no int,inst_id int,foreign key(adhar_no) references musician(adhar_nomysql> create table plays(adhar_no int,inst_id int,foreign key(adhar_no) references musician(adhar_no,)
+[1]+  Stopped                 mysql -u kunal33130 -p
+pict@DBMSLAB-A3-305-15:~$ mysql -u  kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use pictown33130;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++------------------------+
+| Tables_in_pictown33130 |
++------------------------+
+| album                  |
+| instrument             |
+| musician               |
+| place                  |
+| songs                  |
++------------------------+
+5 rows in set (0.00 sec)
+pict@DBMSLAB-A3-305-15:~$ mysql -u  kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 5
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| BookOrdering       |
+| Chef               |
+| NHL                |
+| ass1               |
+| chef               |
+| college            |
+| college_management |
+| d1                 |
+| db                 |
+| db1                |
+| dbname             |
+| examdb             |
+| generalStore_33234 |
+| hotel              |
+| league             |
+| mydb               |
+| mysql              |
+| oms33130           |
+| performance_schema |
+| pictown            |
+| res                |
+| sys                |
+| test               |
++--------------------+
+24 rows in set (0.11 sec)
+
+mysql> create database pictown33130
+    -> ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use database pictown33130;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use  pictown33130;
+Database changed
+mysql> create table musician(adhar_ no int primarykey,name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int primarykey,name varchar(20))' at line 1
+mysql> create table musician(adhar_ no int primary key,name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int primary key,name varchar(20))' at line 1
+mysql> create table musician(adhar_no int primary key,name varchar(20));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> create table place(place_id int primary key,addr varchar(50),phone_no int );
+Query OK, 0 rows affected (0.31 sec)
+
+mysql> alter table musician add foreign key place_id references place(place_id); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds pict@DBMSLAB-A3-305-15:~$ mysql -u  kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 5
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| BookOrdering       |
+| Chef               |
+| NHL                |
+| ass1               |
+| chef               |
+| college            |
+| college_management |
+| d1                 |
+| db                 |
+| db1                |
+| dbname             |
+| examdb             |
+| generalStore_33234 |
+| hotel              |
+| league             |
+| mydb               |
+| mysql              |
+| oms33130           |pict@DBMSLAB-A3-305-15:~$ mysql -u  kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 5
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| BookOrdering       |
+| Chef               |
+| NHL                |
+| ass1               |
+| chef               |
+| college            |
+| college_management |
+| d1                 |
+| db                 |
+| db1                |
+| dbname             |
+| examdb             |
+| generalStore_33234 |
+| hotel              |
+| league             |
+| mydb               |
+| mysql              |
+| oms33130           |
+| performance_schema |
+| pictown            |
+| res                |
+| sys                |
+| test               |
++--------------------+
+24 rows in set (0.11 sec)
+
+mysql> create database pictown33130
+    -> ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use database pictown33130;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use  pictown33130;
+Database changed
+mysql> create table musician(adhar_ no int primarykey,name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int primarykey,name varchar(20))' at line 1
+mysql> create table musician(adhar_ no int primary key,name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int primary key,name varchar(20))' at line 1
+mysql> create table musician(adhar_no int primary key,name varchar(20));
+Query OK, 0 rows affected (0.28 sec)
+pict@DBMSLAB-A3-305-15:~$ mysql -u  kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 5
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| BookOrdering       |
+| Chef               |
+| NHL                |
+| ass1               |
+| chef               |
+| college            |
+| college_management |
+| d1                 |
+| db                 |
+| db1                |
+| dbname             |
+| examdb             |
+| generalStore_33234 |
+| hotel              |
+| league             |
+| mydb               |
+| mysql              |
+| oms33130           |
+| performance_schema |
+| pictown            |
+| res                |
+| sys                |
+| test               |
++--------------------+
+24 rows in set (0.11 sec)
+
+mysql> create database pictown33130
+    -> ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use database pictown33130;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use  pictown33130;
+Database changed
+mysql> create table musician(adhar_ no int primarykey,name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int primarykey,name varchar(20))' at line 1
+mysql> create table musician(adhar_ no int primary key,name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int primary key,name varchar(20))' at line 1
+mysql> create table musician(adhar_no int primary key,name varchar(20));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> create table place(place_id int primary key,addr varchar(50),phone_no int );
+Query OK, 0 rows affected (0.31 sec)
+
+mysql> alter table musician add foreign key place_id references place(place_id); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references place(place_id)' at line 1
+mysql> alter table musician add column place_id int;
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table musician add foreign key place_id references place(place_id); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references place(place_id)' at line 1
+mysql> alter table musician add foreign key(place_id) references place(place_id);
+Query OK, 0 rows affected (0.81 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table album (adhar_no int ,album_id int primary key,title varchar(20),album_date date, format varchar(4),foreign key(adhar_no) references musician(adhar_no));
+Query OK, 0 rows affected (0.33 sec)
+
+mysql> create table songs(title varchar(20) primary key,album_id int,author varchar(20),foreign key(album_id) references album(album_id));
+Query OK, 0 rows affected (0.35 sec)
+
+mysql> create table instrument(inst_id int primary key ,name varchar(20),musical_key varchar(10));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> create table plays(adhar_no int,inst_id int,foreign key(adhar_no) references musician(adhar_nomysql> create table plays(adhar_no int,inst_id int,foreign key(adhar_no) references musician(adhar_no,)
+[1]+  Stopped                 mysql -u kunal33130 -p
+pict@DBMSLAB-A3-305-15:~$ mysql -u  kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use pictown33130;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++------------------------+
+| Tables_in_pictown33130 |
++------------------------+
+| album                  |
+| instrument             |
+| musician               |
+| place                  |
+| songs                  |
++------------------------+
+5 rows in set (0.00 sec)
+
+mysql> create table plays(adhar_no int ,inst_id int,foreign key(adhar_no) references musician(adhar_no),foreign key(inst_id) references instrument(inst_id));
+Query OK, 0 rows affected (0.44 sec)
+
+mysql> alter table plays add primary key(adhar_no,inst_id);
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table performs(adhar_no int ,title varchar(20),foreign key(adhar_no) references musician(adhar_no),foreign key(title) references songs(title));
+Query OK, 0 rows affected (0.40 sec)
+
+mysql> alter table performs add primary key(adhar_no,title);
+Query OK, 0 rows affected (0.53 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table uses(inst_id int ,title varchar(20),foreign key(inst_id) references instrument(inst_id),foreign key(title) references songs(title));
+Query OK, 0 rows affected (0.38 sec)
+
+mysql> alter table uses add primary key(inst_id,title);
+Query OK, 0 rows affected (0.54 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++------------------------+
+| Tables_in_pictown33130 |
++------------------------+
+| album                  |
+| instrument             |
+| musician               |
+| performs               |
+| place                  |
+| plays                  |
+| songs                  |
+| uses                   |
++------------------------+
+8 rows in set (0.00 sec)
+
+mysql> 
+
+mysql> create table place(place_id int primary key,addr varchar(50),phone_no int );
+Query OK, 0 rows affected (0.31 sec)
+
+mysql> alter table musician add foreign key place_id references place(place_id); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references place(place_id)' at line 1
+mysql> alter table musician add column place_id int;
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table musician add foreign key place_id references place(place_id); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references place(place_id)' at line 1
+mysql> alter table musician add foreign key(place_id) references place(place_id);
+Query OK, 0 rows affected (0.81 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table album (adhar_no int ,album_id int primary key,title varchar(20),album_date date, format varchar(4),foreign key(adhar_no) references musician(adhar_no));
+Query OK, 0 rows affected (0.33 sec)
+
+mysql> create table songs(title varchar(20) primary key,album_id int,author varchar(20),foreign key(album_id) references album(album_id));
+Query OK, 0 rows affected (0.35 sec)
+
+mysql> create table instrument(inst_id int primary key ,name varchar(20),musical_key varchar(10));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> create table plays(adhar_no int,inst_id int,foreign key(adhar_no) references musician(adhar_nomysql> create table plays(adhar_no int,inst_id int,foreign key(adhar_no) references musician(adhar_no,)
+[1]+  Stopped                 mysql -u kunal33130 -p
+pict@DBMSLAB-A3-305-15:~$ mysql -u  kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use pictown33130;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++------------------------+
+| Tables_in_pictown33130 |
++------------------------+
+| album                  |
+| instrument             |
+| musician               |
+| place                  |
+| songs                  |
++------------------------+
+5 rows in set (0.00 sec)
+
+mysql> create table plays(adhar_no int ,inst_id int,foreign key(adhar_no) references musician(adhar_no),foreign key(inst_id) references instrument(inst_id));
+Query OK, 0 rows affected (0.44 sec)
+
+mysql> alter table plays add primary key(adhar_no,inst_id);
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table performs(adhar_no int ,title varchar(20),foreign key(adhar_no) references musician(adhar_no),foreign key(title) references songs(title));
+Query OK, 0 rows affected (0.40 sec)
+
+mysql> alter table performs add primary key(adhar_no,title);
+Query OK, 0 rows affected (0.53 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table uses(inst_id int ,title varchar(20),foreign key(inst_id) references instrument(inst_id),foreign key(title) references songs(title));
+Query OK, 0 rows affected (0.38 sec)
+
+mysql> alter table uses add primary key(inst_id,title);
+Query OK, 0 rows affected (0.54 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++------------------------+
+| Tables_in_pictown33130 |
++------------------------+
+| album                  |
+| instrument             |
+| musician               |
+| performs               |
+| place                  |
+| plays                  |
+| songs                  |
+| uses                   |
++------------------------+
+8 rows in set (0.00 sec)
+
+mysql> 
+
+| performance_schema |
+| pictown            |
+| res                |
+| sys                |
+| test               |
++--------------------+
+24 rows in set (0.11 sec)
+
+mysql> create database pictown33130
+    -> ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use database pictown33130;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use  pictown33130;
+Database changed
+mysql> create table musician(adhar_ no int primarykey,name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int primarykey,name varchar(20))' at line 1
+mysql> create table musician(adhar_ no int primary key,name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int primary key,name varchar(20))' at line 1
+mysql> create table musician(adhar_no int primary key,name varchar(20));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> create table place(place_id int primary key,addr varchar(50),phone_no int );
+Query OK, 0 rows affected (0.31 sec)
+
+mysql> alter table musician add foreign key place_id references place(place_id); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references place(place_id)' at line 1
+mysql> alter table musician add column place_id int;
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table musician add foreign key place_id references place(place_id); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references place(place_id)' at line 1
+mysql> alter table musician add foreign key(place_id) references place(place_id);
+Query OK, 0 rows affected (0.81 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table album (adhar_no int ,album_id int primary key,title varchar(20),album_date date, format varchar(4),foreign key(adhar_no) references musician(adhar_no));
+Query OK, 0 rows affected (0.33 sec)
+
+mysql> create table songs(title varchar(20) primary key,album_id int,author varchar(20),foreign key(album_id) references album(album_id));
+Query OK, 0 rows affected (0.35 sec)
+
+mysql> create table instrument(inst_id int primary key ,name varchar(20),musical_key varchar(10));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> create table plays(adhar_no int,inst_id int,foreign key(adhar_no) references musician(adhar_nomysql> create table plays(adhar_no int,inst_id int,foreign key(adhar_no) references musician(adhar_no,)
+[1]+  Stopped                 mysql -u kunal33130 -p
+pict@DBMSLAB-A3-305-15:~$ mysql -u  kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use pictown33130;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++------------------------+
+| Tables_in_pictown33130 |
++------------------------+
+| album                  |
+| instrument             |
+| musician               |
+| place                  |
+| songs                  |
++------------------------+
+5 rows in set (0.00 sec)
+
+mysql> create table plays(adhar_no int ,inst_id int,foreign key(adhar_no) references musician(adhar_no),foreign key(inst_id) references instrument(inst_id));
+Query OK, 0 rows affected (0.44 sec)
+
+mysql> alter table plays add primary key(adhar_no,inst_id);
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table performs(adhar_no int ,title varchar(20),foreign key(adhar_no) references musician(adhar_no),foreign key(title) references songs(title));
+Query OK, 0 rows affected (0.40 sec)
+
+mysql> alter table performs add primary key(adhar_no,title);
+Query OK, 0 rows affected (0.53 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table uses(inst_id int ,title varchar(20),foreign key(inst_id) references instrument(inst_id),foreign key(title) references songs(title));
+Query OK, 0 rows affected (0.38 sec)
+
+mysql> alter table uses add primary key(inst_id,title);
+Query OK, 0 rows affected (0.54 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++------------------------+
+| Tables_in_pictown33130 |
++------------------------+
+| album                  |
+| instrument             |
+| musician               |
+| performs               |
+| place                  |
+| plays                  |
+| songs                  |
+| uses                   |
++------------------------+
+8 rows in set (0.00 sec)
+
+mysql> 
+to your MySQL server version for the right syntax to use near 'references place(place_id)' at line 1
+mysql> alter table musician add column place_id int;
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table musician add foreign key place_id references place(place_id); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references place(place_id)' at line 1
+mysql> alter table musician add foreign key(place_id) references place(place_id);
+Query OK, 0 rows affected (0.81 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table album (adhar_no int ,album_id int primary key,title varchar(20),album_date date, format varchar(4),foreign key(adhar_no) references musician(adhar_no));
+Query OK, 0 rows affected (0.33 sec)
+
+mysql> create table songs(title varchar(20) primary key,album_id int,author varchar(20),foreign key(album_id) references album(album_id));
+Query OK, 0 rows affected (0.35 sec)
+
+mysql> create table instrument(inst_id int primary key ,name varchar(20),musical_key varchar(10));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> create table plays(adhar_no int,inst_id int,foreign key(adhar_no) references musician(adhar_nomysql> create table plays(adhar_no int,inst_id int,foreign key(adhar_no) references musician(adhar_no,)
+[1]+  Stopped                 mysql -u kunal33130 -p
+pict@DBMSLAB-A3-305-15:~$ mysql -u  kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use pictown33130;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++------------------------+
+| Tables_in_pictown33130 |
++------------------------+
+| album                  |
+| instrument             |
+| musician               |
+| place                  |
+| songs                  |
++------------------------+
+5 rows in set (0.00 sec)
+
+mysql> create table plays(adhar_no int ,inst_id int,foreign key(adhar_no) references musician(adhar_no),foreign key(inst_id) references instrument(inst_id));
+Query OK, 0 rows affected (0.44 sec)
+
+mysql> alter table plays add primary key(adhar_no,inst_id);
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table performs(adhar_no int ,title varchar(20),foreign key(adhar_no) references musician(adhar_no),foreign key(title) references songs(title));
+Query OK, 0 rows affected (0.40 sec)
+
+mysql> alter table performs add primary key(adhar_no,title);
+Query OK, 0 rows affected (0.53 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table uses(inst_id int ,title varchar(20),foreign key(inst_id) references instrument(inst_id),foreign key(title) references songs(title));
+Query OK, 0 rows affected (0.38 sec)
+
+mysql> alter table uses add primary key(inst_id,title);
+Query OK, 0 rows affected (0.54 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++------------------------+
+| Tables_in_pictown33130 |
++------------------------+
+| album                  |
+| instrument             |
+| musician               |
+| performs               |
+| place                  |
+| plays                  |
+| songs                  |
+| uses                   |
++------------------------+
+8 rows in set (0.00 sec)
+
+mysql> 
+
+mysql> create table plays(adhar_no int ,inst_id int,foreign key(adhar_no) references musician(adhar_no),foreign key(inst_id) references instrument(inst_id));
+Query OK, 0 rows affected (0.44 sec)
+
+mysql> alter table plays add primary key(adhar_no,inst_id);
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table performs(adhar_no int ,title varchar(20),foreign key(adhar_no) references musician(adhar_no),foreign key(title) references songs(title));
+Query OK, 0 rows affected (0.40 sec)
+
+mysql> alter table performs add primary key(adhar_no,title);
+Query OK, 0 rows affected (0.53 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table uses(inst_id int ,title varchar(20),foreign key(inst_id) references instrument(inst_id),foreign key(title) references songs(title));
+Query OK, 0 rows affected (0.38 sec)
+
+mysql> alter table uses add primary key(inst_id,title);
+Query OK, 0 rows affected (0.54 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++------------------------+
+| Tables_in_pictown33130 |
++------------------------+
+| album                  |
+| instrument             |
+| musician               |
+| performs               |
+| place                  |
+| plays                  |
+| songs                  |
+| uses                   |
++------------------------+
+8 rows in set (0.00 sec)
+
+mysql> 
+
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use database pictown33130;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use  pictown33130;
+Database changed
+mysql> create table musician(adhar_ no int primarykey,name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int primarykey,name varchar(20))' at line 1
+mysql> create table musician(adhar_ no int primary key,name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int primary key,name varchar(20))' at line 1
+mysql> create table musician(adhar_no int primary key,name varchar(20));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> create table place(place_id int primary key,addr varchar(50),phone_no int );
+Query OK, 0 rows affected (0.31 sec)
+
+mysql> alter table musician add foreign key place_id references place(place_id); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references place(place_id)' at line 1
+mysql> alter table musician add column place_id int;
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table musician add foreign key place_id references place(place_id); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references place(place_id)' at line 1
+mysql> alter table musician add foreign key(place_id) references place(place_id);
+Query OK, 0 rows affected (0.81 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table album (adhar_no int ,album_id int primary key,title varchar(20),album_date date, format varchar(4),foreign key(adhar_no) references musician(adhar_no));
+Query OK, 0 rows affected (0.33 sec)
+
+mysql> create table songs(title varchar(20) primary key,album_id int,author varchar(20),foreign key(album_id) references album(album_id));
+Query OK, 0 rows affected (0.35 sec)
+
+mysql> create table instrument(inst_id int primary key ,name varchar(20),musical_key varchar(10));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> create table plays(adhar_no int,inst_id int,foreign key(adhar_no) references musician(adhar_nomysql> create table plays(adhar_no int,inst_id int,foreign key(adhar_no) references musician(adhar_no,)
+[1]+  Stopped                 mysql -u kunal33130 -p
+pict@DBMSLAB-A3-305-15:~$ mysql -u  kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use pictown33130;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++------------------------+
+| Tables_in_pictown33130 |
++------------------------+
+| album                  |
+| instrument             |
+| musician               |
+| place                  |
+| songs                  |
++------------------------+
+5 rows in set (0.00 sec)
+
+mysql> create table plays(adhar_no int ,inst_id int,foreign key(adhar_no) references musician(adhar_no),foreign key(inst_id) references instrument(inst_id));
+Query OK, 0 rows affected (0.44 sec)
+
+mysql> alter table plays add primary key(adhar_no,inst_id);
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table performs(adhar_no int ,title varchar(20),foreign key(adhar_no) references musician(adhar_no),foreign key(title) references songs(title));
+Query OK, 0 rows affected (0.40 sec)
+
+mysql> alter table performs add primary key(adhar_no,title);
+Query OK, 0 rows affected (0.53 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table uses(inst_id int ,title varchar(20),foreign key(inst_id) references instrument(inst_id),foreign key(title) references songs(title));
+Query OK, 0 rows affected (0.38 sec)
+
+mysql> alter table uses add primary key(inst_id,title);
+Query OK, 0 rows affected (0.54 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++------------------------+
+| Tables_in_pictown33130 |
++------------------------+
+| album                  |
+| instrument             |
+| musician               |
+| performs               |
+| place                  |
+| plays                  |
+| songs                  |
+| uses                   |
++------------------------+
+8 rows in set (0.00 sec)
+
+mysql> 
+PRI | NULL    |       |
+| or_id        | int(11) | NO   | PRI | NULL    |       |
+| quantity     | int(11) | YES  |     | NULL    |       |
+| total_amount | int(11) | YES  |     | NULL    |       |
++--------------+---------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> alter table selects alter column quantity char(4);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'char(4)' at line 1
+mysql> alter table selects change column quantity char(4);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'char(4)' at line 1
+mysql> alter table selects alter column quantity date;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'date' at line 1
+mysql> alter table selects modify quantity date;
+Query OK, 0 rows affected (0.78 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table selects alter quantity date;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'date' at line 1
+mysql> alter table selects modify quantity date;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table selects modify quantity int;
+Query OK, 0 rows affected (0.74 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc selects;
++--------------+---------+------+-----+---------+-------+
+| Field        | Type    | Null | Key | Default | Extra |
++--------------+---------+------+-----+---------+-------+
+| p_id         | int(11) | NO   | PRI | NULL    |       |
+| or_id        | int(11) | NO   | PRI | NULL    |       |
+| quantity     | int(11) | YES  |     | NULL    |       |
+| total_amount | int(11) | YES  |     | NULL    |       |
++--------------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> 
+pict@DBMSLAB-A3-305-15:~$ mysql -u  kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 5
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| BookOrdering       |
+| Chef               |
+| NHL                |
+| ass1               |
+| chef               |
+| college            |
+| college_management |
+| d1                 |
+| db                 |
+| db1                |
+| dbname             |
+| examdb             |
+| generalStore_33234 |
+| hotel              |
+| league             |
+| mydb               |
+| mysql              |
+| oms33130           |
+| performance_schema |
+| pictown            |
+| res                |
+| sys                |
+| test               |
++--------------------+
+24 rows in set (0.11 sec)
+
+mysql> create database pictown33130
+    -> ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use database pictown33130;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use  pictown33130;
+Database changed
+mysql> create table musician(adhar_ no int primarykey,name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int primarykey,name varchar(20))' at line 1
+mysql> create table musician(adhar_ no int primary key,name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int primary key,name varchar(20))' at line 1
+mysql> create table musician(adhar_no int primary key,name varchar(20));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> create table place(place_id int primary key,addr varchar(50),phone_no int );
+Query OK, 0 rows affected (0.31 sec)
+
+mysql> alter table musician add foreign key place_id references place(place_id); 
+ERROR 1064 (42000): You havpict@DBMSLAB-A3-305-15:~$ mysql -u  kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 5
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| BookOrdering       |
+| Chef               |
+| NHL                |
+| ass1               |
+| chef               |
+| college            |
+| college_management |
+| d1                 |
+| db                 |
+| db1                |
+| dbname             |
+| examdb             |
+| generalStore_33234 |
+| hotel              |
+| league             |
+| mydb               |
+| mysql              |
+| oms33130           |
+| performance_schema |
+| pictown            |
+| res                |
+| sys                |
+| test               |
++--------------------+
+24 rows in set (0.11 sec)
+
+mysql> create database pictown33130
+    -> ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use database pictown33130;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use  pictown33130;
+Database changed
+mysql> create table musician(adhar_ no int primarykey,name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int primarykey,name varchar(20))' at line 1
+mysql> create table musician(adhar_ no int primary key,name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int primary key,name varchar(20))' at line 1
+mysql> create table musician(adhar_no int primary key,name varchar(20));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> create table place(place_id int primary key,addr varchar(50),phone_no int );
+Query OK, 0 rows affected (0.31 sec)
+
+mysql> alter table musician add foreign key place_id references place(place_id); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references place(place_id)' at line 1
+mysql> alter table musician add column place_id int;
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table musician add foreign key place_id references place(place_id); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references place(place_id)' at line 1
+mysql> alter table musician add foreign key(place_id) references place(place_id);
+Query OK, 0 rows affected (0.81 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table album (adhar_no int ,album_id int primary key,title varchar(20),album_date date, format varchar(4),foreign key(adhar_no) references musician(adhar_no));
+Query OK, 0 rows affected (0.33 sec)
+
+mysql> create table songs(title varchar(20) primary key,album_id int,author varchar(20),foreign key(album_id) references album(album_id));
+Query OK, 0 rows affected (0.35 sec)
+
+mysql> create table instrument(inst_id int primary key ,name varchar(20),musical_key varchar(10));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> create table plays(adhar_no int,inst_id int,foreign key(adhar_no) references musician(adhar_nomysql> create table plays(adhar_no int,inst_id int,foreign key(adhar_no) references musician(adhar_no,)
+[1]+  Stopped                 mysql -u kunal33130 -p
+pict@DBMSLAB-A3-305-15:~$ mysql -u  kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use pictown33130;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++------------------------+
+| Tables_in_pictown33130 |
++------------------------+
+| album                  |
+| instrument             |
+| musician               |
+| place                  |
+| songs                  |
++------------------------+
+5 rows in set (0.00 sec)
+
+mysql> create table plays(adhar_no int ,inst_id int,foreign key(adhar_no) references musician(adhar_no),foreign key(inst_id) references instrument(inst_id));
+Query OK, 0 rows affected (0.44 sec)
+
+mysql> alter table plays add primary key(adhar_no,inst_id);
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table performs(adhar_no int ,title varchar(20),foreign key(adhar_no) references musician(adhar_no),foreign key(title) references songs(title));
+Query OK, 0 rows affected (0.40 sec)
+
+mysql> alter table performs add primary key(adhar_no,title);
+Query OK, 0 rows affected (0.53 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table uses(inst_id int ,title varchar(20),foreign key(inst_id) references instrument(inst_id),foreign key(title) references songs(title));
+Query OK, 0 rows affected (0.38 sec)
+
+mysql> alter table uses add primary key(inst_id,title);
+Query OK, 0 rows affected (0.54 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++------------------------+
+| Tables_in_pictown33130 |
++------------------------+
+| album                  |
+| instrument             |
+| musician               |
+| performs               |
+| place                  |
+| plays                  |
+| songs                  |
+| uses                   |
++------------------------+
+8 rows in set (0.00 sec)
+
+mysql> 
+e an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references place(place_id)' at line 1
+mysql> alter table musician add column place_id int;
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table musician add foreign key place_id references place(place_id); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references place(place_id)' at line 1
+mysql> alter table musician add foreign key(place_id) references place(place_id);
+Query OK, 0 rows affected (0.81 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table album (adhar_no int ,album_id int primary key,title varchar(20),album_date date, format varchar(4),foreign key(adhar_no) references musician(adhar_no));
+Query OK, 0 rows affected (0.33 sec)
+
+mysql> create table songs(title varchar(20) primary key,album_id int,author varchar(20),foreign key(album_id) references album(album_id));
+Query OK, 0 rows affected (0.35 sec)
+
+mysql> create table instrument(inst_id int primary key ,name varchar(20),musical_key varchar(10));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> create table plays(adhar_no int,inst_id int,foreign key(adhar_no) references musician(adhar_nomysql> create table plays(adhar_no int,inst_id int,foreign key(adhar_no) references musician(adhar_no,)
+[1]+  Stopped                 mysql -u kunal33130 -p
+pict@DBMSLAB-A3-305-15:~$ mysql -u  kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.7.26-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use pictown33130;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++------------------------+
+| Tables_in_pictown33130 |
++------------------------+
+| album                  |
+| instrument             |
+| musician               |
+| place                  |
+| songs                  |
++------------------------+
+5 rows in set (0.00 sec)
+
+mysql> create table plays(adhar_no int ,inst_id int,foreign key(adhar_no) references musician(adhar_no),foreign key(inst_id) references instrument(inst_id));
+Query OK, 0 rows affected (0.44 sec)
+
+mysql> alter table plays add primary key(adhar_no,inst_id);
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table performs(adhar_no int ,title varchar(20),foreign key(adhar_no) references musician(adhar_no),foreign key(title) references songs(title));
+Query OK, 0 rows affected (0.40 sec)
+
+mysql> alter table performs add primary key(adhar_no,title);
+Query OK, 0 rows affected (0.53 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table uses(inst_id int ,title varchar(20),foreign key(inst_id) references instrument(inst_id),foreign key(title) references songs(title));
+Query OK, 0 rows affected (0.38 sec)
+
+mysql> alter table uses add primary key(inst_id,title);
+Query OK, 0 rows affected (0.54 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++------------------------+
+| Tables_in_pictown33130 |
++------------------------+
+| album                  |
+| instrument             |
+| musician               |
+| performs               |
+| place                  |
+| plays                  |
+| songs                  |
+| uses                   |
++------------------------+
+8 rows in set (0.00 sec)
+
+mysql> 
+
+
+

@@ -1,0 +1,108 @@
+use oms;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_oms |
++---------------+
+| category      |
+| customer      |
+| orders        |
+| product       |
+| selects       |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> desc category;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| cat_id   | int(11)     | NO   | PRI | NULL    |       |
+| cat_name | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> source category.sql
+Query OK, 1 row affected (0.05 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.08 sec)
+
+Query OK, 1 row affected (0.08 sec)
+
+Query OK, 1 row affected (0.05 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.05 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.05 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from category;
++--------+------------------+
+| cat_id | cat_name         |
++--------+------------------+
+|      1 | colors           |
+|      2 | Erasers          |
+|      3 | pencils          |
+|      4 | pens             |
+|      5 | papers           |
+|      6 | sharpners        |
+|      7 | Exam pads        |
+|      8 | Pencil Box       |
+|      9 | Calculators      |
+|     10 | Notebooks        |
+|     11 | Files            |
+|     12 | Folders          |
+|     13 | Tools            |
+|     14 | scissors         |
+|     15 | glue             |
+|     16 | Staplers         |
+|     17 | Punching machine |
+|     18 | Printing Suplies |
+|     19 | School Supplies  |
+|     20 | Boards & Dusters |
++--------+------------------+
+20 rows in set (0.01 sec)
+
+mysql> desc product;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| cat_no        | int(11)     | YES  | MUL | NULL    |       |
+| p_id          | int(11)     | NO   | PRI | NULL    |       |
+| p_name        | varchar(20) | YES  |     | NULL    |       |
+| product_price | int(11)     | YES  |     | NULL    |       |
+| stock         | int(11)     | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> 
+

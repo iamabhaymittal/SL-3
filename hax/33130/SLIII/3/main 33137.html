@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<style>
+* {box-sizing: border-box}
+
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: blue;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+td {
+	text-align:right;
+	padding-right: 40px;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+    width: 100%;
+  }
+
+}
+</style>
+<script type="text/javascript"> 
+function validations()								 
+{ 
+	var fname = document.forms["RegForm"]["FName"];	
+	var lname = document.forms["RegForm"]["LName"];			 
+	var email = document.forms["RegForm"]["EMail"]; 
+	var phone = document.forms["RegForm"]["Telephone"]; 
+	var what = document.forms["RegForm"]["Income"]; 
+	var password = document.forms["RegForm"]["Password"];
+	var password1=document.forms["RegForm"]["Password1"]; 
+	var address = document.forms["RegForm"]["Address"]; 
+	var char = /^[a-zA-Z\s]+$/;
+	var num = /^[1-9]\d{9}$/;
+	if (fname.value == ""||char.test(fname) === false)								 
+	{ 
+		window.alert("Please enter your first name."); 
+		fname.focus(); 
+		return false; 
+	}
+	if (lname.value == ""||char.test(lname) === false)								 
+	{ 
+		window.alert("Please enter your last name."); 
+		lname.focus(); 
+		return false; 
+	} 
+
+	if (address.value == "")							 
+	{ 
+		window.alert("Please enter your address."); 
+		name.focus(); 
+		return false; 
+	} 
+	
+	if (email.value == "")								 
+	{ 
+		window.alert("Please enter a valid e-mail address."); 
+		email.focus(); 
+		return false; 
+	} 
+
+	if (email.value.indexOf("@", 0) < 0)				 
+	{ 
+		window.alert("Please enter a valid e-mail address."); 
+		email.focus(); 
+		return false; 
+	} 
+
+	if (email.value.indexOf(".", 0) < 0)				 
+	{ 
+		window.alert("Please enter a valid e-mail address."); 
+		email.focus(); 
+		return false; 
+	} 
+	if (password.value == "")					 
+	{ 
+		window.alert("Please enter your password"); 
+		password.focus(); 
+		return false; 
+	} 
+	if (password1.value == "")					 
+	{ 
+		window.alert("Please confirm your password"); 
+		password1.focus(); 
+		return false; 
+	} 
+	if(password.value!=password1.value)
+	{
+		window.alert("Please enter correct password"); 
+		password1.focus(); 
+		return false; 
+	}
+	if (phone.value == ""||num.test(phone) === false)						 
+	{ 
+		window.alert("Please enter your phone number."); 
+		phone.focus(); 
+		return false; 
+	} 
+	if(phone.value.length != 10)
+	{
+		window.alert("Please enter a valid phone number."); 
+		phone.focus(); 
+		return false; 
+	}
+	if (what.selectedIndex < 1)				 
+	{ 
+		alert("Please enter your course."); 
+		what.focus(); 
+		return false; 
+	} 
+	return true; 
+}
+function playSound()
+{
+	var sound=document.getElementById("audio");
+	sound.play();
+}
+function text_fname()
+{
+
+	var fname = document.forms["RegForm"]["FName"];
+	var char = /^[a-zA-Z\s]+$/;
+	if (!(fname.value.match(char)))								 
+	{ 
+		//window.alert("hi");
+		fname.style.borderColor="red";
+		fname.focus();
+	}
+	else
+	{
+		fname.style.borderColor="green";
+		fname.focus();
+	}
+	
+}
+</script> 
+
+<style> 
+div 
+{ 
+	border: 2px solid black;
+	background-color:lightblue;
+} 
+input[type=text]
+{
+	padding:1px;
+	font-size:20px; 
+}
+input[type=password]
+{
+	padding:1px;
+	font-size:20px; 
+}
+input[type=submit]{
+			background-color: #4CAF50;
+			padding:15px;
+		}
+input[type=reset]{
+			background-color: blue;
+			padding:15px;
+		}
+</style></head> 
+
+
+<body>
+
+<header style="background-color: black">
+		<body style="background-color: lightblue;">
+
+			<a href="main.html"><img src="img/pa.png" width="100" height="100"></a>
+            <font size="7" style="font-family: verdana" color = "lightblue" ><big><big>&nbsp;  PC Assembler&nbsp;</big></big>&nbsp;
+        <small><small><small><small><a href="laptops.html" style="color: lightblue;text-decoration:none;"> Laptops </a>
+        &nbsp;&nbsp;<a href="1.html" style="color: lightblue;text-decoration:none;"> Build a PC </a>
+        &nbsp;&nbsp;<a href="recommends.html" style="color: lightblue;text-decoration:none;"> Recommended Rigs</a>
+		&nbsp;&nbsp;<a href="signup.html" style="color: lightblue;text-decoration:none;"> Login/Register</a>
+
+</small></small></small></small></font>
+
+		</body>
+	</header>
+<form  name="RegForm" action="/submit.php" onsubmit="return validations()" method="post" autocomplete="off"> 
+<fieldset>
+<legend style="font-size: 25px;color:blue"><b>Personal Details</b></legend>
+	<p style="font-size: 20px;color: red;display:inline-block;">*&nbsp;</p><p style="font-size: 25px;display: inline-block;">First Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type="text" size=30 name="FName" oninput="text_fname()"></p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<p style="font-size: 25px;display: inline-block;"> Last Name&nbsp;&nbsp;&nbsp;: <input type="text" size=30 name="LName" > </p><br> 
+	<p style="font-size: 20px;color: red;display:inline-block;">*&nbsp;</p><p style="font-size: 25px;display: inline-block;"> Date of Birth &nbsp;&nbsp;&nbsp;: <input type="date" size=30 name="bday" placeholder="Enter birthdate" ></p><br>
+	<p style="font-size: 20px;color: red;display:inline-block;">*&nbsp;</p><p style="display: inline-block;font-size: 25px;">Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <textarea rows="4" cols="45" name="Address"> </textarea> </p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<p style="font-size: 20px;color: red;display:inline-block;">*&nbsp;</p><p style="display: inline-block;font-size: 25px;">Mobile no&nbsp;&nbsp;&nbsp;: <input type="text" size=30 name="Telephone"> </p><br> 
+</fieldset>
+<br><br>
+<fieldset>
+<legend style="font-size: 25px;color:blue"><b>Sign Up Details</b></legend>
+	<p style="font-size: 20px;color: red;display:inline-block;">*&nbsp;</p><p style="display: inline-block;font-size: 25px;">E-mail Address&nbsp;&nbsp;&nbsp;&nbsp;: <input type="text" size=30 name="EMail"> </p><br> 
+	<p style="font-size: 25px;display: inline-block;">&nbsp;&nbsp;Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type="password" size=30 name="Password"> </p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<p style="font-size: 25px;display: inline-block;">Confirm Password: <input type="password" size=30 name="Password1"> </p><br>
+	
+</fieldset>
+<br><br>
+<fieldset>
+<legend style="font-size: 25px;color:blue"><b>Income and Identity Proof</b></legend>
+	<p style="font-size: 20px;color: red;display:inline-block;">*&nbsp;</p><p style="font-size: 25px;display: inline-block;"">Income(per annum):
+	<select type="text" value="" name="Income" style="font-size: 20px;display: inline-block;"> 
+		<option>select</option>
+		<option><1,00,000</option> 
+		<option>1,00,000-3,00,000</option> 
+		<option>3,00,000-5,00,000</option> 
+		<option>5,00,000-8,00,000</option> 
+		<option>>8,00,000</option> 
+	</select></p><br>
+  	<p style="display: inline-block;font-size: 25px;">&nbsp;&nbsp;Identity Proof&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<br><br>&nbsp;&nbsp;
+    <input type="checkbox" name="rat" value="rat" style="display: inline-block;">Ration card
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="checkbox" name="lic" value="lic" style="display: inline-block;">License
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="checkbox" name="pan" value="pan" style="display: inline-block;">Pan Card
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    <input type="checkbox" name="adhar" value="adhar" style="display: inline-block;">Adhaar Card</p><br>  <br> 
+</fieldset>
+		<center><p>	
+		<input type="submit" value="Sign Up" onclick="playSound()" name="Submit" style="font-size: 20px;color:white"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<audio id="audio" src="button-10.wav" ></audio>	
+		<input type="reset" value="Reset" name="Reset" style="font-size: 20px;color:white"> 
+	</p></center>
+		 
+</form> 
+</body> 
+</html> 

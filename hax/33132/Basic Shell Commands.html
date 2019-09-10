@@ -1,0 +1,414 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Basic Shell Commands</title>
+<meta name="description" content="Basic Shell Commands">
+<meta name="keywords" content="commands_basic">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+
+<meta name="Generator" content="LaTeX2HTML v2008">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<link rel="STYLESHEET" href="Basic%20Shell%20Commands_files/commands_basic.css">
+
+</head>
+
+<body>
+
+<p>
+
+</p><h1 align="CENTER">Basic Shell Commands</h1>
+<div>
+
+<p align="CENTER"><strong>Jeremy Sanders</strong></p>
+<p align="CENTER"><strong>October 2011</strong></p>
+</div>
+
+<p>
+
+</p><ol>
+<li><tt>acroread</tt> - Read or print a PDF file.
+
+<p>
+</p></li>
+<li><tt>cat</tt> - Send a file to the screen in one go. Useful for
+  piping to other programs
+<pre>cat file1                       # list file1 to screen
+cat file1 file2 file3 &gt; outfile # add files together into outfile
+cat *.txt &gt; outfile             # add all .txt files together
+cat file1 file2 | grep fred     # pipe files
+</pre>
+
+<p>
+</p></li>
+<li><tt>cc</tt> - Compile a C program
+<pre>cc test1.c                     # compile test1.c to a.out
+cc -O2 -o test2.prog test2.c   # compile test2.c to test2.prog
+</pre>
+
+<p>
+</p></li>
+<li><tt>cd</tt> - Change current directory
+<pre>cd                     # go to home directory
+cd ~/papers            # go to /home/user/papers
+cd ~fred               # go to /home/fred
+cd dir                 # go to directory (relative)
+cd /dir1/dir2/dir3...  # go to directory (absolute)
+cd -                   # go to last directory you were in
+</pre>
+
+<p>
+</p></li>
+<li><tt>cp</tt> - Copy file(s)
+<pre>cp file1 file2                      # copy file1 to file2
+cp file1 directory                  # copy file1 into directory
+cp file1 file2 file3 ... directory  # copy files into directory
+cp -R dir1 dir2/  # copy dir1 into dir2 including subdirectries
+cp -pR dir1 dir2/ # copy directory, preserving permissions
+</pre>
+
+<p>
+</p></li>
+<li><tt>date</tt> - Shows current date
+<pre>&gt; date
+Sat Aug 31 17:18:53 BST 2002
+</pre>
+
+<p>
+</p></li>
+<li><tt>dvips</tt> - Convert a dvi file to PostScript
+<pre>dvips document.dvi        # convert document.dvi to document.ps
+dvips -Ppdf document.dvi  # convert to ps, for conversion to pdf
+</pre>
+
+<p>
+</p></li>
+<li><tt>emacs</tt> - The ubiquitous text editor
+<pre>emacs foo.txt             # open file in emacs
+emacsclient foo.txt       # open file in existing emacs (need to use
+                          # M-x start server first)
+</pre> 
+
+<p>
+</p></li>
+<li><tt>file</tt> - Tells you what sort of file it is
+<pre>&gt; file temp_70.jpg 
+temp_70.jpg: JPEG image data, JFIF standard 1.01,
+resolution (DPI), 72 x 72
+</pre>
+
+<p>
+</p></li>
+<li><tt>firefox</tt> - Start Mozilla Firefox
+
+<p>
+</p></li>
+<li><tt>f77/f90</tt> - Compile a Fortran 77/99 program
+<pre>f77 -O2 -o testprog testprog.f
+</pre>
+
+<p>
+</p></li>
+<li><tt>gedit</tt> - Gnome text editor
+
+<p>
+</p></li>
+<li><tt>gnuplot</tt> - A plotting package.
+
+<p>
+</p></li>
+<li><tt>grep</tt> - Look for text in files. List out lines
+  containing text (with filename if more than one file examined).
+<pre>grep "hi there" file1 file2 ... # look for 'hi there' in files
+grep -i "hi there" filename     # ignore capitals in search
+cat filename | grep "hi there"  # use pipe
+grep -v "foo" filename          # list lines that do not include foo
+</pre>
+
+<p>
+</p></li>
+<li><tt>gtar</tt> - GNU version of the tar utility (also called tar
+  on Linux). Store directories and files together into a single
+  archive file. Use the normal tar program to backup files to a
+  tape. See <tt>info tar</tt> for documentation.
+<pre>gtar cf out.tar dir1    # put contents of directory into out.tar
+gtar czf out.tar.gz dir1 # write compressed tar, out.tar.gz
+gtar tf in.tar          # list contents of in.tar
+gtar tzf in.tar.gz      # list contents of compressed in.tar.gz
+gtar xf in.tar          # extract contents of in.tar here
+gtar xzf in.tar.gz      # extract compressed in.tar.gz
+gtar xf in.tar file.txt ... # extract file.txt from in.tar
+</pre>
+
+<p>
+</p></li>
+<li><tt>gv</tt> - View a Postscript document with Ghostscript.
+
+<p>
+</p></li>
+<li><tt>gzip / gunzip</tt> - GNU Compress files into a smaller
+  space, or decompress .Z or .gz files.
+<pre>gzip file.fits          # compresses file.fits into file.fits.gz
+gunzip file.fits.gz     # recovers original file.fits
+gzip *.dat              # compresses all .dat files into .dat.gz
+gunzip *.dat.gz         # decompresses all .dat.gz files into .dat
+program | gzip &gt; out.gz # compresses program output into out.gz
+program | gunzip &gt; out  # decompresses compressed program output
+</pre>
+
+<p>
+</p></li>
+<li><tt>info</tt> - A documentation system designed to replace
+  <tt>man</tt> for GNU programs (e.g. gtar, gcc). Use cursor keys and
+  return to go to sections. Press b to go back to previous section. A
+  little hard to use.
+<pre>info gtar               # documentation for gtar
+</pre>
+
+<p>
+</p></li>
+<li><tt>kill</tt> - Kill, pause or continue a process. Can also be
+  used for killing daemons.
+<pre>&gt; ps -u jss
+...
+ 666  pts/1        06:06:06  badprocess 
+&gt; kill 666        # this sends a ``nice'' kill to the
+                  # process. If that doesn't work do
+&gt; kill -KILL 666   # (or equivalently)
+&gt; kill -9 666     # which should really kill it!
+
+&gt; kill -STOP 667  # pause (stop) process 
+&gt; kill -CONT 667  # unpause process
+</pre>
+
+<p>
+</p></li>
+<li><tt>latex</tt> - Convert a tex file to dvi
+
+<p>
+</p></li>
+<li><tt>logout</tt> - Closes the current shell. Also try ``exit''.
+
+<p>
+</p></li>
+<li><tt>lp</tt> - Sends files to a printer
+<pre>lp file.ps  # sends postscript file to the default printer
+lp -dlp2 file.ps           # sends file to the printer lp2
+lp -c file.ps    # copies file first, so you can delete it
+lpstat -p lp2         # get status and list of jobs on lp2
+cancel lp2-258                  # cancel print job lp2-258 
+
+lpr -Plp2 file.ps                    # send file.ps to lp2
+lpq -Plp2                        # get list of jobs on lp2
+lprm -Plp2 1234                   # delete job 1234 on lp2
+</pre>
+
+<p>
+</p></li>
+<li><tt>ls</tt> - Show lists of files or information on the files
+<pre>ls file     # does the file exist?
+ls -l file  # show information about the file
+ls *.txt    # show all files ending in .txt
+ls -lt      # show information about all files in date order
+ls -lrt     # above reversed in order
+ls -a       # show all files including hidden files
+ls dir      # show contents of directory
+ls -d dir   # does the directory exist?
+ls -p       # adds meaning characters to ends of filenames
+ls -R       # show files also in subdirectories of directory
+ls -1       # show one file per line
+</pre>
+
+<p>
+</p></li>
+<li><tt>man</tt> - Get instructions for a particular Unix command or
+  a bit of Unix. Use space to get next page and q to exit.
+<pre>man man      # get help on man
+man grep     # get help on grep
+man -s1 sort # show documentation on sort in section 1
+</pre>
+
+<p>
+</p></li>
+<li><tt>more</tt> - Show a file one screen at a time
+<pre>more file                # show file one screen at a time
+grep 'frog' file | more  # Do it to output of other command
+</pre>
+
+<p>
+</p></li>
+<li><tt>mv</tt> - Move file(s) or rename a file
+<pre>mv file1 file2                     # rename file1 to file2
+mv dir1 dir2                       # rename directory dir1 to dir2
+mv file1 file2 file3 ... directory # move files into directory
+</pre>
+
+<p>
+</p></li>
+<li><tt>nano</tt> - very simple text editor. Warning - this program
+  can introduce extra line breaks in your file if the screen is too
+  narrow!
+
+<p>
+</p></li>
+<li><tt>nice</tt> - Start a process in a nice way. Nice levels run
+  from -19 (high priority) to 19 (low priority). Jobs with a higher
+  priority get more CPU time. See renice for more detail. You should
+  probably be using the grid-engine to run long jobs.
+<pre>nice +19 myjob1   # run at lowest priority
+nice +8 myjob2    # run at lowish priority
+</pre>
+
+<p>
+</p></li>
+<li><tt>openoffice.org</tt> - a free office suite available for
+  Linux/Unix, Windows and Mac OS X.
+
+<p>
+</p></li>
+<li><tt>passwd</tt> - change your password
+
+<p>
+</p></li>
+<li><tt>pine</tt> - A commonly used text-based mail client. It is
+  now called alpine. Allows you to send and receive
+  emails. Configuration options allow it to become quite
+  powerful. Other alternatives for mail are mozilla mail and mutt,
+  however I suggest you stick to alpine or thunderbird.
+
+<p>
+</p></li>
+<li><tt>printenv</tt> - Print an environment variable in tcsh
+<pre>setenv MYVARIABLE Fred
+printenv MYVARIABLE
+printenv # print all variables
+</pre>
+
+<p>
+</p></li>
+<li><tt>ps</tt> - List processes on system
+<pre>&gt; ps -u jss          # list jss's processes
+  934 pts/0    00:00:00 bash
+^^^^^ ^^^^^    ^^^^^^^^ ^^^^^^^
+PID   output   CPU time name
+&gt; ps -f      # list processes started here in full format
+&gt; ps -AF     # list all processes in extra full format
+&gt; ps -A -l            # list all processes in long format
+&gt; ps -A | grep tcsh   # list all tcsh processes
+</pre>
+
+<p>
+</p></li>
+<li><tt>pwd</tt> - Show current working directory
+<pre>&gt; pwd
+/home/jss/writing/lecture
+</pre>
+
+<p>
+</p></li>
+<li><tt>quota</tt> - Shows you how much disk space you have left
+<pre>&gt; quota -v
+...
+</pre>
+
+<p>
+</p></li>
+<li><tt>renice</tt> - Renice a running process. Make a process
+  interact better with other processes on the system (see top to see
+  how it is doing). Nice levels run from -19 (high priority) to 19
+  (low priority). Only your own processes can be niced and they can
+  only be niced in the positive direction (unless you are
+  root). Normal processes start at nice 0.
+<pre>&gt; ps -u jss | grep bigprocess      # look for bigprocess
+ 1234 pts/0    99:00:00 bigprocess
+&gt; renice 19 1234                   # renice PID 1234 to 19
+</pre>
+
+<p>
+</p></li>
+<li><tt>rm</tt> - Delete (remove) files
+<pre>rm file1     # delete a file (use -i to ask whether sure)
+rm -r dir1   # delete a directory and everything in it (CARE!)
+rm -rf dir1  # like above, but don't ask if we have a -i alias
+</pre>
+
+<p>
+</p></li>
+<li><tt>rmdir</tt> - Delete a directory if it is empty (<tt>rm
+    -r dirname</tt> is useful if it is not empty)
+<pre>rmdir dirname
+</pre>
+
+<p>
+</p></li>
+<li><tt>staroffice</tt> - An office suite providing word processor,
+  spreadsheet, drawing package. See Users' Guide on how to install
+  this. This is a commercial version of the openoffice office package
+  - use <tt>openoffice.org</tt> on linux.
+
+<p>
+</p></li>
+<li><tt>setenv</tt> - Set an environment variable in tcsh.
+<pre>setenv MYVARIABLE Fred
+echo Hi there $MYVARIABLE
+</pre>
+
+<p>
+</p></li>
+<li><tt>tar</tt> - Combine files into one larger archive file, or
+  extract files from that archive (same as gtar on Linux).
+<pre>tar cvf /dev/rmt/0 ./      # backup cwd into tape
+tar tvf /dev/rmt/0         # list contents of tape
+tar xvf /dev/rmt/0         # extract contents of tape
+</pre>
+
+<p>
+</p></li>
+<li><tt>thunderbird</tt> - Start mozilla thunderbird.
+
+<p>
+</p></li>
+<li><tt>top</tt> - Interactively show you the ``top'' processes on a
+  system - the ones consuming the most computing (CPU) time. Press the
+  ``q'' key in top to exit. Press the ``k'' key to kill a particular
+  process. Press ``r'' to renice a process.
+
+<p>
+</p></li>
+</ol>
+
+<p>
+
+</p><h1><a name="SECTION00010000000000000000">
+About this document ...</a>
+</h1>
+ <strong>Basic Shell Commands</strong><p>
+This document was generated using the
+<a href="http://www.latex2html.org/"><strong>LaTeX</strong>2<tt>HTML</tt></a> translator Version 2008 (1.71)
+</p><p>
+Copyright © 1993, 1994, 1995, 1996,
+<a href="http://cbl.leeds.ac.uk/nikos/personal.html">Nikos Drakos</a>, 
+Computer Based Learning Unit, University of Leeds.
+<br>
+Copyright © 1997, 1998, 1999,
+<a href="http://www.maths.mq.edu.au/~ross/">Ross Moore</a>, 
+Mathematics Department, Macquarie University, Sydney.
+</p><p>
+The command line arguments were: <br>
+ <strong>latex2html</strong> <tt>-split 0 -font_size 10pt -no_navigation commands_basic.tex</tt>
+</p><p>
+The translation was initiated by Jeremy Sanders on 2011-10-02
+<br></p><hr>
+<address>
+Jeremy Sanders
+2011-10-02
+</address>
+
+
+</body></html>

@@ -1,0 +1,181 @@
+<html> 
+<head> 
+<script> 
+function validations()								 
+{ 
+	var fname = document.forms["RegForm"]["FName"];	
+	var lname = document.forms["RegForm"]["LName"];			 
+	var email = document.forms["RegForm"]["EMail"]; 
+	var phone = document.forms["RegForm"]["Telephone"]; 
+	var what = document.forms["RegForm"]["Income"]; 
+	var password = document.forms["RegForm"]["Password"];
+	var password1=document.forms["RegForm"]["Password1"]; 
+	var address = document.forms["RegForm"]["Address"]; 
+
+	if (fname.value == "")								 
+	{ 
+		window.alert("Please enter your first name."); 
+		fname.focus(); 
+		return false; 
+	} 
+	if (lname.value == "")								 
+	{ 
+		window.alert("Please enter your last name."); 
+		lname.focus(); 
+		return false; 
+	} 
+
+	if (address.value == "")							 
+	{ 
+		window.alert("Please enter your address."); 
+		name.focus(); 
+		return false; 
+	} 
+	
+	if (email.value == "")								 
+	{ 
+		window.alert("Please enter a valid e-mail address."); 
+		email.focus(); 
+		return false; 
+	} 
+
+	if (email.value.indexOf("@", 0) < 0)				 
+	{ 
+		window.alert("Please enter a valid e-mail address."); 
+		email.focus(); 
+		return false; 
+	} 
+
+	if (email.value.indexOf(".", 0) < 0)				 
+	{ 
+		window.alert("Please enter a valid e-mail address."); 
+		email.focus(); 
+		return false; 
+	} 
+	if (password.value == "")					 
+	{ 
+		window.alert("Please enter your password"); 
+		password.focus(); 
+		return false; 
+	} 
+	if (password1.value == "")					 
+	{ 
+		window.alert("Please confirm your password"); 
+		password1.focus(); 
+		return false; 
+	} 
+	if(password.value!=password1.value)
+	{
+		window.alert("Please enter correct password"); 
+		password1.focus(); 
+		return false; 
+	}
+	if (phone.value == "")						 
+	{ 
+		window.alert("Please enter your phone number."); 
+		phone.focus(); 
+		return false; 
+	} 
+	if(phone.value.length < 10)
+	{
+		window.alert("Please enter a valid phone number."); 
+		phone.focus(); 
+		return false; 
+	}
+	if (what.selectedIndex < 1)				 
+	{ 
+		alert("Please enter your course."); 
+		what.focus(); 
+		return false; 
+	} 
+
+	return true; 
+}
+function playSound()
+{
+	var sound = document.getElementById("audio");
+	sound.play();
+	window.alert("In function");
+}
+</script> 
+
+<style> 
+.button {
+	  background-color: powderblue; 
+	  border: solid blue 4px;
+	  color: black;
+	  padding: 10px 20px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 20px;
+	  margin: 40px 80px;
+	  cursor: pointer;
+	  -webkit-transition-duration: 0.4s; 
+	  transition-duration: 0.4s;
+	}
+.button1 {
+  		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	}
+//**div { 
+	border: 2px solid black;
+	background-color:lightblue;
+} 
+input[type=text]
+{
+	padding:1px;
+	font-size:20px; 
+}**//
+</style></head> 
+
+<body bgcolor="white"> 
+<h1 style="text-align: center;background-color:powderblue;" > Sign Up </h1>		 
+<form name="RegForm" action="/submit.php" onsubmit="return validations()" method="post"> 
+<fieldset>
+<legend style="font-size: 20px;color:blue">Personal Details</legend>
+	<p style="font-size: 25px;display: inline-block;"> First Name: <input type="text" size=40 name="FName"></p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<p style="font-size: 25px;display: inline-block;"> Last Name: <input type="text" size=40 name="LName"> </p><br> 
+	<p style="font-size: 25px;"> Date of Birth : <input type="date" size=30 name="bday" placeholder="Enter birthdate" ></p><br>
+	<p style="font-size: 25px;">Address: <textarea rows="4" cols="50" name="Address"> </textarea></p><br> 
+	<p style="font-size: 25px;">Telephone: <input type="text" size=65 name="Telephone"> </p><br> 
+</fieldset>
+<br><br>
+<fieldset>
+<legend style="font-size: 20px;color:blue">Sign Up Details</legend>
+	<p style="font-size: 25px;">E-mail Address: <input type="text" size=65 name="EMail"> </p><br> 
+	<p style="font-size: 25px;display: inline-block;">Password: <input type="password" size=40 name="Password"> </p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<p style="font-size: 25px;display: inline-block;">Confirm Password: <input type="password" size=40 name="Password1"> </p><br>
+	
+</fieldset>
+<br><br>
+<fieldset>
+<legend style="font-size: 20px;color:blue">Income and Identity Proof</legend>
+	<p style="font-size: 25px;display: inline-block;"">Income(per annum):
+	<select type="text" value="" name="Income" style="font-size: 20px;display: inline-block;"> 
+		<option>select</option>
+		<option><1,00,000</option> 
+		<option>1,00,000-3,00,000</option> 
+		<option>3,00,000-5,00,000</option> 
+		<option>5,00,000-8,00,000</option> 
+		<option>>8,00,000</option> 
+	</select></p>
+    <p style="font-size: 25px;">Identity Proof:<br>    
+    <input type="checkbox" name="rat" value="rat" style="display: inline-block;">Ration card
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="checkbox" name="lic" value="lic" style="display: inline-block;">License
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="checkbox" name="pan" value="pan" style="display: inline-block;">Pan Card
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    <input type="checkbox" name="adhar" value="adhar" style="display: inline-block;">Adhaar Card<br>  <br> 
+</fieldset>
+		<center><p>
+		<audio id="audio" src="http://www.soundjay.com/button/beep-07.wav" autostart="false"></audio>	
+		<input type="submit" onclick="playSound()" class="button button1" value="Sign Up" name="Submit" style="font-size: 20px;">	 
+		<input type="reset" class="button button1" value="Reset" name="Reset" style="font-size: 20px;"> 
+	</p></center>
+		 
+</form> 
+</body> 
+</html> 

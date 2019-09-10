@@ -1,0 +1,136 @@
+^[[A^[pict@DBMSLAB-A3-305-15:~$ mysql -u kunal33130 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.7.27-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| BookOrdering       |
+| Chef               |
+| DML5               |
+| NHL                |
+| airplane           |
+| ass1               |
+| chef               |
+| college            |
+| college_management |
+| d1                 |
+| db                 |
+| db1                |
+| dbname             |
+| emp_salary         |
+| employee           |
+| examdb             |
+| flight             |
+| generalStore_33234 |
+| hotel              |
+| league             |
+| musician           |
+| mydb               |
+| mysql              |
+| oms33130           |
+| order33170         |
+| orderManagement    |
+| performance_schema |
+| pictown            |
+| pictown33130       |
+| res                |
+| sys                |
+| test               |
+| test13             |
+| tournament         |
+| trigger_use        |
+| trr                |
++--------------------+
+37 rows in set (0.16 sec)
+
+mysql> create database employee33130;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> create table employee(eno int primarykey,name varchar(50),address varchar(100),city varchar(10));
+ERROR 1046 (3D000): No database selected
+mysql> use employee33130;
+Database changed
+mysql> create table employee(eno int primarykey,name varchar(50),address varchar(100),city varchar(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primarykey,name varchar(50),address varchar(100),city varchar(10))' at line 1
+mysql> create table employee(eno int primary key,name varchar(50),address varchar(100),city varchar(10));
+Query OK, 0 rows affected (0.33 sec)
+
+mysql> create table salary(eno int,basic int,da int,hra int ,it int,foreign key(eno) references employee(eno),primary key(eno,basic));
+Query OK, 0 rows affected (0.25 sec)
+
+mysql> create table net_salary(eno int ,total_allowance int ,total_deduction int,netpay int,foreign key(eno) references employee(eno),primary key(eno,netpay));
+foreign key(eno) references employee(eno),primary key(eno,netpay));
+^C
+mysql> create table net_salary(eno int ,total_allowance int ,total_deduction int,netpay int,foreign key(eno) references employee(eno),primary key(eno,netpay));
+Query OK, 0 rows affected (0.42 sec)
+
+mysql> insert into employee values(1,"kunal","PICT","Pune");
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into employee values(2,"Soham","VIT","Pune");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into employee values(3,"Animesh","COEP","Pune");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into employee values(4,"Yash","BVP","Pune");
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into employee values(5,"Abcd","PICT","Pune");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from employee;
++-----+---------+---------+------+
+| eno | name    | address | city |
++-----+---------+---------+------+
+|   1 | kunal   | PICT    | Pune |
+|   2 | Soham   | VIT     | Pune |
+|   3 | Animesh | COEP    | Pune |
+|   4 | Yash    | BVP     | Pune |
+|   5 | Abcd    | PICT    | Pune |
++-----+---------+---------+------+
+5 rows in set (0.00 sec)
+
+mysql> insert into salary values(1,10000,0,0,0);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into salary values(2,20000,0,0,0);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into salary values(3,10000,0,0,0);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into salary values(4,30000,0,0,0);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into salary values(5,20000,0,0,0);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT * FROM SALARY;
+ERROR 1146 (42S02): Table 'employee33130.SALARY' doesn't exist
+mysql> select * from salary;
++-----+-------+------+------+------+
+| eno | basic | da   | hra  | it   |
++-----+-------+------+------+------+
+|   1 | 10000 |    0 |    0 |    0 |
+|   2 | 20000 |    0 |    0 |    0 |
+|   3 | 10000 |    0 |    0 |    0 |
+|   4 | 30000 |    0 |    0 |    0 |
+|   5 | 20000 |    0 |    0 |    0 |
++-----+-------+------+------+------+
+5 rows in set (0.00 sec)
+
+mysql> 
